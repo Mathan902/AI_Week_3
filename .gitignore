@@ -1,0 +1,16 @@
+# Python virtual environments and bytecode
+.venv/
+__pycache__/
+*.py[cod]
+
+# Streamlit local state
+.streamlit/
+
+# Local databases and generated evaluation artifacts
+week2Task/chroma_data/
+week2Task/eval_output/
+
+# Environment files and macOS metadata
+.env
+.env.*
+.DS_Store
