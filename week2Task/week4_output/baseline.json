@@ -1,0 +1,251 @@
+{
+  "summary": {
+    "retriever": "baseline",
+    "questions": 12,
+    "hit_rate_at_3": 0.917,
+    "hits": 11,
+    "hits_lenient": 12,
+    "mrr_at_3": 0.722,
+    "tally": {
+      "PASS": 6,
+      "R": 1,
+      "G": 5,
+      "NIC": 0
+    },
+    "p50_retrieval_ms": 4.55,
+    "p95_retrieval_ms": 5.41,
+    "p50_end_to_end_ms": 4.56,
+    "latency_samples": 84,
+    "index_build_ms": 0.0
+  },
+  "records": [
+    {
+      "id": "Q01",
+      "question": "what is the default for retry_backoff_ms",
+      "gold": "v3-client::client-constructor-parameters::3-table",
+      "hit_at_3": false,
+      "gold_rank": 0,
+      "hit_at_3_lenient": true,
+      "baseline_deep_rank": 7,
+      "top3": [
+        "v3-client::client-send::7",
+        "v2-client::client-request::5-table",
+        "v3-changelog::retry-defaults-changed::1"
+      ],
+      "answer": "The per-request `retry_backoff_ms` parameter overrides the value given in the constructor for that single call. [chunk:v3-client::client-send::7]",
+      "answer_correct": false,
+      "label": "R",
+      "evidence": "gold `v3-client::client-constructor-parameters::3-table` sits at rank 7 of 25; 3/3 of the top-3 contain `retry_backoff_ms`; top-3 = [v3-client::client-send::7, v2-client::client-request::5-table, v3-changelog::retry-defaults-changed::1]",
+      "retrieval_ms_median": 4.74
+    },
+    {
+      "id": "Q02",
+      "question": "how do I authenticate the client?",
+      "gold": "v3-client::authentication::1",
+      "hit_at_3": true,
+      "gold_rank": 2,
+      "hit_at_3_lenient": true,
+      "baseline_deep_rank": 2,
+      "top3": [
+        "v2-client::authentication::1",
+        "v3-client::authentication::1",
+        "v3-client::client::0"
+      ],
+      "answer": "I don't know based on the provided documents.",
+      "answer_correct": false,
+      "label": "G",
+      "evidence": "gold `v3-client::authentication::1` at rank 2 of top-3 containing ['ACME_API_TOKEN'], but answer lacks it \u2014 lexical-support gate refused (support=0.50 < 0.60)",
+      "retrieval_ms_median": 4.53
+    },
+    {
+      "id": "Q03",
+      "question": "what's the default heartbeat_interval_ms when streaming?",
+      "gold": "v3-streaming::client-stream::2-table",
+      "hit_at_3": true,
+      "gold_rank": 1,
+      "hit_at_3_lenient": true,
+      "baseline_deep_rank": 1,
+      "top3": [
+        "v3-streaming::client-stream::2-table",
+        "v3-streaming::streaming-responses::0",
+        "v3-streaming::reconnection::5"
+      ],
+      "answer": "| heartbeat_interval_ms | int | 15000 | no | Interval between keep-alive heartbeat frames on the idle stream. | | | heartbeat_interval_ms | int | 15000 | no | Interval between keep-alive heartbeat frames on the idle stream [chunk:v3-streaming::client-stream::2-table]",
+      "answer_correct": true,
+      "label": "PASS",
+      "evidence": "correct chunk at rank 1; answer contains ['15000']",
+      "retrieval_ms_median": 4.84
+    },
+    {
+      "id": "Q04",
+      "question": "uploads keep failing with PayloadTooLargeError, what's the size limit?",
+      "gold": "v3-files::upload-parameters::1-table",
+      "hit_at_3": true,
+      "gold_rank": 1,
+      "hit_at_3_lenient": true,
+      "baseline_deep_rank": 1,
+      "top3": [
+        "v3-files::upload-parameters::1-table",
+        "v2-uploads::upload-parameters::1-table",
+        "v3-files::upload-parameters::2"
+      ],
+      "answer": "I don't know based on the provided documents.",
+      "answer_correct": false,
+      "label": "G",
+      "evidence": "gold `v3-files::upload-parameters::1-table` at rank 1 of top-3 containing ['25'], but answer lacks it \u2014 lexical-support gate refused (support=0.33 < 0.60)",
+      "retrieval_ms_median": 4.41
+    },
+    {
+      "id": "Q05",
+      "question": "what does X-RateLimit-Remaining mean?",
+      "gold": "v3-ratelimits::headers::3",
+      "hit_at_3": true,
+      "gold_rank": 1,
+      "hit_at_3_lenient": true,
+      "baseline_deep_rank": 1,
+      "top3": [
+        "v3-ratelimits::headers::3",
+        "v3-ratelimits::rate-limits::0",
+        "v2-errors::toomanyrequestserror::4"
+      ],
+      "answer": "Every response carries `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` headers describing your current budget. [chunk:v3-ratelimits::headers::3]",
+      "answer_correct": true,
+      "label": "PASS",
+      "evidence": "correct chunk at rank 1; answer contains ['X-RateLimit-Remaining']",
+      "retrieval_ms_median": 4.71
+    },
+    {
+      "id": "Q06",
+      "question": "got a 429 back, how long should I wait before retrying?",
+      "gold": "v3-errors::ratelimiterror::2",
+      "hit_at_3": true,
+      "gold_rank": 3,
+      "hit_at_3_lenient": true,
+      "baseline_deep_rank": 3,
+      "top3": [
+        "v3-ratelimits::handling-http-429::4",
+        "v3-changelog::retry-defaults-changed::1",
+        "v3-errors::ratelimiterror::2"
+      ],
+      "answer": "When the service returns HTTP 429 the SDK raises `RateLimitError`. The exception carries a `retry_after_seconds` attribute parsed from the server's `Retry-After` header, so callers can wait exactly as long as the server asks before trying again. The exception carries a `retry_after_seconds` attribute parsed from the server's `Retry-After` header, so callers can wait exactly as long as the server asks before trying again. [chunk:v3-errors::ratelimiterror::2]",
+      "answer_correct": true,
+      "label": "PASS",
+      "evidence": "correct chunk at rank 3; answer contains ['Retry-After']",
+      "retrieval_ms_median": 4.35
+    },
+    {
+      "id": "Q07",
+      "question": "paginate_auto is gone after upgrading, what do I use now?",
+      "gold": "v3-changelog::removed-apis::3",
+      "hit_at_3": true,
+      "gold_rank": 3,
+      "hit_at_3_lenient": true,
+      "baseline_deep_rank": 3,
+      "top3": [
+        "v2-pagination::paginate-auto::4",
+        "v2-pagination::paginate-auto::1",
+        "v3-changelog::removed-apis::3"
+      ],
+      "answer": "I don't know based on the provided documents.",
+      "answer_correct": false,
+      "label": "G",
+      "evidence": "gold `v3-changelog::removed-apis::3` at rank 3 of top-3 containing ['list_after'], but answer lacks it \u2014 lexical-support gate refused (support=0.57 < 0.60)",
+      "retrieval_ms_median": 4.33
+    },
+    {
+      "id": "Q08",
+      "question": "default tolerance_seconds for webhook signature checks?",
+      "gold": "v3-webhooks::verification-parameters::3-table",
+      "hit_at_3": true,
+      "gold_rank": 2,
+      "hit_at_3_lenient": true,
+      "baseline_deep_rank": 2,
+      "top3": [
+        "v3-webhooks::verification-parameters::4",
+        "v3-webhooks::verification-parameters::3-table",
+        "v3-webhooks::signature-verification::2-code"
+      ],
+      "answer": "| tolerance_seconds | int | 300 | no | Maximum allowed age of a delivery before it is rejected as stale. | | Parameter | Type | Default | Required | Description | |---|---|---|---|---| | tolerance_seconds | int | 300 | no | Maximum allowed age of a delivery before it is rejected as stale [chunk:v3-webhooks::verification-parameters::3-table]",
+      "answer_correct": true,
+      "label": "PASS",
+      "evidence": "correct chunk at rank 2; answer contains ['300']",
+      "retrieval_ms_median": 4.75
+    },
+    {
+      "id": "Q09",
+      "question": "can I share one client across threads?",
+      "gold": "v3-client::thread-safety::9",
+      "hit_at_3": true,
+      "gold_rank": 1,
+      "hit_at_3_lenient": true,
+      "baseline_deep_rank": 1,
+      "top3": [
+        "v3-client::thread-safety::9",
+        "v3-streaming::client-stream::1",
+        "v3-client::client-send::5"
+      ],
+      "answer": "A `Client` instance is thread-safe. Share one instance across threads instead of constructing a client per request. Share one instance across threads instead of constructing a client per request. [chunk:v3-client::thread-safety::9]",
+      "answer_correct": true,
+      "label": "PASS",
+      "evidence": "correct chunk at rank 1; answer contains ['thread-safe']",
+      "retrieval_ms_median": 4.39
+    },
+    {
+      "id": "Q10",
+      "question": "how do I resume an upload that got interrupted?",
+      "gold": "v3-files::resumable-uploads::4",
+      "hit_at_3": true,
+      "gold_rank": 1,
+      "hit_at_3_lenient": true,
+      "baseline_deep_rank": 1,
+      "top3": [
+        "v3-files::resumable-uploads::4",
+        "v2-uploads::upload-parameters::1-table",
+        "v2-uploads::file-uploads::0"
+      ],
+      "answer": "Interrupted multipart uploads can be resumed within 24 hours by passing the returned `upload_id` back to `Client.files.upload()`. [chunk:v3-files::resumable-uploads::4]",
+      "answer_correct": true,
+      "label": "PASS",
+      "evidence": "correct chunk at rank 1; answer contains ['upload_id']",
+      "retrieval_ms_median": 4.71
+    },
+    {
+      "id": "Q11",
+      "question": "timeout_s stopped working after the upgrade, what's the new option?",
+      "gold": "v3-changelog::timeout-units-renamed::2",
+      "hit_at_3": true,
+      "gold_rank": 1,
+      "hit_at_3_lenient": true,
+      "baseline_deep_rank": 1,
+      "top3": [
+        "v3-changelog::timeout-units-renamed::2",
+        "v3-changelog::retry-defaults-changed::1",
+        "v2-errors::toomanyrequestserror::4"
+      ],
+      "answer": "I don't know based on the provided documents.",
+      "answer_correct": false,
+      "label": "G",
+      "evidence": "gold `v3-changelog::timeout-units-renamed::2` at rank 1 of top-3 containing ['timeout_ms'], but answer lacks it \u2014 lexical-support gate refused (support=0.43 < 0.60)",
+      "retrieval_ms_median": 4.42
+    },
+    {
+      "id": "Q12",
+      "question": "how many times does a failed webhook delivery get retried?",
+      "gold": "v3-webhooks::retries::5",
+      "hit_at_3": true,
+      "gold_rank": 1,
+      "hit_at_3_lenient": true,
+      "baseline_deep_rank": 1,
+      "top3": [
+        "v3-webhooks::retries::5",
+        "v3-errors::ratelimiterror::2",
+        "v3-ratelimits::handling-http-429::4"
+      ],
+      "answer": "I don't know based on the provided documents.",
+      "answer_correct": false,
+      "label": "G",
+      "evidence": "gold `v3-webhooks::retries::5` at rank 1 of top-3 containing ['five times'], but answer lacks it \u2014 lexical-support gate refused (support=0.43 < 0.60)",
+      "retrieval_ms_median": 4.33
+    }
+  ]
+}

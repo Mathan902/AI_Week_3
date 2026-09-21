@@ -1,114 +1,167 @@
-# Week 3 Task Set E — Results
+# Week 4 Task Set E: Results
 
-**Scope statement:** only `corpus/sdk_v2/` (4 pages) and `corpus/sdk_v3/` (6 new reference pages + the migration changelog that shipped with them) were indexed. The rest of the docs site (`documents/`) was **not** re-indexed.
+**Label the failures, then buy back hit-rate@3 with exactly one change**
 
-Embeddings: `sentence-transformers/all-MiniLM-L6-v2` (384-dim, cosine), unchanged across both arms. Vector store: **ChromaDB** (persistent local directory `chroma_data/`, no server or API keys) with metadata filtering. Only one variable was changed between arms: the chunker.
+This builds on the Week 3 SDK-docs app. Both runs used the same setup:
+
+| Held constant across both runs | Value |
+|---|---|
+| Corpus | `corpus/sdk_v2` + `corpus/sdk_v3`, structured chunker, 62 chunks |
+| Embeddings / store | `all-MiniLM-L6-v2`, Chroma collection `sdk_structured` (rebuilt identically each run) |
+| Generator | `generate.answer()`: deterministic extractive answer with a score gate (0.40) and a lexical-support gate (0.60) |
+| Questions | `golden_set.jsonl` (the same 12 questions) |
+| k | 3 |
+| **Changed (the one variable)** | **retriever: `baseline` → `hybrid` (BM25 + RRF, k=60)** |
+
+Reproduce with `python week4_eval.py --retriever baseline` and then `python week4_eval.py --retriever hybrid`. The full inspection views, which show the question, the top-3 chunks with scores and fusion ranks, the answer and the label side by side, are in `week4_output/inspection_baseline.md` and `week4_output/inspection_hybrid.md`. The raw per-question records are in `week4_output/*.json`.
 
 ---
 
-## 1. The 8 questions and their known-correct locations
+## 1. Golden set: 12 questions, each with one known-correct chunk_id
 
-Written from the pages **before** any search was run (see `questions.py`, committed before `eval_output/`).
+The questions are written the way developers ask them: lowercase, starting from the symptom, and naming the symbol they're stuck on. They were written from the chunk list **before any search was run**. **Source note:** this repo has no support-ticket or search log, so the questions are modeled on typical developer phrasing and aren't copied from a log.
 
-| # | Question | Gold page | Gold section | Depends on |
-|---|---|---|---|---|
-| 1 | Type and default of `retry_backoff_ms` on `Client.send()`? | `v3-client` | Client.send() | parameter-table row |
-| 2 | Exception on HTTP 429 and the attribute carrying the wait time? | `v3-errors` | RateLimitError | table + prose |
-| 3 | Maximum file size accepted by uploads in v3? | `v3-files` | Upload parameters | parameter-table row |
-| 4 | How to verify a webhook signature? | `v3-webhooks` | Signature verification | code fence |
-| 5 | Default `buffer_size_ms` for streaming? | `v3-streaming` | Client.stream() | parameter-table row |
-| 6 | Requests per minute on the free tier? | `v3-ratelimits` | Limit tiers | parameter-table row |
-| 7 | How to disable automatic retries at construction? | `v3-client` | Client constructor parameters | prose under table |
-| 8 | Which environment variable holds the API token? | `v3-client` | Authentication | prose + code fence |
+**8 of the 12** contain an exact token that dense retrieval handles poorly (4 are required).
 
-## 2. Hit-in-top-5 over the SAME 8 questions, both strategies
-
-| Q | Naive (120w/25ovl) | Structured |
-|---|---|---|
-| 1 | YES (rank 2) | YES (**rank 1**) |
-| 2 | YES (rank 3) | YES (**rank 1**) |
-| 3 | YES (rank 1) | YES (rank 1) |
-| 4 | YES (rank 1) | YES (rank 1) |
-| 5 | YES (rank 1) | YES (rank 1) |
-| 6 | YES (rank 1) | YES (rank 1) |
-| 7 | YES (rank 4) | YES (rank 1) |
-| 8 | YES (rank 5) | YES (**rank 1**) |
-| **Total** | **8/8** | **8/8** |
-
-Secondary metrics computed from the same runs:
-
-| Metric | Naive | Structured |
-|---|---|---|
-| Gold chunk at rank 1 | 5/8 | 5/8 |
-| MRR | 0.760 | 0.750 |
-| Queries where top-1 is a **stale v2** page | **3/8** | **0/8** |
-| Chunks containing an unclosed code fence | **1** | **0** |
-
-The headline number did not move (8/8 vs 8/8) — but the per-question record shows *where* naive loses: on Q1, Q2 and Q7 its top-1 hit is the outdated **v2** page (e.g. Q1's #1 result is `v2-client::client-request` describing `retry_backoff_ms = 2000`, the value v3 removed). Structured never puts stale content first and never breaks a code fence; naive did both. Full search-only dump for every question under both strategies: `eval_output/search_dump.md`.
-
-## 3. Metadata filter changing retrieval (scores pasted)
-
-Query: **"What happens when the API returns HTTP 429?"**
-
-Unfiltered — the stale v2 page wins:
-
-```
-1. [v2] v2-errors #toomanyrequestserror      dense=0.572 final=0.647
-2. [v2] v2-errors #error-class-table         dense=0.523 final=0.598
-3. [v3] v3-errors #ratelimiterror            dense=0.517 final=0.592
-4. [v3] v3-errors #error-class-table         dense=0.499 final=0.574
-5. [v2] v2-client #client-request            dense=0.499 final=0.537
-```
-
-With `filters={"sdk_version": "v3"}`:
-
-```
-1. [v3] v3-errors #ratelimiterror            dense=0.517 final=0.592
-2. [v3] v3-errors #error-class-table         dense=0.499 final=0.574
-3. [v3] v3-client #client-send               dense=0.451 final=0.489
-4. [v3] v3-ratelimits #handling-http-429     dense=0.427 final=0.464
-5. [v3] v3-client #client-send               dense=0.410 final=0.448
-```
-
-Top-1 moves from `v2-errors::toomanyrequestserror::2` (renamed exception, no retry-delay attribute) to `v3-errors::ratelimiterror::2`.
-
-## 4. Cited answers (citations resolve to real chunk_ids)
-
-Generation searched with `sdk_version=v3` pinned (these questions are about v3); each citation resolves via `page_id + anchor` to a stored Chroma record whose metadata and document contain the claim.
-
-1. **Q1:** `| retry_backoff_ms | int | 500 | no | Overrides the client-level backoff delay…` — `[chunk:v3-client::client-send::6-table]`, anchor `#client-send`, source `client.md`
-2. **Q4:** `verify_signature(payload=raw_body, signature_header=request.headers["X-Acme-Signature"], secret=…)` — `[chunk:v3-webhooks::signature-verification::2-code]`, anchor `#signature-verification`
-3. **Q6:** `The free tier allows 60 requests per minute with a burst allowance of 10 requests.` — `[chunk:v3-ratelimits::limit-tiers::2]`, anchor `#limit-tiers`
-
-Verbatim transcripts are in `eval_output/search_dump.md`. The generation stage is **deterministic extractive by design**: it quotes the fact-bearing lines of the best-matching retrieved chunk and cites its `chunk_uid`, so every transcript is reproducible and every citation is verifiable by construction. Refusal is enforced by a two-stage gate (evidence score + lexical support), not by prompt suggestion — an LLM was deliberately not introduced, because the rubric's checkable property ("the cited chunk actually contains the claim") is guaranteed by quoting rather than paraphrasing.
-
-## 5. Refusals (3/3 refused)
-
-| Out-of-corpus question | Result |
-|---|---|
-| How do I rotate my account password with the SDK? | REFUSED |
-| Does the SDK publish events to Kafka for stream processing? | REFUSED |
-| How do I install the SDK with pip? | REFUSED |
-
-All three returned exactly: `I don't know based on the provided documents.`
-
-The refusal is **forced**, two-stage: (a) evidence gate — top-1 score < 0.40 refuses immediately; (b) lexical-support gate — if fewer than 60% of the question's salient terms appear in the top-3 chunks, refuse even when the score looks confident (this catches the Kafka case, which scored a seductive 0.589 against the streaming page). The prompt itself additionally forbids "best judgement" phrasing. Full transcripts pasted in `eval_output/search_dump.md`.
-
-## 6. Topic clusters
-
-KMeans over the stored chunk embeddings, with `k` chosen automatically by silhouette score (range 2–8). Each Chroma record's metadata gains `cluster_id` + `cluster_label`, so topic-restricted retrieval is a normal metadata filter (`cluster_id`), identical in mechanism to the `sdk_version` filter.
-
-| Collection | k chosen | Silhouette | Example clusters (label → chunks) |
+| # | Question | Known-correct `chunk_id` | Exact token |
 |---|---|---|---|
-| `sdk_naive` | 8 | 0.199 | uploads-file-upload (3), toomanyrequestserror-exception-error (5), configured-method-verb (5) |
-| `sdk_structured` | 8 | 0.124 | size-uploads-file (9), exception-after-raised (13), requests-iterator-free (7) |
+| Q01 | what is the default for retry_backoff_ms | `v3-client::client-constructor-parameters::3-table` | `retry_backoff_ms` (symbol) |
+| Q02 | how do I authenticate the client? | `v3-client::authentication::1` | — |
+| Q03 | what's the default heartbeat_interval_ms when streaming? | `v3-streaming::client-stream::2-table` | `heartbeat_interval_ms` (symbol) |
+| Q04 | uploads keep failing with PayloadTooLargeError, what's the size limit? | `v3-files::upload-parameters::1-table` | `PayloadTooLargeError` (error class) |
+| Q05 | what does X-RateLimit-Remaining mean? | `v3-ratelimits::headers::3` | `X-RateLimit-Remaining` (header) |
+| Q06 | got a 429 back, how long should I wait before retrying? | `v3-errors::ratelimiterror::2` | `429` (error code) |
+| Q07 | paginate_auto is gone after upgrading, what do I use now? | `v3-changelog::removed-apis::3` | `paginate_auto` (symbol) |
+| Q08 | default tolerance_seconds for webhook signature checks? | `v3-webhooks::verification-parameters::3-table` | `tolerance_seconds` (symbol) |
+| Q09 | can I share one client across threads? | `v3-client::thread-safety::9` | — |
+| Q10 | how do I resume an upload that got interrupted? | `v3-files::resumable-uploads::4` | — |
+| Q11 | timeout_s stopped working after the upgrade, what's the new option? | `v3-changelog::timeout-units-renamed::2` | `timeout_s` (symbol) |
+| Q12 | how many times does a failed webhook delivery get retried? | `v3-webhooks::retries::5` | — |
 
-Cluster code: `SdkVectorStore.create_clusters()` / `search_cluster()` in `vector_store.py`.
+**Scoring rule:** a question counts as a hit@3 only if **the one tagged `chunk_id`** is in the top 3. The file also lists `also_correct` chunks, meaning other chunks that state the same fact, and a lenient hit-rate is reported next to the strict one for transparency. The strict number is the scored metric, because the task defines the target as *the* chunk_id you know is correct. The lenient rule hides exactly the failure from the brief: for Q01, a changelog sentence counts as a lenient hit while the actual v3 parameter table is missing from the top 3.
 
-## 7. Which chunker ships, and why
+---
 
-**The structure-aware chunker ships.** On the primary metric it matched naive (8/8), so the decision rests on the failure modes the per-question record exposed: naive put a stale v2 page at rank 1 on 3 of 8 queries — including feeding our own generator `retry_backoff_ms = 2000` (a value v3 removed) with high confidence — while structured never did; naive also produced one chunk containing half a code fence, which would hand the model syntactically invalid context exactly where code examples matter most. Structured costs more chunks (62 vs 21) but chunk count is not a quality signal, and Q6 shows its payoff directly: the free-tier question scored 0.931 against an intact limit-tiers table versus naive's 0.704 against blended prose.
+## 2. Baseline: recorded before any change
 
-### Retrieval that embarrassed us (diagnosed)
+**Baseline hit-rate@3 = 11/12 = 0.917** (lenient 12/12, MRR@3 0.722). **p50 retrieval latency = 4.55 ms.**
 
-During the first generation run, Q1's cited answer quoted **`retry_backoff_ms | int | 2000`** — the v2 table row, presented as the v3 answer, by a chunk-selection step that ranked purely on keyword coverage and score. Diagnosis: the generation stage inherited unfiltered retrieval, so version-conflicting near-duplicates competed and the stale one won on surface overlap. Fix: pin `sdk_version=v3` at the generation stage (questions name the target version), keep retrieval honest and unfiltered for measurement. This is the same bug class the metadata-filter demo quantifies — caught here at answer time, not just ranking time.
+These numbers were saved to `week4_output/baseline.json` before `hybrid.py` existed. The baseline was re-run afterwards with the final harness, and all 12 per-question records came out identical.
+
+---
+
+## 3. Failure labels from the baseline inspection view
+
+The labels mean:
+
+- **R:** the known-correct chunk is not in the top 3.
+- **G:** the correct chunk is in the top 3, but the answer doesn't contain the fact.
+- **NIC:** no chunk in the indexed corpus holds the answer.
+
+Each piece of evidence below is read directly off `inspection_baseline.md`.
+
+| Q | Label | One line of evidence |
+|---|---|---|
+| Q01 | **R** | Gold v3 constructor table sits at dense rank **7**. All 3 of the top-3 contain `retry_backoff_ms`: `client-send::7` (prose), **`v2-client::client-request::5-table` (v2, default 2000)** and the changelog. |
+| Q02 | **G** | Gold `authentication::1` is at rank 2 and contains `ACME_API_TOKEN`, but the answer was a refusal: the lexical-support gate scored 0.50, below 0.60 ("authenticate" ≠ "authentication"). |
+| Q04 | **G** | Gold upload table is at **rank 1** and contains `25`, but the answer was a refusal: support 0.33 < 0.60. |
+| Q07 | **G** | Gold `removed-apis::3` is at rank 3 and contains `list_after` (the v2 chunk at rank 1 says it too), but the answer was a refusal: support 0.57 < 0.60. |
+| Q11 | **G** | Gold `timeout-units-renamed::2` is at **rank 1** and contains `timeout_ms`, but the answer was a refusal: support 0.43 < 0.60. |
+| Q12 | **G** | Gold `webhooks::retries::5` is at **rank 1** and contains "five times", but the answer was a refusal: support 0.43 < 0.60. |
+
+### Tally
+
+| Label | Count | Questions |
+|---|---|---|
+| PASS (retrieved and answered) | 6 | Q03, Q05, Q06, Q08, Q09, Q10 |
+| **R** (retrieval fetched bad context) | **1** | Q01 |
+| **G** (good context, bad answer) | **5** | Q02, Q04, Q07, Q11, Q12 |
+| Not-In-Corpus | 0 | — |
+
+**What this says about swapping the embedding model:** 5 of the 6 failures are G. The right chunk was already in the top 3, usually at rank 1, and the generator's lexical-support gate refused anyway. No embedding model can fix a refusal that happens after correct retrieval. The single R failure isn't an embedding-quality problem either: dense retrieval already found three chunks that contain the exact symbol, and it just ranked the wrong ones first.
+
+---
+
+## 4. The one change and why it was chosen
+
+**Change: BM25 keyword retrieval fused with the existing dense ranking by Reciprocal Rank Fusion (k=60), with both candidate lists 25 deep** (`hybrid.py`).
+
+The baseline tally has one retrieval failure, Q01, and it is exactly the brief's `retry_backoff_ms` exact-symbol question. The top 3 were semantically close retry text (per-request override prose, the v2 request table, the changelog), and the v3 constructor parameter table sat at rank 7. BM25 exists for exact-token matches, so it was the retrieval change aimed at that failure. The 5 G failures can't be reached by any retrieval change and were deliberately not treated as justification.
+
+RRF fuses **ranks**, never raw scores, because BM25 sums and cosine similarities aren't on the same scale. The dense arm is the unchanged baseline ranking. It was checked that the dense top 3 at depth 25 matches the depth-3 top 3 on all 12 questions, so the candidate depth isn't a hidden second variable. Returned hits keep their baseline scores, so the generator's gates see the same score scale, and only the order changes.
+
+In hindsight, the inspection evidence already argued against this choice: **3/3 of Q01's top chunks already contained `retry_backoff_ms`**. The failure wasn't a missing keyword. It was ranking precision among four chunks that all contain the symbol, including a v2 table. BM25 matches the same token in all four and can't separate them. See section 6.
+
+---
+
+## 5. Before → after on the same 12 questions
+
+| Metric | Baseline | Hybrid (BM25 + RRF) | Δ |
+|---|---|---|---|
+| **hit-rate@3 (strict)** | **11/12 = 0.917** | **10/12 = 0.833** | **−1 question** |
+| hit-rate@3 (lenient) | 12/12 | 11/12 | −1 |
+| MRR@3 | 0.722 | 0.694 | −0.028 |
+| **p50 retrieval latency / query** | **4.55 ms** | **6.39 ms** | **+1.84 ms (+40%)** |
+| p95 retrieval latency / query | 5.41 ms | 7.99 ms | +2.58 ms |
+| p50 end-to-end (retrieve + answer) | 4.56 ms | 6.40 ms | +1.84 ms |
+| Tally PASS / R / G / NIC | 6 / 1 / 5 / 0 | 5 / 2 / 5 / 0 | — |
+| One-off BM25 index build | — | 4.8 ms | — |
+
+**How latency was measured:** each run did one warm-up pass, then 12 questions × 7 repeats = 84 samples per run. Retrieval was timed with `perf_counter` in one process on local CPU (macOS). A second baseline run gave p50 = 4.91 ms, so run-to-run noise is about ±0.4 ms. The +1.84 ms cost is well above that. BM25 is pure Python over 62 chunks, and its cost grows linearly with corpus size.
+
+### Per-question record
+
+| Q | Gold rank before → after | Label before → after | Verdict |
+|---|---|---|---|
+| Q01 | miss → miss | R → R | **still broken; untouched** (identical top 3: BM25 ranked the same 3 chunks #1–#3, gold was BM25 #5) |
+| Q02 | 2 → **miss** | G → **R** | **regressed**: `v2-client::client::0` (dense #4, BM25 #2) and `v3-client::client::0` pushed gold out; BM25 matched "client", but not "authenticate" to "authentication" (no stemming) |
+| Q03 | 1 → 1 | PASS → PASS | unchanged |
+| Q04 | 1 → 1 | G → G | unchanged (retrieval was never the problem) |
+| Q05 | 1 → 1 | PASS → **G** | **answer regressed**: `v3-errors::error-class-table` (dense #12, BM25 #6, on the stopword "does") entered rank 2, and the generator quoted it |
+| Q06 | 3 → 2 | PASS → PASS | rank improved; the answer was already correct |
+| Q07 | 3 → 3 | G → G | unchanged |
+| Q08 | 2 → 2 | PASS → PASS | unchanged |
+| Q09 | 1 → 1 | PASS → PASS | unchanged |
+| Q10 | 1 → 1 | PASS → PASS | unchanged |
+| Q11 | 1 → 1 | G → G | unchanged |
+| Q12 | 1 → 1 | G → G | unchanged |
+
+**Fixed / unfixed / broken:** 0 fixed, 9 unchanged, 1 retrieval regression (Q02), 1 answer regression (Q05), 1 rank-only improvement (Q06).
+
+---
+
+## 6. Which original R failures the change fixed
+
+The baseline had one R failure.
+
+- **Fixed: none.**
+- **Untouched: Q01.** The hybrid top 3 is byte-for-byte the baseline top 3. BM25 ranked the same three `retry_backoff_ms` chunks first and put the v3 constructor table at BM25 rank 5. The symbol appears in the gold table, the v3 send table, the v2 request table, the changelog and the override prose, so an exact-token signal has nothing to separate them with. The missing signal is "this is the v3 table row whose Default column answers *default*". That needs either a model that reads the query and chunk together (a cross-encoder rerank over the top 25; gold is at rank 7, so it's inside that window) or a version-aware filter or boost.
+- **Newly created: Q02 (R).** This was caused by RRF's structure: a chunk ranked moderately on *both* lists (dense #4 + BM25 #2) outscores a chunk ranked high on only one. BM25 without stemming or stopwords gives a noisy second list on short natural-language questions.
+- **None of the 5 G failures could move**, as expected, and none did (Q04, Q07, Q11, Q12 kept identical labels, and Q02 turned into an R).
+
+---
+
+## 7. Shipping decision
+
+**Don't ship BM25 + RRF.** Hit-rate@3 went **0.917 → 0.833** (−1 of 12), p50 latency went **4.55 → 6.39 ms (+40%)**, and it fixed **0 of 1** R failures while adding an R failure and an answer regression. A change that costs latency and loses a question has no case, even on a small set where one question is 8 points.
+
+**The embedding-model swap was declined too.** 5 of 6 failures are G, and the only R failure already had the exact symbol in all of its top 3. A new embedding model can't fix either.
+
+**What the numbers point to next**, one change per run as before:
+
+1. **Generator, not retriever.** The lexical-support gate refuses 5/12 questions whose gold chunk is at rank 1–3. Lowering or reworking that gate (for example, stemming "authenticate" → "authentication" and not counting symptom words like "gone", "upgrading" or "keep failing" as required terms) is worth up to +5 correct answers, with no retrieval latency cost.
+2. **For Q01:** try a cross-encoder rerank over the dense top 25 as a *separate* single-change run against this same baseline, with its latency measured, or prefer `sdk_version=v3` when two chunks carry the same symbol.
+
+Bonus (MMR): not attempted. This change isn't shipping, and MMR over the fused list would stack a second variable on top of a rejected one.
+
+---
+
+## 8. Code diff
+
+`week4_change.diff` contains the full change against the pre-change baseline snapshot:
+
+- `hybrid.py` (new): `bm25_tokens`, `BM25Index`, `rrf_fuse` (k=60) and `HybridRetriever`. This is the one retrieval change.
+- `week4_eval.py`: registers `"hybrid"` next to `"baseline"`, and the inspection view gets a `fusion` column (dense rank, BM25 rank, RRF score). The inspection change is display only.
+- `tests/test_hybrid.py` (new): symbol tokenization, BM25 exact-symbol ranking, and RRF rank arithmetic.
+
+Files that were **not** changed between the two runs: `vector_store.py`, `chunking.py`, `generate.py`, `golden_set.jsonl` and the corpus.

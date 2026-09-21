@@ -33,3 +33,12 @@ python -B -m unittest discover -s tests -v
 ## Demonstration
 
 Use each prepared question in the app and show its cited source. Then select **Not in documents** and verify that the app refuses to answer. Compare the best retrieval score and source in the chunking comparison table. The documents are synthetic training material and should not be treated as real company policies or legal terms.
+
+## Week 4: failure labelling and one retrieval change
+
+```bash
+.venv/bin/python week4_eval.py --retriever baseline   # dense + lexical boost (Week 3)
+.venv/bin/python week4_eval.py --retriever hybrid     # + BM25 fused by RRF (k=60)
+```
+
+Each run scores hit-rate@3 on `golden_set.jsonl`, labels every failure R / G / Not-In-Corpus, measures p50 latency, and writes the inspection view to `week4_output/`. Results and the shipping decision are in `results.md`, and the code change is in `week4_change.diff`.
