@@ -1,0 +1,168 @@
+{
+  "judge": "v2",
+  "model_alias": "haiku",
+  "started_at_utc": "2026-09-21T16:03:28+00:00",
+  "finished_at_utc": "2026-09-21T16:04:58+00:00",
+  "prompt_sha256": "1258f4fb5f50a4e7f78c4040fb009d00a654aefc80a2b42eeecb819c228b56d3",
+  "answers_sha256": "2b0b235347651ac48074bbbaf18d6aad04865619d6455b1dc36ac3d7f11ccdcd",
+  "labels_sha256": "6165fffcfc85f47ce9db7b23d2a7c750337a6c279fc035051a106c88e20c4a6c",
+  "labels_locked_at_utc": "2026-09-21T16:00:43+00:00",
+  "prediction_sha256": "0fb3368b28d4d95b3b80ac64d8813b08c7c36320a3d3e9b2572e0569841f263a",
+  "prediction_mtime_utc": "2026-09-21T16:03:01+00:00",
+  "fewshot_ids": [
+    "E09",
+    "E22"
+  ],
+  "verdicts": {
+    "E01": {
+      "verdict": "FAIL",
+      "reason": "Answer quotes incomplete code from the docs that does not state what scheme is expected; documentation chunk [3] clearly answers that the default scheme is 'v3', but the answer fails to provide this specific fact.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"Answer quotes incomplete code from the docs that does not state what scheme is expected; documentation chunk [3] clearly answers that the default scheme is 'v3', but the answer fails to provide this specific fact.\"}\n```"
+    },
+    "E02": {
+      "verdict": "PASS",
+      "reason": "The answer provides the exact function call and parameters needed to verify a webhook payload, which directly answers the developer's question with actionable code from the documentation.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"The answer provides the exact function call and parameters needed to verify a webhook payload, which directly answers the developer's question with actionable code from the documentation.\"}\n```"
+    },
+    "E03": {
+      "verdict": "PASS",
+      "reason": "The answer provides the specific code pattern to stream events using `client.stream()`, which directly answers what the developer asked and is correct according to the documentation shown.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"The answer provides the specific code pattern to stream events using `client.stream()`, which directly answers what the developer asked and is correct according to the documentation shown.\"}\n```"
+    },
+    "E04": {
+      "verdict": "FAIL",
+      "reason": "Answer is truncated and incomplete; it quotes the beginning of a code example but does not state the specific parameters (payload, signature_header, secret, tolerance_seconds, scheme) that the developer asked for.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"Answer is truncated and incomplete; it quotes the beginning of a code example but does not state the specific parameters (payload, signature_header, secret, tolerance_seconds, scheme) that the developer asked for.\"}\n```"
+    },
+    "E05": {
+      "verdict": "FAIL",
+      "reason": "Answer is truncated mid-function call and does not provide the complete code or parameter details needed for a developer to implement webhook signature verification.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"Answer is truncated mid-function call and does not provide the complete code or parameter details needed for a developer to implement webhook signature verification.\"}\n```"
+    },
+    "E06": {
+      "verdict": "FAIL",
+      "reason": "Question asks for an example, but answer provides only a description of behavior; the documentation shown includes a code example in chunk [3] that directly answers the question.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"Question asks for an example, but answer provides only a description of behavior; the documentation shown includes a code example in chunk [3] that directly answers the question.\"}\n```"
+    },
+    "E07": {
+      "verdict": "FAIL",
+      "reason": "The developer is on SDK v3 (default), but the answer provides a v2 example; in v3, the method is `client.send()`, not `client.request()`.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The developer is on SDK v3 (default), but the answer provides a v2 example; in v3, the method is `client.send()`, not `client.request()`.\"}\n```"
+    },
+    "E08": {
+      "verdict": "FAIL",
+      "reason": "The answer quotes v2 code examples that don't address the developer's problem: on SDK v3 (the default), upload_file is indeed not an attribute of Client; they should use Client.files.upload() instead, which the documentation shows but the answer ignores.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The answer quotes v2 code examples that don't address the developer's problem: on SDK v3 (the default), upload_file is indeed not an attribute of Client; they should use Client.files.upload() instead, which the documentation shows but the answer ignores.\"}\n```"
+    },
+    "E09": {
+      "verdict": "PASS",
+      "reason": "Question names the v2 exception, so v2 applies: read Retry-After from exc.response.headers. Correct and actionable for v2.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"Question names the v2 exception, so v2 applies: read Retry-After from exc.response.headers. Correct and actionable for v2.\"}\n```"
+    },
+    "E10": {
+      "verdict": "FAIL",
+      "reason": "Question does not specify SDK version, so applies to v3; answer incorrectly addresses v2 behavior instead of directly answering whether v3 automatically retries 429s, which chunk [2] clearly states it does.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"Question does not specify SDK version, so applies to v3; answer incorrectly addresses v2 behavior instead of directly answering whether v3 automatically retries 429s, which chunk [2] clearly states it does.\"}\n```"
+    },
+    "E11": {
+      "verdict": "FAIL",
+      "reason": "The answer quotes related text describing behavior involving part_size_mb but does not state what part_size_mb actually is; the documentation shown contains the direct answer in the table (Size of each multipart chunk when uploading large files, default 5 MB).",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The answer quotes related text describing behavior involving part_size_mb but does not state what part_size_mb actually is; the documentation shown contains the direct answer in the table (Size of each multipart chunk when uploading large files, default 5 MB).\"}\n```"
+    },
+    "E12": {
+      "verdict": "FAIL",
+      "reason": "Answer quotes related text about retry configuration rather than directly stating that NotFoundError is not retryable, which the error class tables clearly show.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"Answer quotes related text about retry configuration rather than directly stating that NotFoundError is not retryable, which the error class tables clearly show.\"}\n```"
+    },
+    "E13": {
+      "verdict": "FAIL",
+      "reason": "The answer quotes a general description of Client.send() but omits the specific usage shown in chunk [3] that demonstrates how to send JSON in the body (body parameter); a developer cannot act on this answer alone.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The answer quotes a general description of Client.send() but omits the specific usage shown in chunk [3] that demonstrates how to send JSON in the body (body parameter); a developer cannot act on this answer alone.\"}\n```"
+    },
+    "E14": {
+      "verdict": "FAIL",
+      "reason": "The answer describes the override behavior of the parameter but doesn't actually define what retry_backoff_ms is; chunk [2] provides the missing context that it's a 'retry backoff delay', which is essential to answering 'what is' the parameter.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The answer describes the override behavior of the parameter but doesn't actually define what retry_backoff_ms is; chunk [2] provides the missing context that it's a 'retry backoff delay', which is essential to answering 'what is' the parameter.\"}\n```"
+    },
+    "E15": {
+      "verdict": "FAIL",
+      "reason": "The documentation shown contains the answer in chunk [1]: the SDK reconnects automatically with exponential backoff and replays missed events; saying 'I don't know' is incorrect.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The documentation shown contains the answer in chunk [1]: the SDK reconnects automatically with exponential backoff and replays missed events; saying 'I don't know' is incorrect.\"}\n```"
+    },
+    "E16": {
+      "verdict": "FAIL",
+      "reason": "The documentation shown contains the answer: v2 is 10 MB (chunk 2) and v3 is 25 MB (chunk 1), so the assistant should have stated this comparison instead of saying 'I don't know'.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The documentation shown contains the answer: v2 is 10 MB (chunk 2) and v3 is 25 MB (chunk 1), so the assistant should have stated this comparison instead of saying 'I don't know'.\"}\n```"
+    },
+    "E17": {
+      "verdict": "FAIL",
+      "reason": "Chunk [3] provides a complete v3 invoice creation example (POST to /v3/invoices with body containing amount), which directly answers the question since no SDK version was specified and v3 is the default.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"Chunk [3] provides a complete v3 invoice creation example (POST to /v3/invoices with body containing amount), which directly answers the question since no SDK version was specified and v3 is the default.\"}\n```"
+    },
+    "E18": {
+      "verdict": "FAIL",
+      "reason": "The documentation shown contains the answer: create the client with an API token supplied through the ACME_API_TOKEN environment variable (SDK v3, chunk 2), but the answer incorrectly states 'I don't know'.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The documentation shown contains the answer: create the client with an API token supplied through the ACME_API_TOKEN environment variable (SDK v3, chunk 2), but the answer incorrectly states 'I don't know'.\"}\n```"
+    },
+    "E19": {
+      "verdict": "FAIL",
+      "reason": "Chunk [1] directly states 'An endpoint is disabled after 20 consecutive failures,' which directly answers the question, yet the assistant said 'I don't know.'",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"Chunk [1] directly states 'An endpoint is disabled after 20 consecutive failures,' which directly answers the question, yet the assistant said 'I don't know.'\"}\n```"
+    },
+    "E20": {
+      "verdict": "PASS",
+      "reason": "The shown documentation covers HTTP 429 rate limiting and client-side error handling, not webhook retry schedules, so the refusal to answer is justified.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"The shown documentation covers HTTP 429 rate limiting and client-side error handling, not webhook retry schedules, so the refusal to answer is justified.\"}\n```"
+    },
+    "E21": {
+      "verdict": "FAIL",
+      "reason": "The documentation shown contains at least one removed API (paginate_auto was removed in SDK v3), which the assistant could have stated instead of saying 'I don't know'.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The documentation shown contains at least one removed API (paginate_auto was removed in SDK v3), which the assistant could have stated instead of saying 'I don't know'.\"}\n```"
+    },
+    "E22": {
+      "verdict": "PASS",
+      "reason": "The shown chunks contain only a changelog intro and two unrelated upload facts; they do not list the actual changes between v2 and v3, so refusing to answer is correct.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"The shown chunks contain only a changelog intro and two unrelated upload facts; they do not list the actual changes between v2 and v3, so refusing to answer is correct.\"}\n```"
+    },
+    "E23": {
+      "verdict": "PASS",
+      "reason": "Correctly identifies `retry_after_seconds` as the attribute that tells how long to wait after rate limit in v3, with accurate context from the documentation.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"Correctly identifies `retry_after_seconds` as the attribute that tells how long to wait after rate limit in v3, with accurate context from the documentation.\"}\n```"
+    },
+    "E24": {
+      "verdict": "PASS",
+      "reason": "Directly states the specific fact requested: the old default backoff was 2000 ms in v2, which is correct according to the documentation shown.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"Directly states the specific fact requested: the old default backoff was 2000 ms in v2, which is correct according to the documentation shown.\"}\n```"
+    },
+    "E25": {
+      "verdict": "PASS",
+      "reason": "Answer directly states the specific fact asked for (Client is thread-safe) and provides correct guidance on usage, sourced from the documentation.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"Answer directly states the specific fact asked for (Client is thread-safe) and provides correct guidance on usage, sourced from the documentation.\"}\n```"
+    }
+  }
+}

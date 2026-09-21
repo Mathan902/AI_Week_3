@@ -1,0 +1,8 @@
+[
+  {"symbol": "paginate_auto()", "pattern": "\\bpaginate_auto\\b", "replacement": "list_after()"},
+  {"symbol": "Client.request()", "pattern": "\\b[Cc]lient\\.request\\b", "replacement": "Client.send()"},
+  {"symbol": "TooManyRequestsError", "pattern": "\\bTooManyRequestsError\\b", "replacement": "RateLimitError"},
+  {"symbol": "timeout_s", "pattern": "\\btimeout_s\\b", "replacement": "timeout_ms"},
+  {"symbol": "Client.upload_file()", "pattern": "\\bupload_file\\b", "replacement": "Client.files.upload()"},
+  {"symbol": "/v2/ endpoint paths", "pattern": "/v2/", "replacement": "/v3/ paths"}
+]

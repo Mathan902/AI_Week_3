@@ -1,0 +1,77 @@
+#! judge_v2 = judge_v1 unchanged + judge_v1's own disagreements E09 and E22 as few-shot examples (human label and reason).
+#! fewshot_ids: E09, E22
+You are grading ONE answer from the Acme SDK documentation assistant against ONE binary criterion.
+
+CRITERION: DIRECTLY ANSWERS
+PASS if a developer who asked this question could act on this answer alone: it states the specific fact, value, behaviour or usage they asked for, and that content is correct according to the documentation shown.
+FAIL if any of these is true:
+- it quotes related text from the docs that does not actually answer what was asked (for example a sentence next to the fact, instead of the fact);
+- it answers a different question from the one asked;
+- it says "I don't know" although the documentation shown contains the answer.
+An "I don't know" is PASS only if the documentation shown really does not contain the answer.
+Use the SDK version the question asks about. If it names no version, the developer is on SDK v3.
+
+Do NOT judge any of the following. Code checks them separately, so ignore them completely:
+code formatting or whether code parses, whether endpoint paths exist, whether the SDK version is labelled, deprecation or migration notes, repeated sentences, and citation format.
+
+EXAMPLES. These are two answers you previously graded wrongly. Study why the correct verdict is what it is.
+
+--- Example 1 ---
+QUESTION:
+TooManyRequestsError how to get the retry delay
+
+DOCUMENTATION SHOWN TO THE ASSISTANT (top 3 retrieved chunks):
+[1] v2-errors::toomanyrequestserror::4 (SDK v2)
+In v3 this exception was renamed to `RateLimitError` and gained the `retry_after_seconds` attribute.
+
+[2] v2-errors::toomanyrequestserror::3-code (SDK v2)
+```python
+from acme.errors import TooManyRequestsError
+try:
+    client.request(url="/v2/invoices")
+except TooManyRequestsError as exc:
+    delay = exc.response.headers["Retry-After"]
+```
+
+[3] v2-errors::toomanyrequestserror::2 (SDK v2)
+When the service returns HTTP 429 in SDK v2 the SDK raises `TooManyRequestsError`. The exception does not expose a parsed retry delay; callers must read the raw `Retry-After` header from the attached response object themselves.
+
+ANSWER:
+When the service returns HTTP 429 in SDK v2 the SDK raises `TooManyRequestsError`. The exception does not expose a parsed retry delay; callers must read the raw `Retry-After` header from the attached response object themselves. The exception does not expose a parsed retry delay; callers must read the raw `Retry-After` header from the attached response object themselves. [chunk:v2-errors::toomanyrequestserror::2]
+
+CORRECT OUTPUT:
+{"verdict": "PASS", "reason": "Question names the v2 exception, so v2 applies: read Retry-After from exc.response. Correct for v2."}
+
+--- Example 2 ---
+QUESTION:
+what changed between v2 and v3
+
+DOCUMENTATION SHOWN TO THE ASSISTANT (top 3 retrieved chunks):
+[1] v3-changelog::what-changed-in-v3::0 (SDK v3)
+This page lists behavioral changes between SDK v2 and SDK v3. Read it before migrating.
+
+[2] v2-uploads::upload-parameters::2 (SDK v2)
+The default maximum file size in v2 is 10 MB.
+
+[3] v3-files::file-uploads::0 (SDK v3)
+Uploads in SDK v3 go through `Client.files.upload()`.
+
+ANSWER:
+I don't know based on the provided documents.
+
+CORRECT OUTPUT:
+{"verdict": "PASS", "reason": "Shown chunks are the changelog intro plus two unrelated upload lines; they do not list the changes, so refusing is right."}
+
+--- End of examples. Now grade the answer below. ---
+
+QUESTION:
+{question}
+
+DOCUMENTATION SHOWN TO THE ASSISTANT (top 3 retrieved chunks):
+{context}
+
+ANSWER:
+{answer}
+
+Reply with only this JSON object and nothing else:
+{"verdict": "PASS" or "FAIL", "reason": "<one sentence>"}

@@ -1,0 +1,12 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Acme API v3 (path list)",
+    "version": "3.0",
+    "description": "No OpenAPI document ships with this corpus. These are the only endpoint paths the v3 docs (corpus/sdk_v3) use. v2 paths such as /v2/invoices are deliberately absent: DevRel ships the assistant to v3 users."
+  },
+  "paths": {
+    "/v3/invoices": {"get": {"summary": "List invoices"}, "post": {"summary": "Create an invoice"}},
+    "/v3/events": {"get": {"summary": "Server-sent event stream"}}
+  }
+}

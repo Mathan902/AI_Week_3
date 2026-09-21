@@ -1,0 +1,59 @@
+
+Week 6 eval: 25 cases, 16 regression cases replayed verbatim from real failed traces
+Regression replay: 16/16 answers byte-identical to the original failed trace's raw_output
+Criteria: 8 deterministic assertions, 1 judged criterion (DIRECTLY ANSWERS, judge_v1)
+
+mode failure mode (week 5 taxonomy)                                      n   assertions        judge      overall
+-----------------------------------------------------------------------------------------------------------------
+M1   Code sample squashed onto one line or cut off mid-call              5     0/5 (0%)    2/5 (40%)     0/5 (0%)
+M2   Describes a v2-only API as current, no 'removed in v3' warning      5     0/5 (0%)    1/5 (20%)     0/5 (0%)
+M3   Quotes the sentence next to the fact instead of the fact            4     0/4 (0%)     0/4 (0%)     0/4 (0%)
+M4   Says 'I don't know' while a top-3 chunk states the answer           5     0/5 (0%)     0/5 (0%)     0/5 (0%)
+M5   Fetches chunks about a different topic, then says 'I don't know'    3     0/3 (0%)    1/3 (33%)     0/3 (0%)
+M6   Prints the same sentence twice in one answer                        3     0/3 (0%)   3/3 (100%)     0/3 (0%)
+-----------------------------------------------------------------------------------------------------------------
+all                                                                     25    0/25 (0%)   7/25 (28%)    0/25 (0%)
+
+assertion                        applies fails  replaces
+code_parses                            7     7  criterion 2 (code parses and runs)
+endpoints_in_spec                      2     1  criterion 3 (endpoint paths exist)
+version_stated                         6     5  criterion 4 (states the SDK version)
+deprecation_has_migration_note         5     5  criterion 5 (deprecated symbol has migration note)
+no_repeated_sentence                  25     8  criterion 6 (no duplicated sentences)
+cites_question_version                14     3  new: the cited chunk is from the version the question is about
+answered_when_answerable              25     8  new: no refusal on a question the docs answer
+required_facts_present                25    19  new: the case's expected fact(s) appear
+
+per case (assertion failures | judge):
+  E01 M1 FAIL what scheme does verify_signature expect     | code_parses: code outside a fenced block: 'from acme.webhooks import'; required_facts_present: missing /"?v3"?/
+  E02 M1 PASS how to verify webhook payload                | code_parses: code outside a fenced block: 'from acme.webhooks import'
+  E03 M1 PASS how do I stream events                       | code_parses: code outside a fenced block: 'with client.stream('; no_repeated_sentence: repeats: 'with client stream url v3 events as events...'
+  E04 M1 FAIL verify_signature parameters                  | code_parses: code outside a fenced block: 'from acme.webhooks import'; required_facts_present: missing /tolerance_seconds/
+  E05 M1 FAIL hw to verify webhok signature                | code_parses: code outside a fenced block: 'from acme.webhooks import'
+  E06 M2 FAIL paginate_auto example                        | version_stated: answer text never says ['v3']; deprecation_has_migration_note: ['paginate_auto()'] with no migration note (use list_after()); required_facts_present: missing /list_after/
+  E07 M2 PASS client.request example                       | code_parses: code outside a fenced block: 'response = client.request('; endpoints_in_spec: not in openapi_v3.json: ['/v2/invoices']; version_stated: answer text never says ['v3']; deprecation_has_migration_note: ['Client.request()', '/v2/ endpoint paths'] with no migration note (use Client.send()); no_repeated_sentence: repeats: 'response client request url v2 invoices method post...'; cites_question_version: cites v2, question is v3; required_facts_present: missing /\.send\(/
+  E08 M2 FAIL upload_file is not an attribute of Client    | code_parses: code outside a fenced block: 'client.upload_file('; version_stated: answer text never says ['v3']; deprecation_has_migration_note: ['Client.upload_file()'] with no migration note (use Client.files.upload()); cites_question_version: cites v2, question is v3; required_facts_present: missing /files\.upload/
+  E09 M2 FAIL TooManyRequestsError how to get the retry de | version_stated: answer text never says ['v3']; deprecation_has_migration_note: ['TooManyRequestsError'] with no migration note (use RateLimitError); no_repeated_sentence: repeats: 'the exception does not expose a parsed retry...'; required_facts_present: missing /RateLimitError|retry_after_seconds/
+  E10 M2 FAIL does the sdk automatically retry 429s        | deprecation_has_migration_note: ['TooManyRequestsError'] with no migration note (use RateLimitError); no_repeated_sentence: repeats: 'the exception does not expose a parsed retry...'; cites_question_version: cites v2, question is v3; required_facts_present: missing /automatic|honors/
+  E11 M3 FAIL what is part_size_mb                         | required_facts_present: missing /\b5\b/
+  E12 M3 FAIL NotFoundError retryable?                     | no_repeated_sentence: repeats: 'automatic retries apply only to retryable errors listed...'; required_facts_present: missing /NotFoundError/
+  E13 M3 FAIL how do I send json in the body of a request  | required_facts_present: missing /body\s*=/
+  E14 M3 FAIL what is retry_backoff_ms                     | version_stated: answer text never says ['v3']; required_facts_present: missing /\b500\b/
+  E15 M4 FAIL what happens if the stream disconnects       | answered_when_answerable: refused an answerable question; required_facts_present: refused
+  E16 M4 FAIL v2 upload limit vs v3                        | answered_when_answerable: refused an answerable question; required_facts_present: refused
+  E17 M4 FAIL create invoice example                       | answered_when_answerable: refused an answerable question; required_facts_present: refused
+  E18 M4 FAIL how do I authenticate the client?            | answered_when_answerable: refused an answerable question; required_facts_present: refused
+  E19 M4 FAIL how many failures before my webhook is turne | answered_when_answerable: refused an answerable question; required_facts_present: refused
+  E20 M5 PASS webhook retry schedule                       | answered_when_answerable: refused an answerable question; required_facts_present: refused
+  E21 M5 FAIL list of removed apis in v3                   | answered_when_answerable: refused an answerable question; required_facts_present: refused
+  E22 M5 FAIL what changed between v2 and v3               | answered_when_answerable: refused an answerable question; required_facts_present: refused
+  E23 M6 PASS what attribute tells me how long to wait aft | no_repeated_sentence: repeats: 'the exception carries a retry_after_seconds attribute parsed from...'
+  E24 M6 PASS what was the old default backoff             | no_repeated_sentence: repeats: 'code that relied on the old default should...'
+  E25 M6 PASS is the client thread safe                    | no_repeated_sentence: repeats: 'a `client` instance is thread-safe'
+
+AGREEMENT judge_v1 vs hand labels: 22/25 (88%)
+  human PASS / judge PASS  6   human PASS / judge FAIL  2
+  human FAIL / judge PASS  1   human FAIL / judge FAIL 16
+  DISAGREE E07 (M2) human=FAIL judge=PASS: The answer provides the exact code example for client.request from the documentation shown, which directly answers the request for an example of how to use this method.
+  DISAGREE E09 (M2) human=PASS judge=FAIL: Since the question does not name a version, the developer is assumed to be on SDK v3, but the answer only addresses v2; the documentation shown indicates that in v3 the exception is RateLimitError with a retry_after_seconds attribute, which directly answers the question for the assumed version.
+  DISAGREE E22 (M5) human=PASS judge=FAIL: The documentation shown includes a changelog page (chunk [1]) that explicitly lists behavioral changes between v2 and v3, plus chunks [2] and [3] that together demonstrate at least one change (upload method/file size), so the assistant should not say 'I don't know' when the documentation contains the answer.

@@ -1,0 +1,134 @@
+{
+  "criterion": "DIRECTLY ANSWERS",
+  "labeler": "Claude Opus 5 (claude-opus-5), at the student's request. NOT a human labeller; see notes.md section 3.",
+  "labelled_without_seeing_judge_output": true,
+  "answers_sha256": "2b0b235347651ac48074bbbaf18d6aad04865619d6455b1dc36ac3d7f11ccdcd",
+  "labels": [
+    {
+      "id": "E01",
+      "label": "FAIL",
+      "note": "Never states the scheme; the table at rank 3 says \"v3\"."
+    },
+    {
+      "id": "E02",
+      "label": "PASS",
+      "note": "Gives the full verify_signature(...) call with payload, header and secret; formatting is ignored by the criterion."
+    },
+    {
+      "id": "E03",
+      "label": "PASS",
+      "note": "Gives the client.stream(...) loop; formatting ignored."
+    },
+    {
+      "id": "E04",
+      "label": "FAIL",
+      "note": "Cut off at 'verify_signature('; lists no parameters although the table is rank 1."
+    },
+    {
+      "id": "E05",
+      "label": "FAIL",
+      "note": "Only the import and 'verify_signature(' with no arguments; a developer cannot act on it."
+    },
+    {
+      "id": "E06",
+      "label": "FAIL",
+      "note": "Asked for an example, got a one-line description; for a v3 developer the API no longer exists."
+    },
+    {
+      "id": "E07",
+      "label": "FAIL",
+      "note": "v3 developer (no version named) gets Client.request code that does not exist in v3; Client.send was shown at rank 2."
+    },
+    {
+      "id": "E08",
+      "label": "FAIL",
+      "note": "The developer says upload_file is missing; the answer hands back upload_file. v3 Client.files.upload() was at rank 3."
+    },
+    {
+      "id": "E09",
+      "label": "PASS",
+      "note": "Question names the v2 exception, so v2 applies: read Retry-After from exc.response. Correct for v2."
+    },
+    {
+      "id": "E10",
+      "label": "FAIL",
+      "note": "No version named, so v3: the answer describes v2 behaviour and never says yes, the v3 SDK honors Retry-After automatically."
+    },
+    {
+      "id": "E11",
+      "label": "FAIL",
+      "note": "Never says what part_size_mb is (multipart chunk size, default 5); quotes the neighbouring sentence."
+    },
+    {
+      "id": "E12",
+      "label": "FAIL",
+      "note": "Never says NotFoundError is not retryable; both tables shown say 'no'."
+    },
+    {
+      "id": "E13",
+      "label": "FAIL",
+      "note": "Never mentions body=; the v3 example with body={...} was rank 3."
+    },
+    {
+      "id": "E14",
+      "label": "FAIL",
+      "note": "Only says the per-request value overrides the constructor; not what it is (backoff base delay) or its default."
+    },
+    {
+      "id": "E15",
+      "label": "FAIL",
+      "note": "Refuses although rank 1 says it reconnects automatically and replays missed events."
+    },
+    {
+      "id": "E16",
+      "label": "FAIL",
+      "note": "Refuses although ranks 1 and 2 give 25 MB and 10 MB."
+    },
+    {
+      "id": "E17",
+      "label": "FAIL",
+      "note": "Refuses although rank 3 is a v3 client.send POST to /v3/invoices."
+    },
+    {
+      "id": "E18",
+      "label": "FAIL",
+      "note": "Refuses although ranks 1 and 2 say to set ACME_API_TOKEN."
+    },
+    {
+      "id": "E19",
+      "label": "FAIL",
+      "note": "Refuses although rank 1 says the endpoint is disabled after 20 consecutive failures."
+    },
+    {
+      "id": "E20",
+      "label": "PASS",
+      "note": "None of the three chunks is about webhook retries, so 'I don't know' is right for the documentation shown."
+    },
+    {
+      "id": "E21",
+      "label": "FAIL",
+      "note": "Refuses although rank 3 says paginate_auto() was removed in v3: a partial answer was available."
+    },
+    {
+      "id": "E22",
+      "label": "PASS",
+      "note": "Shown chunks are the changelog intro plus two unrelated upload lines; they do not list the changes, so refusing is right."
+    },
+    {
+      "id": "E23",
+      "label": "PASS",
+      "note": "Names retry_after_seconds on RateLimitError; repetition ignored."
+    },
+    {
+      "id": "E24",
+      "label": "PASS",
+      "note": "Says 2000 ms in v2; repetition ignored."
+    },
+    {
+      "id": "E25",
+      "label": "PASS",
+      "note": "Says the Client is thread-safe and to share one instance; repetition ignored."
+    }
+  ],
+  "labelled_at_utc": "2026-09-21T16:00:33+00:00"
+}

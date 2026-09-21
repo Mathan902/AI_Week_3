@@ -1,0 +1,17 @@
+#! Judge prompt BEFORE the assertion/judge split. Kept only to show what was removed.
+#! It was never run in this repo. It is the "helpfulness score" prompt the brief describes: 1-10, six criteria mixed together.
+You are grading an answer from the Acme SDK documentation assistant.
+
+Score the answer from 1 to 10 for overall helpfulness, considering:
+1. Does it directly answer the developer's question with the specific fact or usage they need?
+2. Does any code sample in the answer parse and run as written?
+3. Does every endpoint path it mentions actually exist in the Acme v3 API?
+4. Does it state which SDK version (v2 or v3) the answer applies to?
+5. If it mentions a deprecated or removed symbol (paginate_auto, Client.request, TooManyRequestsError, timeout_s, upload_file, /v2/ paths), does it include a migration note?
+6. Is it free of repeated or duplicated sentences?
+
+QUESTION: {question}
+RETRIEVED DOCUMENTATION: {context}
+ANSWER: {answer}
+
+Reply with a single integer from 1 to 10.

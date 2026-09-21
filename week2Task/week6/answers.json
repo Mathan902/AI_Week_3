@@ -1,0 +1,677 @@
+{
+  "E01": {
+    "trace_id": "tr-bf34bd46bd",
+    "answer": "from acme.webhooks import verify_signature verify_signature( [chunk:v3-webhooks::signature-verification::2-code]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-webhooks::signature-verification::1",
+        "sdk_version": "v3",
+        "final": 0.514361,
+        "text": "Every delivery includes an `X-Acme-Signature` header containing an HMAC-SHA256 signature of the raw request body, keyed with your endpoint's signing secret. Verify the signature before trusting a payload."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-webhooks::signature-verification::2-code",
+        "sdk_version": "v3",
+        "final": 0.489686,
+        "text": "```python\nfrom acme.webhooks import verify_signature\nverify_signature(\n    payload=raw_body,\n    signature_header=request.headers[\"X-Acme-Signature\"],\n    secret=WEBHOOK_SIGNING_SECRET,\n)\n```"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-webhooks::verification-parameters::3-table",
+        "sdk_version": "v3",
+        "final": 0.465344,
+        "text": "| Parameter | Type | Default | Required | Description |\n|---|---|---|---|---|\n| tolerance_seconds | int | 300 | no | Maximum allowed age of a delivery before it is rejected as stale. |\n| scheme | str | \"v3\" | no | Signature scheme prefix expected in the header. |"
+      }
+    ]
+  },
+  "E02": {
+    "trace_id": "tr-8e29f38243",
+    "answer": "```python from acme.webhooks import verify_signature verify_signature(     payload=raw_body,     signature_header=request.headers[\"X-Acme-Signature\"],     secret=WEBHOOK_SIGNING_SECRET, ) ``` from acme.webhooks import verify_signature [chunk:v3-webhooks::signature-verification::2-code]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-webhooks::signature-verification::2-code",
+        "sdk_version": "v3",
+        "final": 0.733108,
+        "text": "```python\nfrom acme.webhooks import verify_signature\nverify_signature(\n    payload=raw_body,\n    signature_header=request.headers[\"X-Acme-Signature\"],\n    secret=WEBHOOK_SIGNING_SECRET,\n)\n```"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-webhooks::webhooks::0",
+        "sdk_version": "v3",
+        "final": 0.543167,
+        "text": "Webhooks push Acme platform events to an HTTPS endpoint you control."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-webhooks::signature-verification::1",
+        "sdk_version": "v3",
+        "final": 0.535714,
+        "text": "Every delivery includes an `X-Acme-Signature` header containing an HMAC-SHA256 signature of the raw request body, keyed with your endpoint's signing secret. Verify the signature before trusting a payload."
+      }
+    ]
+  },
+  "E03": {
+    "trace_id": "tr-223c4958c5",
+    "answer": "with client.stream(url=\"/v3/events\") as events: ```python with client.stream(url=\"/v3/events\") as events:     for event in events:         print(event.type, event.data) ``` [chunk:v3-streaming::client-stream::4-code]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-streaming::streaming-responses::0",
+        "sdk_version": "v3",
+        "final": 0.612412,
+        "text": "Streaming delivers server-sent events (SSE) as they are produced instead of waiting for the full response body."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-streaming::client-stream::4-code",
+        "sdk_version": "v3",
+        "final": 0.589183,
+        "text": "```python\nwith client.stream(url=\"/v3/events\") as events:\n    for event in events:\n        print(event.type, event.data)\n```"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-streaming::client-stream::1",
+        "sdk_version": "v3",
+        "final": 0.509847,
+        "text": "`Client.stream()` returns an iterator of `StreamEvent` objects. The connection stays open until the server closes it or the iterator is closed by the caller."
+      }
+    ]
+  },
+  "E04": {
+    "trace_id": "tr-3b535e9cc9",
+    "answer": "from acme.webhooks import verify_signature verify_signature( [chunk:v3-webhooks::signature-verification::2-code]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-webhooks::verification-parameters::3-table",
+        "sdk_version": "v3",
+        "final": 0.629235,
+        "text": "| Parameter | Type | Default | Required | Description |\n|---|---|---|---|---|\n| tolerance_seconds | int | 300 | no | Maximum allowed age of a delivery before it is rejected as stale. |\n| scheme | str | \"v3\" | no | Signature scheme prefix expected in the header. |"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-webhooks::signature-verification::2-code",
+        "sdk_version": "v3",
+        "final": 0.610039,
+        "text": "```python\nfrom acme.webhooks import verify_signature\nverify_signature(\n    payload=raw_body,\n    signature_header=request.headers[\"X-Acme-Signature\"],\n    secret=WEBHOOK_SIGNING_SECRET,\n)\n```"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-webhooks::signature-verification::1",
+        "sdk_version": "v3",
+        "final": 0.607506,
+        "text": "Every delivery includes an `X-Acme-Signature` header containing an HMAC-SHA256 signature of the raw request body, keyed with your endpoint's signing secret. Verify the signature before trusting a payload."
+      }
+    ]
+  },
+  "E05": {
+    "trace_id": "tr-fa198e1ea8",
+    "answer": "from acme.webhooks import verify_signature verify_signature( [chunk:v3-webhooks::signature-verification::2-code]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-webhooks::signature-verification::2-code",
+        "sdk_version": "v3",
+        "final": 0.657943,
+        "text": "```python\nfrom acme.webhooks import verify_signature\nverify_signature(\n    payload=raw_body,\n    signature_header=request.headers[\"X-Acme-Signature\"],\n    secret=WEBHOOK_SIGNING_SECRET,\n)\n```"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-webhooks::signature-verification::1",
+        "sdk_version": "v3",
+        "final": 0.532493,
+        "text": "Every delivery includes an `X-Acme-Signature` header containing an HMAC-SHA256 signature of the raw request body, keyed with your endpoint's signing secret. Verify the signature before trusting a payload."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-webhooks::webhooks::0",
+        "sdk_version": "v3",
+        "final": 0.427516,
+        "text": "Webhooks push Acme platform events to an HTTPS endpoint you control."
+      }
+    ]
+  },
+  "E06": {
+    "trace_id": "tr-f6bc270a55",
+    "answer": "`paginate_auto()` walks every page of a collection and yields items one by one until the collection is exhausted. [chunk:v2-pagination::paginate-auto::1]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v2-pagination::paginate-auto::1",
+        "sdk_version": "v2",
+        "final": 0.816587,
+        "text": "`paginate_auto()` walks every page of a collection and yields items one by one until the collection is exhausted."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v2-pagination::paginate-auto::4",
+        "sdk_version": "v2",
+        "final": 0.698151,
+        "text": "`paginate_auto()` was removed in SDK v3; use explicit cursor pagination via `list_after()` instead."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v2-pagination::paginate-auto::3-code",
+        "sdk_version": "v2",
+        "final": 0.600743,
+        "text": "```python\nfor invoice in client.paginate_auto(url=\"/v2/invoices\"):\n    print(invoice.id)\n```"
+      }
+    ]
+  },
+  "E07": {
+    "trace_id": "tr-d0f072cddb",
+    "answer": "response = client.request(url=\"/v2/invoices\", method=\"POST\") ```python response = client.request(url=\"/v2/invoices\", method=\"POST\") ``` [chunk:v2-client::client-request::6-code]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v2-client::client-request::4",
+        "sdk_version": "v2",
+        "final": 0.81487,
+        "text": "`Client.request()` performs a single HTTP request and returns a response object."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-client::client-send::5",
+        "sdk_version": "v3",
+        "final": 0.723489,
+        "text": "`Client.send()` performs a single HTTP request and returns a `Response`."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v2-client::client-request::6-code",
+        "sdk_version": "v2",
+        "final": 0.632639,
+        "text": "```python\nresponse = client.request(url=\"/v2/invoices\", method=\"POST\")\n```"
+      }
+    ]
+  },
+  "E08": {
+    "trace_id": "tr-6d6076fa1c",
+    "answer": "client.upload_file(file_path=\"report.pdf\") ```python client.upload_file(file_path=\"report.pdf\") ``` [chunk:v2-uploads::upload-parameters::3-code]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v2-uploads::upload-parameters::3-code",
+        "sdk_version": "v2",
+        "final": 0.66932,
+        "text": "```python\nclient.upload_file(file_path=\"report.pdf\")\n```"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v2-uploads::file-uploads::0",
+        "sdk_version": "v2",
+        "final": 0.653919,
+        "text": "Uploads in SDK v2 go through `Client.upload_file()`."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-files::file-uploads::0",
+        "sdk_version": "v3",
+        "final": 0.599803,
+        "text": "Uploads in SDK v3 go through `Client.files.upload()`."
+      }
+    ]
+  },
+  "E09": {
+    "trace_id": "tr-5599543806",
+    "answer": "When the service returns HTTP 429 in SDK v2 the SDK raises `TooManyRequestsError`. The exception does not expose a parsed retry delay; callers must read the raw `Retry-After` header from the attached response object themselves. The exception does not expose a parsed retry delay; callers must read the raw `Retry-After` header from the attached response object themselves. [chunk:v2-errors::toomanyrequestserror::2]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v2-errors::toomanyrequestserror::4",
+        "sdk_version": "v2",
+        "final": 0.701082,
+        "text": "In v3 this exception was renamed to `RateLimitError` and gained the `retry_after_seconds` attribute."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v2-errors::toomanyrequestserror::3-code",
+        "sdk_version": "v2",
+        "final": 0.700668,
+        "text": "```python\nfrom acme.errors import TooManyRequestsError\ntry:\n    client.request(url=\"/v2/invoices\")\nexcept TooManyRequestsError as exc:\n    delay = exc.response.headers[\"Retry-After\"]\n```"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v2-errors::toomanyrequestserror::2",
+        "sdk_version": "v2",
+        "final": 0.697384,
+        "text": "When the service returns HTTP 429 in SDK v2 the SDK raises `TooManyRequestsError`. The exception does not expose a parsed retry delay; callers must read the raw `Retry-After` header from the attached response object themselves."
+      }
+    ]
+  },
+  "E10": {
+    "trace_id": "tr-80c11734e0",
+    "answer": "When the service returns HTTP 429 in SDK v2 the SDK raises `TooManyRequestsError`. The exception does not expose a parsed retry delay; callers must read the raw `Retry-After` header from the attached response object themselves. The exception does not expose a parsed retry delay; callers must read the raw `Retry-After` header from the attached response object themselves. [chunk:v2-errors::toomanyrequestserror::2]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v2-errors::toomanyrequestserror::2",
+        "sdk_version": "v2",
+        "final": 0.750637,
+        "text": "When the service returns HTTP 429 in SDK v2 the SDK raises `TooManyRequestsError`. The exception does not expose a parsed retry delay; callers must read the raw `Retry-After` header from the attached response object themselves."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-ratelimits::handling-http-429::4",
+        "sdk_version": "v3",
+        "final": 0.718714,
+        "text": "On HTTP 429, wait for the duration given by `Retry-After`. The SDK's built-in retry policy honors this header automatically; see the Errors page for `RateLimitError`."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-errors::ratelimiterror::2",
+        "sdk_version": "v3",
+        "final": 0.6517,
+        "text": "When the service returns HTTP 429 the SDK raises `RateLimitError`. The exception carries a `retry_after_seconds` attribute parsed from the server's `Retry-After` header, so callers can wait exactly as long as the server asks before trying again."
+      }
+    ]
+  },
+  "E11": {
+    "trace_id": "tr-4b5fe0673f",
+    "answer": "The default maximum upload size is 25 MB; larger files must use multipart mode, which activates automatically above `part_size_mb`. [chunk:v3-files::upload-parameters::2]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-files::upload-parameters::2",
+        "sdk_version": "v3",
+        "final": 0.625962,
+        "text": "The default maximum upload size is 25 MB; larger files must use multipart mode, which activates automatically above `part_size_mb`."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-files::upload-parameters::1-table",
+        "sdk_version": "v3",
+        "final": 0.546132,
+        "text": "| Parameter | Type | Default | Required | Description |\n|---|---|---|---|---|\n| file_path | str | \u2014 | yes | Local path of the file to upload. |\n| max_file_size_mb | int | 25 | no | Maximum accepted upload size in megabytes; larger files raise `PayloadTooLargeError`. |\n| part_size_mb | int | 5 | no | Size of each multipart chunk when uploading large files. |"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v2-uploads::upload-parameters::2",
+        "sdk_version": "v2",
+        "final": 0.478216,
+        "text": "The default maximum file size in v2 is 10 MB."
+      }
+    ]
+  },
+  "E12": {
+    "trace_id": "tr-d69d5bdb3e",
+    "answer": "Automatic retries apply only to retryable errors listed in the table above. Passing `max_retries=0` when constructing the client disables them; the first failure is then raised directly to the caller. Automatic retries apply only to retryable errors listed in the table above [chunk:v3-errors::disabling-automatic-error-retries::4]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v2-errors::error-class-table::1-table",
+        "sdk_version": "v2",
+        "final": 0.722612,
+        "text": "| Exception | Raised when | Retryable |\n|---|---|---|\n| AuthenticationError | Token missing or invalid | no |\n| NotFoundError | Resource does not exist | no |\n| TooManyRequestsError | HTTP 429 returned by the API | yes, after delay |\n| ServerError | HTTP 5xx returned by the API | yes |"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-errors::error-class-table::1-table",
+        "sdk_version": "v3",
+        "final": 0.688451,
+        "text": "| Exception | Raised when | Retryable |\n|---|---|---|\n| AuthenticationError | Token missing or invalid | no |\n| PermissionDeniedError | Token lacks required scope | no |\n| NotFoundError | Resource does not exist | no |\n| RateLimitError | HTTP 429 returned by the API | yes, after delay |\n| ServerError | HTTP 5xx returned by the API | yes |"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-errors::disabling-automatic-error-retries::4",
+        "sdk_version": "v3",
+        "final": 0.625536,
+        "text": "Automatic retries apply only to retryable errors listed in the table above. Passing `max_retries=0` when constructing the client disables them; the first failure is then raised directly to the caller."
+      }
+    ]
+  },
+  "E13": {
+    "trace_id": "tr-ae99218d6e",
+    "answer": "`Client.send()` performs a single HTTP request and returns a `Response`. [chunk:v3-client::client-send::5]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-client::client-send::5",
+        "sdk_version": "v3",
+        "final": 0.514083,
+        "text": "`Client.send()` performs a single HTTP request and returns a `Response`."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v2-client::client-request::6-code",
+        "sdk_version": "v2",
+        "final": 0.472921,
+        "text": "```python\nresponse = client.request(url=\"/v2/invoices\", method=\"POST\")\n```"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-client::client-send::8-code",
+        "sdk_version": "v3",
+        "final": 0.469686,
+        "text": "```python\nresponse = client.send(\n    url=\"/v3/invoices\",\n    method=\"POST\",\n    body={\"amount\": 4200},\n    retry_backoff_ms=500,\n)\nprint(response.status_code)\n```"
+      }
+    ]
+  },
+  "E14": {
+    "trace_id": "tr-19e6bde1ca",
+    "answer": "The per-request `retry_backoff_ms` parameter overrides the value given in the constructor for that single call. [chunk:v3-client::client-send::7]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-client::client-send::7",
+        "sdk_version": "v3",
+        "final": 0.868891,
+        "text": "The per-request `retry_backoff_ms` parameter overrides the value given in the constructor for that single call."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-changelog::retry-defaults-changed::1",
+        "sdk_version": "v3",
+        "final": 0.787247,
+        "text": "The default retry backoff delay was reduced from 2000 ms in v2 to 500 ms in v3, cutting worst-case recovery time after a transient failure. Code that relied on the old default should set `retry_backoff_ms=2000` explicitly."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v2-client::client-request::5-table",
+        "sdk_version": "v2",
+        "final": 0.698072,
+        "text": "| Parameter | Type | Default | Required | Description |\n|---|---|---|---|---|\n| url | str | \u2014 | yes | Path relative to the configured base_url. |\n| method | str | \"GET\" | no | HTTP verb to use for the request. |\n| retry_backoff_ms | int | 2000 | no | Overrides the client-level backoff delay for this request only. |"
+      }
+    ]
+  },
+  "E15": {
+    "trace_id": "tr-5ac3ff8588",
+    "answer": "I don't know based on the provided documents.",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-streaming::reconnection::5",
+        "sdk_version": "v3",
+        "final": 0.698149,
+        "text": "If the stream drops, the SDK reconnects automatically with exponential backoff and replays events missed while offline when the endpoint supports the `Last-Event-ID` header."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-streaming::client-stream::1",
+        "sdk_version": "v3",
+        "final": 0.674818,
+        "text": "`Client.stream()` returns an iterator of `StreamEvent` objects. The connection stays open until the server closes it or the iterator is closed by the caller."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-streaming::streaming-responses::0",
+        "sdk_version": "v3",
+        "final": 0.469839,
+        "text": "Streaming delivers server-sent events (SSE) as they are produced instead of waiting for the full response body."
+      }
+    ]
+  },
+  "E16": {
+    "trace_id": "tr-a506673690",
+    "answer": "I don't know based on the provided documents.",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-files::upload-parameters::2",
+        "sdk_version": "v3",
+        "final": 0.558285,
+        "text": "The default maximum upload size is 25 MB; larger files must use multipart mode, which activates automatically above `part_size_mb`."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v2-uploads::upload-parameters::2",
+        "sdk_version": "v2",
+        "final": 0.539226,
+        "text": "The default maximum file size in v2 is 10 MB."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-files::file-uploads::0",
+        "sdk_version": "v3",
+        "final": 0.534765,
+        "text": "Uploads in SDK v3 go through `Client.files.upload()`."
+      }
+    ]
+  },
+  "E17": {
+    "trace_id": "tr-5c57d22f2b",
+    "answer": "I don't know based on the provided documents.",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v2-pagination::paginate-auto::3-code",
+        "sdk_version": "v2",
+        "final": 0.480977,
+        "text": "```python\nfor invoice in client.paginate_auto(url=\"/v2/invoices\"):\n    print(invoice.id)\n```"
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v2-client::client-request::6-code",
+        "sdk_version": "v2",
+        "final": 0.401904,
+        "text": "```python\nresponse = client.request(url=\"/v2/invoices\", method=\"POST\")\n```"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-client::client-send::8-code",
+        "sdk_version": "v3",
+        "final": 0.319771,
+        "text": "```python\nresponse = client.send(\n    url=\"/v3/invoices\",\n    method=\"POST\",\n    body={\"amount\": 4200},\n    retry_backoff_ms=500,\n)\nprint(response.status_code)\n```"
+      }
+    ]
+  },
+  "E18": {
+    "trace_id": "tr-4a9f5db918",
+    "answer": "I don't know based on the provided documents.",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v2-client::authentication::1",
+        "sdk_version": "v2",
+        "final": 0.58104,
+        "text": "Create the client with an API token supplied through the `ACME_API_TOKEN` environment variable. A missing token raises `AuthenticationError` before any network request is sent."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-client::authentication::1",
+        "sdk_version": "v3",
+        "final": 0.56329,
+        "text": "Create the client with an API token supplied through the `ACME_API_TOKEN` environment variable. Tokens must not be committed to source control. A missing token raises `AuthenticationError` before any network request is sent."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-client::client::0",
+        "sdk_version": "v3",
+        "final": 0.548685,
+        "text": "The `Client` is the entry point of the Acme SDK. It manages authentication, connection pooling, and retry policy for every request your application sends."
+      }
+    ]
+  },
+  "E19": {
+    "trace_id": "tr-41e3cdfeed",
+    "answer": "I don't know based on the provided documents.",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-webhooks::retries::5",
+        "sdk_version": "v3",
+        "final": 0.479346,
+        "text": "Failed deliveries are retried up to five times over six hours with exponential backoff. An endpoint is disabled after 20 consecutive failures."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-errors::ratelimiterror::2",
+        "sdk_version": "v3",
+        "final": 0.442757,
+        "text": "When the service returns HTTP 429 the SDK raises `RateLimitError`. The exception carries a `retry_after_seconds` attribute parsed from the server's `Retry-After` header, so callers can wait exactly as long as the server asks before trying again."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-ratelimits::handling-http-429::4",
+        "sdk_version": "v3",
+        "final": 0.442733,
+        "text": "On HTTP 429, wait for the duration given by `Retry-After`. The SDK's built-in retry policy honors this header automatically; see the Errors page for `RateLimitError`."
+      }
+    ]
+  },
+  "E20": {
+    "trace_id": "tr-2998aa8b07",
+    "answer": "I don't know based on the provided documents.",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-ratelimits::handling-http-429::4",
+        "sdk_version": "v3",
+        "final": 0.6229,
+        "text": "On HTTP 429, wait for the duration given by `Retry-After`. The SDK's built-in retry policy honors this header automatically; see the Errors page for `RateLimitError`."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-errors::ratelimiterror::2",
+        "sdk_version": "v3",
+        "final": 0.521653,
+        "text": "When the service returns HTTP 429 the SDK raises `RateLimitError`. The exception carries a `retry_after_seconds` attribute parsed from the server's `Retry-After` header, so callers can wait exactly as long as the server asks before trying again."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v2-errors::toomanyrequestserror::2",
+        "sdk_version": "v2",
+        "final": 0.508692,
+        "text": "When the service returns HTTP 429 in SDK v2 the SDK raises `TooManyRequestsError`. The exception does not expose a parsed retry delay; callers must read the raw `Retry-After` header from the attached response object themselves."
+      }
+    ]
+  },
+  "E21": {
+    "trace_id": "tr-0a11023746",
+    "answer": "I don't know based on the provided documents.",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-changelog::what-changed-in-v3::0",
+        "sdk_version": "v3",
+        "final": 0.367566,
+        "text": "This page lists behavioral changes between SDK v2 and SDK v3. Read it before migrating."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v2-pagination::pagination::0",
+        "sdk_version": "v2",
+        "final": 0.3505,
+        "text": "List endpoints in SDK v2 return full pages with automatic pagination helpers."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v2-pagination::paginate-auto::4",
+        "sdk_version": "v2",
+        "final": 0.342125,
+        "text": "`paginate_auto()` was removed in SDK v3; use explicit cursor pagination via `list_after()` instead."
+      }
+    ]
+  },
+  "E22": {
+    "trace_id": "tr-33be41744a",
+    "answer": "I don't know based on the provided documents.",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-changelog::what-changed-in-v3::0",
+        "sdk_version": "v3",
+        "final": 0.57505,
+        "text": "This page lists behavioral changes between SDK v2 and SDK v3. Read it before migrating."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v2-uploads::upload-parameters::2",
+        "sdk_version": "v2",
+        "final": 0.386886,
+        "text": "The default maximum file size in v2 is 10 MB."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-files::file-uploads::0",
+        "sdk_version": "v3",
+        "final": 0.285945,
+        "text": "Uploads in SDK v3 go through `Client.files.upload()`."
+      }
+    ]
+  },
+  "E23": {
+    "trace_id": "tr-047081e125",
+    "answer": "When the service returns HTTP 429 the SDK raises `RateLimitError`. The exception carries a `retry_after_seconds` attribute parsed from the server's `Retry-After` header, so callers can wait exactly as long as the server asks before trying again. The exception carries a `retry_after_seconds` attribute parsed from the server's `Retry-After` header, so callers can wait exactly as long as the server asks before trying again. [chunk:v3-errors::ratelimiterror::2]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-ratelimits::rate-limits::0",
+        "sdk_version": "v3",
+        "final": 0.571624,
+        "text": "Rate limits cap how many requests an account can make per minute. Limits are enforced per API token, not per IP address."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-errors::ratelimiterror::2",
+        "sdk_version": "v3",
+        "final": 0.56073,
+        "text": "When the service returns HTTP 429 the SDK raises `RateLimitError`. The exception carries a `retry_after_seconds` attribute parsed from the server's `Retry-After` header, so callers can wait exactly as long as the server asks before trying again."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v2-errors::toomanyrequestserror::4",
+        "sdk_version": "v2",
+        "final": 0.554037,
+        "text": "In v3 this exception was renamed to `RateLimitError` and gained the `retry_after_seconds` attribute."
+      }
+    ]
+  },
+  "E24": {
+    "trace_id": "tr-f8374e3c97",
+    "answer": "The default retry backoff delay was reduced from 2000 ms in v2 to 500 ms in v3, cutting worst-case recovery time after a transient failure. Code that relied on the old default should set `retry_backoff_ms=2000` explicitly. Code that relied on the old default should set `retry_backoff_ms=2000` explicitly. [chunk:v3-changelog::retry-defaults-changed::1]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-changelog::retry-defaults-changed::1",
+        "sdk_version": "v3",
+        "final": 0.579817,
+        "text": "The default retry backoff delay was reduced from 2000 ms in v2 to 500 ms in v3, cutting worst-case recovery time after a transient failure. Code that relied on the old default should set `retry_backoff_ms=2000` explicitly."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v2-client::client-request::5-table",
+        "sdk_version": "v2",
+        "final": 0.460508,
+        "text": "| Parameter | Type | Default | Required | Description |\n|---|---|---|---|---|\n| url | str | \u2014 | yes | Path relative to the configured base_url. |\n| method | str | \"GET\" | no | HTTP verb to use for the request. |\n| retry_backoff_ms | int | 2000 | no | Overrides the client-level backoff delay for this request only. |"
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-client::client-send::7",
+        "sdk_version": "v3",
+        "final": 0.426155,
+        "text": "The per-request `retry_backoff_ms` parameter overrides the value given in the constructor for that single call."
+      }
+    ]
+  },
+  "E25": {
+    "trace_id": "tr-1cea271d62",
+    "answer": "A `Client` instance is thread-safe. Share one instance across threads instead of constructing a client per request. A `Client` instance is thread-safe [chunk:v3-client::thread-safety::9]",
+    "retrieved": [
+      {
+        "rank": 1,
+        "chunk_id": "v3-client::thread-safety::9",
+        "sdk_version": "v3",
+        "final": 0.839957,
+        "text": "A `Client` instance is thread-safe. Share one instance across threads instead of constructing a client per request."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "v3-streaming::client-stream::1",
+        "sdk_version": "v3",
+        "final": 0.488672,
+        "text": "`Client.stream()` returns an iterator of `StreamEvent` objects. The connection stays open until the server closes it or the iterator is closed by the caller."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "v3-client::client::0",
+        "sdk_version": "v3",
+        "final": 0.460591,
+        "text": "The `Client` is the entry point of the Acme SDK. It manages authentication, connection pooling, and retry policy for every request your application sends."
+      }
+    ]
+  }
+}

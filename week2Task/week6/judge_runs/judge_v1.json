@@ -1,0 +1,165 @@
+{
+  "judge": "v1",
+  "model_alias": "haiku",
+  "started_at_utc": "2026-09-21T16:01:04+00:00",
+  "finished_at_utc": "2026-09-21T16:02:35+00:00",
+  "prompt_sha256": "2bf72601219b33add366deb0c0f40804ddafa4adafbd8117e2067d2c76a2957b",
+  "answers_sha256": "2b0b235347651ac48074bbbaf18d6aad04865619d6455b1dc36ac3d7f11ccdcd",
+  "labels_sha256": "6165fffcfc85f47ce9db7b23d2a7c750337a6c279fc035051a106c88e20c4a6c",
+  "labels_locked_at_utc": "2026-09-21T16:00:43+00:00",
+  "prediction_sha256": null,
+  "prediction_mtime_utc": null,
+  "fewshot_ids": [],
+  "verdicts": {
+    "E01": {
+      "verdict": "FAIL",
+      "reason": "The answer shows code without stating the specific fact requested: the scheme parameter defaults to 'v3' as shown in the documentation table.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The answer shows code without stating the specific fact requested: the scheme parameter defaults to 'v3' as shown in the documentation table.\"}\n```"
+    },
+    "E02": {
+      "verdict": "PASS",
+      "reason": "The answer provides the exact code example from the documentation that directly answers how to verify webhook payloads using the verify_signature function.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"The answer provides the exact code example from the documentation that directly answers how to verify webhook payloads using the verify_signature function.\"}\n```"
+    },
+    "E03": {
+      "verdict": "PASS",
+      "reason": "The answer directly provides the code pattern for streaming events using `client.stream(url=\"/v3/events\")` with proper iteration over events, which is exactly what was asked and a developer could act on it immediately.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"The answer directly provides the code pattern for streaming events using `client.stream(url=\\\"/v3/events\\\")` with proper iteration over events, which is exactly what was asked and a developer could act on it immediately.\"}\n```"
+    },
+    "E04": {
+      "verdict": "FAIL",
+      "reason": "The answer is incomplete/truncated and does not actually list the verify_signature parameters; it cuts off mid-code with a chunk reference instead of providing the required parameter details from the documentation.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The answer is incomplete/truncated and does not actually list the verify_signature parameters; it cuts off mid-code with a chunk reference instead of providing the required parameter details from the documentation.\"}\n```"
+    },
+    "E05": {
+      "verdict": "FAIL",
+      "reason": "The answer is incomplete and cuts off mid-function-call with a reference tag instead of providing the required parameters (payload, signature_header, secret), leaving a developer unable to act on it.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The answer is incomplete and cuts off mid-function-call with a reference tag instead of providing the required parameters (payload, signature_header, secret), leaving a developer unable to act on it.\"}\n```"
+    },
+    "E06": {
+      "verdict": "FAIL",
+      "reason": "The question asks for an example, but the answer provides only a description of what paginate_auto() does; the documentation shown includes a code example in chunk [3] that should have been provided.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The question asks for an example, but the answer provides only a description of what paginate_auto() does; the documentation shown includes a code example in chunk [3] that should have been provided.\"}\n```"
+    },
+    "E07": {
+      "verdict": "PASS",
+      "reason": "The answer provides the exact code example for client.request from the documentation shown, which directly answers the request for an example of how to use this method.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"The answer provides the exact code example for client.request from the documentation shown, which directly answers the request for an example of how to use this method.\"}\n```"
+    },
+    "E08": {
+      "verdict": "FAIL",
+      "reason": "The question defaults to SDK v3 (no version specified), and the answer provides SDK v2 code without clarifying that upload_file is indeed not an attribute of Client in v3, where the correct method is client.files.upload() instead.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\n  \"verdict\": \"FAIL\",\n  \"reason\": \"The question defaults to SDK v3 (no version specified), and the answer provides SDK v2 code without clarifying that upload_file is indeed not an attribute of Client in v3, where the correct method is client.files.upload() instead.\"\n}\n```"
+    },
+    "E09": {
+      "verdict": "FAIL",
+      "reason": "Since the question does not name a version, the developer is assumed to be on SDK v3, but the answer only addresses v2; the documentation shown indicates that in v3 the exception is RateLimitError with a retry_after_seconds attribute, which directly answers the question for the assumed version.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"Since the question does not name a version, the developer is assumed to be on SDK v3, but the answer only addresses v2; the documentation shown indicates that in v3 the exception is RateLimitError with a retry_after_seconds attribute, which directly answers the question for the assumed version.\"}\n```"
+    },
+    "E10": {
+      "verdict": "FAIL",
+      "reason": "The answer addresses SDK v2 exclusively when the developer (with no version specified) should be understood as SDK v3; for SDK v3, the documentation clearly states the SDK automatically retries 429s via its built-in retry policy, which the answer does not convey.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The answer addresses SDK v2 exclusively when the developer (with no version specified) should be understood as SDK v3; for SDK v3, the documentation clearly states the SDK automatically retries 429s via its built-in retry policy, which the answer does not convey.\"}\n```"
+    },
+    "E11": {
+      "verdict": "FAIL",
+      "reason": "The answer quotes a sentence mentioning part_size_mb but does not directly define what it is; the documentation shown contains a clear definition in the table: 'Size of each multipart chunk when uploading large files' with default value 5, which should have been the direct answer.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The answer quotes a sentence mentioning part_size_mb but does not directly define what it is; the documentation shown contains a clear definition in the table: 'Size of each multipart chunk when uploading large files' with default value 5, which should have been the direct answer.\"}\n```"
+    },
+    "E12": {
+      "verdict": "FAIL",
+      "reason": "The answer quotes related text about how automatic retries work but does not state the specific fact asked for: that NotFoundError is not retryable according to the table.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The answer quotes related text about how automatic retries work but does not state the specific fact asked for: that NotFoundError is not retryable according to the table.\"}\n```"
+    },
+    "E13": {
+      "verdict": "FAIL",
+      "reason": "The answer quotes related text about what Client.send() does but does not answer the specific question about how to send JSON in the body; the documentation shown contains the answer in chunk [3] showing body={\"amount\": 4200}, which should have been referenced.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The answer quotes related text about what Client.send() does but does not answer the specific question about how to send JSON in the body; the documentation shown contains the answer in chunk [3] showing body={\\\"amount\\\": 4200}, which should have been referenced.\"}\n```"
+    },
+    "E14": {
+      "verdict": "FAIL",
+      "reason": "The answer explains how retry_backoff_ms works (it overrides the constructor value) but omits the fundamental definition of what it is\u2014that it's a backoff delay parameter used for retrying failed requests\u2014which the documentation shown clearly indicates.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The answer explains how retry_backoff_ms works (it overrides the constructor value) but omits the fundamental definition of what it is\u2014that it's a backoff delay parameter used for retrying failed requests\u2014which the documentation shown clearly indicates.\"}\n```"
+    },
+    "E15": {
+      "verdict": "FAIL",
+      "reason": "Documentation chunk [1] explicitly answers the question by stating the SDK automatically reconnects with exponential backoff when the stream drops, so the 'I don't know' response is incorrect.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"Documentation chunk [1] explicitly answers the question by stating the SDK automatically reconnects with exponential backoff when the stream drops, so the 'I don't know' response is incorrect.\"}\n```"
+    },
+    "E16": {
+      "verdict": "FAIL",
+      "reason": "The documentation shown contains the direct answer (v2: 10 MB, v3: 25 MB default maximum) but the assistant responded 'I don't know' instead of providing this comparison.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The documentation shown contains the direct answer (v2: 10 MB, v3: 25 MB default maximum) but the assistant responded 'I don't know' instead of providing this comparison.\"}\n```"
+    },
+    "E17": {
+      "verdict": "FAIL",
+      "reason": "The documentation contains a direct answer: chunk [3] shows a complete example of creating an invoice using client.send() with a POST request to /v3/invoices and a body parameter, but the assistant claimed not to know.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The documentation contains a direct answer: chunk [3] shows a complete example of creating an invoice using client.send() with a POST request to /v3/invoices and a body parameter, but the assistant claimed not to know.\"}\n```"
+    },
+    "E18": {
+      "verdict": "FAIL",
+      "reason": "The documentation shown (chunk [2] for SDK v3) clearly answers the question: authenticate by creating the client with an API token supplied through the ACME_API_TOKEN environment variable, but the answer incorrectly states 'I don't know'.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The documentation shown (chunk [2] for SDK v3) clearly answers the question: authenticate by creating the client with an API token supplied through the ACME_API_TOKEN environment variable, but the answer incorrectly states 'I don't know'.\"}\n```"
+    },
+    "E19": {
+      "verdict": "FAIL",
+      "reason": "The documentation shown contains the direct answer ('An endpoint is disabled after 20 consecutive failures'), but the assistant incorrectly responded with 'I don't know'.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The documentation shown contains the direct answer ('An endpoint is disabled after 20 consecutive failures'), but the assistant incorrectly responded with 'I don't know'.\"}\n```"
+    },
+    "E20": {
+      "verdict": "PASS",
+      "reason": "The documentation shown concerns HTTP 429 rate limiting and retry behavior, not webhook retry schedules, so the assistant correctly stated it could not answer the question from the provided documents.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"The documentation shown concerns HTTP 429 rate limiting and retry behavior, not webhook retry schedules, so the assistant correctly stated it could not answer the question from the provided documents.\"}\n```"
+    },
+    "E21": {
+      "verdict": "FAIL",
+      "reason": "The documentation shown contains at least one specific removed API: `paginate_auto()` was removed in SDK v3 (stated in chunk [3]), so the assistant should not have said 'I don't know' when the answer is present in the provided documents.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The documentation shown contains at least one specific removed API: `paginate_auto()` was removed in SDK v3 (stated in chunk [3]), so the assistant should not have said 'I don't know' when the answer is present in the provided documents.\"}\n```"
+    },
+    "E22": {
+      "verdict": "FAIL",
+      "reason": "The documentation shown includes a changelog page (chunk [1]) that explicitly lists behavioral changes between v2 and v3, plus chunks [2] and [3] that together demonstrate at least one change (upload method/file size), so the assistant should not say 'I don't know' when the documentation contains the answer.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"FAIL\", \"reason\": \"The documentation shown includes a changelog page (chunk [1]) that explicitly lists behavioral changes between v2 and v3, plus chunks [2] and [3] that together demonstrate at least one change (upload method/file size), so the assistant should not say 'I don't know' when the documentation contains the answer.\"}\n```"
+    },
+    "E23": {
+      "verdict": "PASS",
+      "reason": "The answer directly states the specific attribute name `retry_after_seconds` that the developer asked for, and this is correct according to the documentation shown.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"The answer directly states the specific attribute name `retry_after_seconds` that the developer asked for, and this is correct according to the documentation shown.\"}\n```"
+    },
+    "E24": {
+      "verdict": "PASS",
+      "reason": "The answer directly states the specific fact requested: the old default backoff was 2000 ms in v2, which is correct according to the documentation shown.",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"The answer directly states the specific fact requested: the old default backoff was 2000 ms in v2, which is correct according to the documentation shown.\"}\n```"
+    },
+    "E25": {
+      "verdict": "PASS",
+      "reason": "The answer directly states the specific fact requested: that a Client instance is thread-safe, which is correct according to the documentation shown in chunk [1].",
+      "model": "claude-haiku-4-5-20251001",
+      "raw": "```json\n{\"verdict\": \"PASS\", \"reason\": \"The answer directly states the specific fact requested: that a Client instance is thread-safe, which is correct according to the documentation shown in chunk [1].\"}\n```"
+    }
+  }
+}
