@@ -1,0 +1,132 @@
+# Week 5 simulated traffic for the SDK docs assistant.
+# Written in one pass before any trace was generated or read. The repo has no
+# production query log, so this stands in for "a week of traffic": developers
+# on v2 and v3, migration questions, symptom-first phrasing, typos, code
+# requests, and questions the docs do not cover. The 12 golden_set.jsonl
+# questions (the DX demo set) are deliberately excluded.
+how do I create a client
+whats the default timeout
+what is the default timeout in seconds
+how do i set a timeout on the client
+timeout_ms default value?
+is timeout in seconds or milliseconds
+how many retries does the client do by default
+max_retries default
+how do I turn off retries
+set max_retries to zero what happens
+what is retry_backoff_ms
+default retry backoff in v2
+what's the backoff delay between retries
+how do I override backoff for a single request
+show me how to send a POST request
+how do I send json in the body of a request
+does body get sent on GET requests
+client.request example
+Client.request is missing, what replaced it
+how do I pass custom headers
+what does Client.send return
+what is the base_url default
+can I point the client at a staging url
+how do I set the api token
+ACME_API_TOKEN not set error
+what error do I get with an invalid token
+AuthenticationError when creating client
+PermissionDeniedError what does it mean
+my token lacks scope what exception
+what exceptions can the sdk raise
+what is the base class for all sdk errors
+difference between TransportError and ApiError
+which errors are retryable
+is ServerError retried automatically
+NotFoundError retryable?
+TooManyRequestsError how to get the retry delay
+how do I catch rate limit errors in v2
+how do I catch a 429 in v3
+what attribute tells me how long to wait after rate limit
+retry_after_seconds where does it come from
+does the sdk automatically retry 429s
+Retry-After header handling
+rate limit for team plan
+enterprise tier requests per minute
+what is the burst allowance on free
+are rate limits per ip or per token
+what headers show my remaining rate limit budget
+X-RateLimit-Reset meaning
+how to check how many requests I have left
+upload a file example
+what's the max upload size
+max_file_size_mb default v2
+file too big error when uploading
+how do large uploads work
+what is part_size_mb
+multipart upload threshold
+how long can I resume an upload for
+upload_file is not an attribute of Client
+how do I upload in v3
+mime type for uploads
+how do I stream events
+stream example code
+what is buffer_size_ms
+how to reduce streaming latency
+heartbeat interval on streams
+what happens if the stream disconnects
+does streaming support Last-Event-ID
+how do I close a stream
+StreamEvent fields
+how do I paginate results
+paginate_auto example
+list_after usage
+page_size default
+how do I iterate every invoice
+cursor pagination example
+webhook signature header name
+how to verify webhook payload
+verify_signature parameters
+what is the signing secret
+webhook replay attack protection
+tolerance for webhook timestamp
+what scheme does verify_signature expect
+webhook retry schedule
+when does a webhook endpoint get disabled
+how many failures before my webhook is turned off
+is the client thread safe
+should I create a new client per request
+connection pooling settings
+what changed between v2 and v3
+migration guide v2 to v3
+is timeout_s still supported
+why did my retries get faster after upgrading
+what was the old default backoff
+TooManyRequestsError renamed?
+list of removed apis in v3
+how do I install the sdk
+pip install acme
+does the sdk support async
+asyncio support?
+how do I use a proxy
+how do I configure logging
+typescript sdk?
+how do I set a custom user agent
+is there a sandbox environment
+how do I refund an invoice
+create invoice example
+how do i authenticte
+whats teh max file size
+retry backof default
+hw to verify webhok signature
+what does 429 mean
+what is 5xx handling
+can I change retry_backoff_ms per request in v2
+max retries in v2 vs v3
+default timeout v2
+v2 upload limit vs v3
+how do I handle errors
+give me full example: create client, upload file, handle rate limit
+what's the recommended way to wait on a rate limit
+my stream keeps dropping every 15 seconds
+how do I set a 60 second timeout
+set timeout to 2 minutes
+how do I disable automatic retries for rate limit errors only
+is there an idempotency key
+how do I test webhooks locally
+what python versions are supported

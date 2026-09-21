@@ -1,0 +1,69 @@
+{
+  "seed": 921,
+  "trace_id": "tr-fccf2600b5",
+  "question": "how do I stream events",
+  "original_output": "with client.stream(url=\"/v3/events\") as events: ```python with client.stream(url=\"/v3/events\") as events:     for event in events:         print(event.type, event.data) ``` [chunk:v3-streaming::client-stream::4-code]",
+  "replayed_output_generation_only": "with client.stream(url=\"/v3/events\") as events: ```python with client.stream(url=\"/v3/events\") as events:     for event in events:         print(event.type, event.data) ``` [chunk:v3-streaming::client-stream::4-code]",
+  "replayed_output_full_pipeline": "with client.stream(url=\"/v3/events\") as events: ```python with client.stream(url=\"/v3/events\") as events:     for event in events:         print(event.type, event.data) ``` [chunk:v3-streaming::client-stream::4-code]",
+  "original_retrieved": [
+    [
+      "v3-streaming::streaming-responses::0",
+      0.582412,
+      0.612412
+    ],
+    [
+      "v3-streaming::client-stream::4-code",
+      0.529183,
+      0.589183
+    ],
+    [
+      "v3-streaming::client-stream::1",
+      0.479847,
+      0.509847
+    ]
+  ],
+  "replayed_retrieved": [
+    [
+      "v3-streaming::streaming-responses::0",
+      0.582412,
+      0.612412
+    ],
+    [
+      "v3-streaming::client-stream::4-code",
+      0.529183,
+      0.589183
+    ],
+    [
+      "v3-streaming::client-stream::1",
+      0.479847,
+      0.509847
+    ]
+  ],
+  "versions_now_vs_trace": {
+    "generator_version": {
+      "trace": "83e35f5a3ae0",
+      "now": "83e35f5a3ae0"
+    },
+    "retriever_version": {
+      "trace": "7a5ba5a1aba5",
+      "now": "7a5ba5a1aba5"
+    },
+    "corpus_version": {
+      "trace": "abdce489cb24",
+      "now": "abdce489cb24"
+    },
+    "model": {
+      "trace": {
+        "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "generator": "extractive (no LLM)"
+      },
+      "now": {
+        "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "generator": "extractive (no LLM)"
+      }
+    }
+  },
+  "output_identical": true
+}
