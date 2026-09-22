@@ -1,0 +1,55 @@
+--- tools_before_week7.json
++++ tools_week7.json
+@@ -1,23 +1,47 @@
+ [
+   {
+     "name": "search_docs",
+-    "description": "Search the Acme SDK documentation for anything about endpoints, parameters, methods, errors or changes between versions.",
++    "description": "Semantic search over the prose SDK documentation pages (guides, reference text, code samples) of ONE SDK version. Use it for how-to and behaviour questions. It does not return endpoint schemas and does not say whether a symbol is deprecated.",
+     "parameters": {
+       "query": {
+-        "type": "string"
++        "type": "string",
++        "description": "a natural-language question"
+       },
+       "api_version": {
+-        "type": "string"
++        "type": "string",
++        "enum": [
++          "v2",
++          "v3"
++        ]
+       }
+     }
+   },
+   {
+     "name": "get_openapi_spec",
+-    "description": "Get API information about an endpoint, including its parameters and how to call it.",
++    "description": "Return the OpenAPI operations for ONE exact endpoint path in the v3 API (HTTP method, parameters, request body and the SDK call). Takes a path such as /v3/invoices, not a question. It does not search prose docs and does not know about v2 or deprecations.",
+     "parameters": {
+       "path": {
+-        "type": "string"
++        "type": "string",
++        "description": "exact path, e.g. /v3/invoices"
+       }
+     }
++  },
++  {
++    "name": "check_deprecation",
++    "description": "Look up ONE SDK symbol (method, exception, parameter) in the v3 changelog and migration notes. It returns whether the symbol is removed, renamed or had its default changed when your code runs on api_version, plus the replacement. It does not search docs or return schemas. A symbol the changelog doesn't mention returns status 'not_in_changelog'.",
++    "parameters": {
++      "symbol": {
++        "type": "string",
++        "description": "one symbol, e.g. paginate_auto"
++      },
++      "api_version": {
++        "type": "string",
++        "enum": [
++          "v2",
++          "v3"
++        ],
++        "description": "the SDK version the caller's code will run on"
++      }
++    }
+   }
+ ]

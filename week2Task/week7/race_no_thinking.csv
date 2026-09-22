@@ -1,0 +1,7 @@
+system,questions,runs,pass_rate,p50_latency_s,total_tokens,tokens_per_question,cost_per_question_usd,llm_calls_per_question,n_questions
+agent,all,30,0.9,11.6,56715,5672,0.0085,3.17,10
+agent,dependent,18,0.944,12.18,38946,6491,0.00956,3.5,6
+agent,lookup,12,0.833,11.05,17769,4442,0.00691,2.67,4
+workflow,all,30,0.967,5.59,16720,1672,0.00262,2.0,10
+workflow,dependent,18,1.0,5.84,10244,1707,0.00268,2.0,6
+workflow,lookup,12,0.917,5.51,6475,1619,0.00254,2.0,4
