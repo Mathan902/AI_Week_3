@@ -1,0 +1,71 @@
+workflow Q03 r3 PASS    7.6s   1795 tok $0.0032 2 calls 
+agent    Q01 r3 PASS    8.0s   3107 tok $0.0046 2 calls 
+agent    Q07 r1 FAIL    9.7s   3217 tok $0.0055 2 calls v3_code missing /client\.stream\(/; v3_code missing //v3/events/
+agent    Q06 r1 PASS   12.3s   5017 tok $0.0076 3 calls 
+workflow Q07 r3 PASS    5.4s   1435 tok $0.0022 2 calls 
+agent    Q09 r1 PASS    8.6s   4409 tok $0.0061 3 calls 
+agent    Q01 r1 FAIL    9.7s   3413 tok $0.0061 2 calls v3_code missing /client\.send\(/; v3_code missing //v3/invoices/; v3_code missin
+agent    Q06 r3 PASS   15.6s   6336 tok $0.0107 3 calls 
+workflow Q10 r1 FAIL    6.1s   1635 tok $0.0029 2 calls v3_code missing /retry_after_seconds/
+agent    Q06 r2 PASS   17.7s   7888 tok $0.0130 4 calls 
+workflow Q06 r1 PASS    5.4s   1506 tok $0.0022 2 calls 
+workflow Q05 r2 PASS    5.2s   1446 tok $0.0022 2 calls 
+workflow Q10 r3 PASS    6.3s   1615 tok $0.0027 2 calls 
+agent    Q03 r2 PASS   12.0s   5279 tok $0.0081 3 calls 
+agent    Q05 r1 PASS   10.8s   5017 tok $0.0073 3 calls 
+workflow Q06 r3 PASS    5.5s   1491 tok $0.0022 2 calls 
+workflow Q01 r2 PASS    6.1s   1942 tok $0.0030 2 calls 
+workflow Q10 r2 PASS    6.3s   1620 tok $0.0028 2 calls 
+workflow Q04 r3 PASS    5.6s   1519 tok $0.0024 2 calls 
+workflow Q06 r2 PASS    5.6s   1516 tok $0.0023 2 calls 
+agent    Q10 r1 PASS    8.2s   3087 tok $0.0049 2 calls 
+agent    Q05 r2 PASS   10.5s   4913 tok $0.0070 3 calls 
+agent    Q02 r2 PASS   16.9s   8092 tok $0.0122 4 calls 
+agent    Q04 r3 PASS   11.7s   5040 tok $0.0076 3 calls 
+agent    Q09 r3 FAIL   11.5s   3578 tok $0.0069 2 calls v3_code missing /verify_signature\(/; v3_code missing /X-Acme-Signature/
+workflow Q05 r3 PASS    5.6s   1569 tok $0.0024 2 calls 
+agent    Q10 r3 PASS   13.1s   5260 tok $0.0084 3 calls 
+agent    Q02 r3 PASS   21.5s  12321 tok $0.0163 6 calls 
+workflow Q09 r1 PASS    5.6s   1569 tok $0.0025 2 calls 
+workflow Q01 r1 PASS    5.8s   1927 tok $0.0029 2 calls 
+workflow Q07 r2 PASS    5.5s   1436 tok $0.0022 2 calls 
+agent    Q10 r2 PASS    7.5s   3052 tok $0.0047 2 calls 
+workflow Q09 r3 PASS    5.6s   1563 tok $0.0025 2 calls 
+workflow Q04 r1 PASS    6.4s   1553 tok $0.0024 2 calls 
+agent    Q08 r1 PASS   11.5s   4931 tok $0.0072 3 calls 
+agent    Q09 r2 PASS   14.0s   5953 tok $0.0098 3 calls 
+workflow Q02 r3 PASS    6.7s   1958 tok $0.0032 2 calls 
+agent    Q05 r3 PASS   12.7s   6724 tok $0.0093 4 calls 
+workflow Q08 r2 PASS    5.2s   1780 tok $0.0026 2 calls 
+workflow Q08 r1 PASS    5.5s   1885 tok $0.0027 2 calls 
+workflow Q04 r2 PASS    5.6s   1545 tok $0.0024 2 calls 
+agent    Q08 r3 PASS    9.7s   4682 tok $0.0066 3 calls 
+agent    Q03 r3 PASS   15.6s   7323 tok $0.0109 4 calls 
+agent    Q04 r2 PASS   12.1s   5028 tok $0.0078 3 calls 
+workflow Q03 r1 PASS    6.2s   1786 tok $0.0030 2 calls 
+workflow Q07 r1 PASS    5.1s   1435 tok $0.0022 2 calls 
+workflow Q08 r3 PASS    5.5s   1885 tok $0.0027 2 calls 
+workflow Q09 r2 PASS    5.5s   1568 tok $0.0025 2 calls 
+agent    Q07 r2 PASS   13.0s   5281 tok $0.0083 3 calls 
+workflow Q02 r2 PASS    7.5s   1934 tok $0.0031 2 calls 
+agent    Q04 r1 PASS    7.5s   2860 tok $0.0043 2 calls 
+agent    Q02 r1 PASS   23.5s  15837 tok $0.0204 7 calls 
+agent    Q08 r2 PASS   11.1s   5044 tok $0.0075 3 calls 
+workflow Q02 r1 PASS    5.5s   1912 tok $0.0030 2 calls 
+agent    Q07 r3 PASS   11.0s   4814 tok $0.0071 3 calls 
+workflow Q01 r3 PASS    5.8s   1979 tok $0.0030 2 calls 
+workflow Q05 r1 PASS    5.9s   1570 tok $0.0024 2 calls 
+workflow Q03 r2 PASS    7.0s   1785 tok $0.0032 2 calls 
+agent    Q03 r1 PASS   16.1s   7648 tok $0.0117 4 calls 
+agent    Q01 r2 PASS   10.6s   4994 tok $0.0071 3 calls 
+
+10 questions x 3 repeats, model haiku, thinking OFF, same tools and contract
+system    questions  pass rate   p50 s  total tok   tok/q      $/q calls/q
+agent     all              90%    11.6      56715    5672   0.0085    3.17
+agent     dependent        94%    12.2      38946    6491   0.0096    3.50
+agent     lookup           83%    11.1      17769    4442   0.0069    2.67
+workflow  all              97%     5.6      16720    1672   0.0026    2.00
+workflow  dependent       100%     5.8      10244    1707   0.0027    2.00
+workflow  lookup           92%     5.5       6475    1619   0.0025    2.00
+
+per question (passes out of repeats):  Q01 a2/w3  Q02 a3/w3  Q03 a3/w3  Q04 a3/w3  Q05 a3/w3  Q06 a3/w3  Q07 a2/w3  Q08 a3/w3  Q09 a2/w3  Q10 a3/w2
