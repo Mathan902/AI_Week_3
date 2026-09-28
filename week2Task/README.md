@@ -42,3 +42,14 @@ Use each prepared question in the app and show its cited source. Then select **N
 ```
 
 Each run scores hit-rate@3 on `golden_set.jsonl`, labels every failure R / G / Not-In-Corpus, measures p50 latency, and writes the inspection view to `week4_output/`. Results and the shipping decision are in `results.md`, and the code change is in `week4_change.diff`.
+
+## Week 8: trajectory eval, the outcome-vs-trajectory gap, one mitigation
+
+```bash
+.venv/bin/python week8_trajectory_eval.py run --variant before   # Week 7 agent as shipped, 10 questions x 3
+.venv/bin/python week8_trajectory_eval.py run --variant after    # with the one mitigation (argument validation) on
+.venv/bin/python week8_trajectory_eval.py report                 # every table -> week8/report.md
+.venv/bin/python -m unittest tests.test_week8_trajectory         # the path-set assertions, on fake runs
+```
+
+Each run is scored on the answer (Week 7 grader) and on the path: expected tool sequences asserted as sets of accepted paths, tool-choice accuracy, argument validity, step efficiency, and cost per question with p50 and max. The write-up, the named right-answer-wrong-path trace, the before/after count for the top mode with its price, the per-mode regression table and the injection bonus are in `week8/notes.md`; the mitigation is `week8/mitigation.diff`.
