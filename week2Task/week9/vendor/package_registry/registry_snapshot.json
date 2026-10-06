@@ -1,0 +1,27 @@
+{
+  "snapshot_taken": "2026-10-01T00:00:00Z",
+  "packages": {
+    "acme-sdk": {
+      "summary": "Acme Python SDK",
+      "versions": [
+        {"version": "2.8.0", "released": "2025-11-04", "requires_python": ">=3.8", "yanked": false},
+        {"version": "2.9.0", "released": "2026-01-20", "requires_python": ">=3.8", "yanked": false},
+        {"version": "2.9.4", "released": "2026-06-02", "requires_python": ">=3.8", "yanked": false},
+        {"version": "3.0.0", "released": "2026-03-10", "requires_python": ">=3.9", "yanked": false},
+        {"version": "3.1.0", "released": "2026-05-12", "requires_python": ">=3.9", "yanked": false},
+        {"version": "3.1.1", "released": "2026-05-19", "requires_python": ">=3.9", "yanked": true, "yanked_reason": "broken wheel metadata; use 3.1.2"},
+        {"version": "3.1.2", "released": "2026-05-21", "requires_python": ">=3.9", "yanked": false},
+        {"version": "3.2.0", "released": "2026-08-18", "requires_python": ">=3.9", "yanked": false}
+      ],
+      "deprecations": [
+        {"since": "2.9.0", "symbol": "acme-sdk 2.x", "kind": "end_of_support", "notice": "2.x receives security fixes only; end of support 2026-12-31. Migrate to 3.x."},
+        {"since": "3.0.0", "symbol": "Client.request", "kind": "removed", "notice": "Removed; use Client.send()."},
+        {"since": "3.0.0", "symbol": "paginate_auto", "kind": "removed", "notice": "Removed in favour of explicit cursor pagination via list_after()."},
+        {"since": "3.0.0", "symbol": "timeout_s", "kind": "renamed", "notice": "Renamed to timeout_ms (milliseconds, default 10000)."},
+        {"since": "3.0.0", "symbol": "TooManyRequestsError", "kind": "renamed", "notice": "Renamed to RateLimitError (carries retry_after_seconds)."},
+        {"since": "3.0.0", "symbol": "retry_backoff_ms", "kind": "default_changed", "notice": "Default reduced from 2000 ms to 500 ms."},
+        {"since": "3.2.0", "symbol": "timeout_s", "kind": "removed", "notice": "The 3.0-3.1 compatibility shim that accepted timeout_s with a DeprecationWarning is gone; passing it now raises TypeError."}
+      ]
+    }
+  }
+}

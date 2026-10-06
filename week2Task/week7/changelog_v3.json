@@ -1,0 +1,12 @@
+[
+  {"symbol": "Client.request", "aliases": ["request", "client.request"], "status": "removed", "replacement": "Client.send()", "replacement_path": null,
+   "note": "`Client.request()` was removed; use `Client.send()`.", "source": "v3-changelog::removed-apis::3"},
+  {"symbol": "paginate_auto", "aliases": ["client.paginate_auto"], "status": "removed", "replacement": "list_after() (explicit cursor pagination)", "replacement_path": "/v3/invoices",
+   "note": "`paginate_auto()` was removed in favor of explicit cursor pagination via `list_after()`.", "source": "v3-changelog::removed-apis::3"},
+  {"symbol": "timeout_s", "aliases": [], "status": "renamed", "replacement": "timeout_ms (milliseconds; default 10000)", "replacement_path": null,
+   "note": "Constructor option `timeout_s` is now `timeout_ms`; all durations in the SDK are milliseconds. The default timeout dropped from 30 seconds to 10 seconds.", "source": "v3-changelog::timeout-units-renamed::2"},
+  {"symbol": "retry_backoff_ms", "aliases": [], "status": "default_changed", "replacement": "set retry_backoff_ms=2000 explicitly to keep the v2 behaviour", "replacement_path": null,
+   "note": "The default retry backoff delay was reduced from 2000 ms in v2 to 500 ms in v3.", "source": "v3-changelog::retry-defaults-changed::1"},
+  {"symbol": "TooManyRequestsError", "aliases": [], "status": "renamed", "replacement": "RateLimitError (carries retry_after_seconds)", "replacement_path": null,
+   "note": "In v3 this exception was renamed to `RateLimitError` and gained the `retry_after_seconds` attribute.", "source": "v2-errors::toomanyrequestserror::4"}
+]

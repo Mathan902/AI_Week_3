@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "gateway": {
+      "command": ".venv/bin/python",
+      "args": [
+        "week9_gateway.py"
+      ],
+      "env": {
+        "GATEWAY_UPSTREAMS": "week9/configs/server1_plus_2.json",
+        "GATEWAY_SCOPES": "week9/gateway_scopes.json",
+        "GATEWAY_AUDIT_LOG": "week9/logs/gateway_audit.log",
+        "GATEWAY_TOKEN": "demo-docs-assistant-token-not-a-secret"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+Agent module = week9_agent.py. Baseline = week9/snapshots/server1/week9_agent.py, copied while week9/mcp_config.json held server one only.
+Between the two states the only edit was week9/mcp_config.json (see config_diff.txt).
+
+$ git diff --no-index --stat week9/snapshots/server1/week9_agent.py week9_agent.py
+(no output, exit 0: 0 lines changed)
+$ git diff --no-index --numstat week9/snapshots/server1/week9_agent.py week9_agent.py | wc -l
+0
+$ shasum -a 256 week9/snapshots/server1/week9_agent.py week9_agent.py
+5fbf734f912e6d3573ae43e92c79e97f26ce4b4b5cec776f1b6f3fbe0d9c5cf2  week9/snapshots/server1/week9_agent.py
+5fbf734f912e6d3573ae43e92c79e97f26ce4b4b5cec776f1b6f3fbe0d9c5cf2  week9_agent.py
+
+Runtime proof: each run logs sha256(week9_agent.py) and sha256(config) on its first line.
+  week9/logs/server1_Q01.jsonl                       agent 5fbf734f912e6d35  config 3c5fac95b3bc864b
+  week9/logs/server1_registry_query.jsonl            agent 5fbf734f912e6d35  config 3c5fac95b3bc864b
+  week9/logs/server1_plus_2_Q01.jsonl                agent 5fbf734f912e6d35  config 584adbafd6334e77
+  week9/logs/server1_plus_2_registry_query.jsonl     agent 5fbf734f912e6d35  config 584adbafd6334e77
