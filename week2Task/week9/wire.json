@@ -1,0 +1,221 @@
+{
+ "about": "Raw JSON-RPC 2.0 over stdio between a host and the package-registry MCP server (week9/vendor/package_registry/server.py), captured by week9_wire.py with no SDK client in the path. `raw` is the exact line written to or read from the pipe (byte-exact copy in week9/wire_raw.jsonl); `message` is the same line parsed for reading; `annotations` covers every top-level field, by hand.",
+ "where_the_model_runs": "The model call happens only in the host (week9_agent.py, call_llm -> the claude CLI) between tools/list and tools/call, where the model reads the discovered tools and picks one plus its arguments. It does NOT happen in either MCP server, or anywhere in this exchange: the servers run plain code on the arguments they are sent and never see a prompt or a model.",
+ "wire_raw_sha256": "94bb5aa6fe17ea3e9fc909d66e2f706d8e0fb2503cb3cb18e1f58275bef96c91",
+ "exchange": [
+  {
+   "step": "1. initialize (request)",
+   "dir": "host->server",
+   "raw": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"method\": \"initialize\", \"params\": {\"protocolVersion\": \"2025-06-18\", \"capabilities\": {}, \"clientInfo\": {\"name\": \"week9-wire-capture\", \"version\": \"0.1\"}}}",
+   "message": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "initialize",
+    "params": {
+     "protocolVersion": "2025-06-18",
+     "capabilities": {},
+     "clientInfo": {
+      "name": "week9-wire-capture",
+      "version": "0.1"
+     }
+    }
+   },
+   "annotations": {
+    "jsonrpc": "Always the string \"2.0\". Marks this line as a JSON-RPC 2.0 message; MCP adds nothing to the envelope.",
+    "id": "1. A request id chosen by the host. Its presence makes this a request that MUST get a response with the same id.",
+    "method": "\"initialize\". Must be the first request on a connection: nothing else is valid until it has been answered.",
+    "params": "What the host offers. protocolVersion = the MCP revision the host speaks (2025-06-18). capabilities = {} here: this capture client offers no sampling, roots or elicitation, so the server cannot call back into the host's model. clientInfo = name/version of the host, self-reported and unauthenticated."
+   }
+  },
+  {
+   "step": "1. initialize (response)",
+   "dir": "server->host",
+   "raw": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocolVersion\":\"2025-06-18\",\"capabilities\":{\"experimental\":{},\"prompts\":{\"listChanged\":false},\"resources\":{\"subscribe\":false,\"listChanged\":false},\"tools\":{\"listChanged\":false}},\"serverInfo\":{\"name\":\"package-registry\",\"version\":\"1.30.0\"},\"instructions\":\"Package versions, release dates and deprecation notices.\"}}",
+   "message": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+     "protocolVersion": "2025-06-18",
+     "capabilities": {
+      "experimental": {},
+      "prompts": {
+       "listChanged": false
+      },
+      "resources": {
+       "subscribe": false,
+       "listChanged": false
+      },
+      "tools": {
+       "listChanged": false
+      }
+     },
+     "serverInfo": {
+      "name": "package-registry",
+      "version": "1.30.0"
+     },
+     "instructions": "Package versions, release dates and deprecation notices."
+    }
+   },
+   "annotations": {
+    "jsonrpc": "\"2.0\", same envelope.",
+    "id": "1, echoes the request id. That pairing is the only link between request and response; stdio has no other correlation.",
+    "result": "Present instead of \"error\": the handshake succeeded. protocolVersion = the revision the server agrees to (it accepted 2025-06-18; a server may answer a different one and the host must then decide whether to proceed). capabilities = what this server can do: tools (listChanged:false, so the tool list will not change mid-session), plus prompts and resources that FastMCP declares by default although this server serves neither. serverInfo = {name: package-registry, version: 1.30.0}. That 1.30.0 is the MCP SDK version, not DevRel's 0.4.1: nothing on the wire identifies which build of the server you are running. instructions = a free-text hint for the host; it is server-authored text that can land in a prompt, so it is part of the trust surface."
+   }
+  },
+  {
+   "step": "2. notifications/initialized (notification)",
+   "dir": "host->server",
+   "raw": "{\"jsonrpc\": \"2.0\", \"method\": \"notifications/initialized\"}",
+   "message": {
+    "jsonrpc": "2.0",
+    "method": "notifications/initialized"
+   },
+   "annotations": {
+    "jsonrpc": "\"2.0\".",
+    "method": "\"notifications/initialized\". The host confirms it accepted the handshake; normal traffic may start.",
+    "(no id)": "No id field. That is what makes it a notification: the server must NOT reply, and the capture shows no reply."
+   }
+  },
+  {
+   "step": "3. tools/list (request)",
+   "dir": "host->server",
+   "raw": "{\"jsonrpc\": \"2.0\", \"id\": 2, \"method\": \"tools/list\"}",
+   "message": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "method": "tools/list"
+   },
+   "annotations": {
+    "jsonrpc": "\"2.0\".",
+    "id": "2, the next request id.",
+    "method": "\"tools/list\". Discovery. The host learns the tools at runtime from this call; it does not import or hard-code them.",
+    "(no params)": "Omitted. A params.cursor would ask for the next page; this server returns everything in one page."
+   }
+  },
+  {
+   "step": "3. tools/list (response)",
+   "dir": "server->host",
+   "raw": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"tools\":[{\"name\":\"get_package_versions\",\"description\":\"List every published version of a package with its release date and yanked flag, plus the latest\\n    non-yanked version.\",\"inputSchema\":{\"properties\":{\"package\":{\"title\":\"Package\",\"type\":\"string\"}},\"required\":[\"package\"],\"title\":\"get_package_versionsArguments\",\"type\":\"object\"}},{\"name\":\"get_release_info\",\"description\":\"Release metadata for one version of a package: release date, Python requirement, yanked status.\\n    A partial version such as \\\"3\\\" or \\\"3.1\\\" resolves to the newest matching release.\",\"inputSchema\":{\"properties\":{\"package\":{\"title\":\"Package\",\"type\":\"string\"},\"version\":{\"title\":\"Version\",\"type\":\"string\"}},\"required\":[\"package\",\"version\"],\"title\":\"get_release_infoArguments\",\"type\":\"object\"}},{\"name\":\"get_deprecation_notices\",\"description\":\"Deprecation, removal and rename notices that apply to code running on `version` of a package\\n    (every notice published at or before that version).\",\"inputSchema\":{\"properties\":{\"package\":{\"title\":\"Package\",\"type\":\"string\"},\"version\":{\"title\":\"Version\",\"type\":\"string\"}},\"required\":[\"package\",\"version\"],\"title\":\"get_deprecation_noticesArguments\",\"type\":\"object\"}}]}}",
+   "message": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+     "tools": [
+      {
+       "name": "get_package_versions",
+       "description": "List every published version of a package with its release date and yanked flag, plus the latest\n    non-yanked version.",
+       "inputSchema": {
+        "properties": {
+         "package": {
+          "title": "Package",
+          "type": "string"
+         }
+        },
+        "required": [
+         "package"
+        ],
+        "title": "get_package_versionsArguments",
+        "type": "object"
+       }
+      },
+      {
+       "name": "get_release_info",
+       "description": "Release metadata for one version of a package: release date, Python requirement, yanked status.\n    A partial version such as \"3\" or \"3.1\" resolves to the newest matching release.",
+       "inputSchema": {
+        "properties": {
+         "package": {
+          "title": "Package",
+          "type": "string"
+         },
+         "version": {
+          "title": "Version",
+          "type": "string"
+         }
+        },
+        "required": [
+         "package",
+         "version"
+        ],
+        "title": "get_release_infoArguments",
+        "type": "object"
+       }
+      },
+      {
+       "name": "get_deprecation_notices",
+       "description": "Deprecation, removal and rename notices that apply to code running on `version` of a package\n    (every notice published at or before that version).",
+       "inputSchema": {
+        "properties": {
+         "package": {
+          "title": "Package",
+          "type": "string"
+         },
+         "version": {
+          "title": "Version",
+          "type": "string"
+         }
+        },
+        "required": [
+         "package",
+         "version"
+        ],
+        "title": "get_deprecation_noticesArguments",
+        "type": "object"
+       }
+      }
+     ]
+    }
+   },
+   "annotations": {
+    "jsonrpc": "\"2.0\".",
+    "id": "2, pairs with the tools/list request.",
+    "result": "tools = 3 entries: get_package_versions, get_release_info, get_deprecation_notices. Each has name (what the model will put in tools/call), description (the docstring, verbatim; this is prompt text the model reads, written by a third party), and inputSchema (JSON Schema generated from the Python signature: both take `package`, two also take `version`, all plain strings with no enum or pattern). No nextCursor, so this is the whole list. These names, not my notes, are where the tool count comes from."
+   }
+  },
+  {
+   "step": "4. tools/call (request)",
+   "dir": "host->server",
+   "raw": "{\"jsonrpc\": \"2.0\", \"id\": 3, \"method\": \"tools/call\", \"params\": {\"name\": \"get_deprecation_notices\", \"arguments\": {\"package\": \"acme-sdk\", \"version\": \"3.2\"}}}",
+   "message": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "method": "tools/call",
+    "params": {
+     "name": "get_deprecation_notices",
+     "arguments": {
+      "package": "acme-sdk",
+      "version": "3.2"
+     }
+    }
+   },
+   "annotations": {
+    "jsonrpc": "\"2.0\".",
+    "id": "3.",
+    "method": "\"tools/call\". Run one tool once.",
+    "params": "name = get_deprecation_notices (a name taken from the tools/list result). arguments = {package: acme-sdk, version: 3.2}, the JSON object the model chose. In the agent the host copies these values from the model's reply; here the capture script supplies them. The server receives values only: no prompt, no conversation, no model identity."
+   }
+  },
+  {
+   "step": "4. tools/call (response)",
+   "dir": "server->host",
+   "raw": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"package\\\": \\\"acme-sdk\\\",\\n  \\\"version\\\": \\\"3.2.0\\\",\\n  \\\"notices\\\": [\\n    {\\n      \\\"since\\\": \\\"2.9.0\\\",\\n      \\\"symbol\\\": \\\"acme-sdk 2.x\\\",\\n      \\\"kind\\\": \\\"end_of_support\\\",\\n      \\\"notice\\\": \\\"2.x receives security fixes only; end of support 2026-12-31. Migrate to 3.x.\\\"\\n    },\\n    {\\n      \\\"since\\\": \\\"3.0.0\\\",\\n      \\\"symbol\\\": \\\"Client.request\\\",\\n      \\\"kind\\\": \\\"removed\\\",\\n      \\\"notice\\\": \\\"Removed; use Client.send().\\\"\\n    },\\n    {\\n      \\\"since\\\": \\\"3.0.0\\\",\\n      \\\"symbol\\\": \\\"paginate_auto\\\",\\n      \\\"kind\\\": \\\"removed\\\",\\n      \\\"notice\\\": \\\"Removed in favour of explicit cursor pagination via list_after().\\\"\\n    },\\n    {\\n      \\\"since\\\": \\\"3.0.0\\\",\\n      \\\"symbol\\\": \\\"timeout_s\\\",\\n      \\\"kind\\\": \\\"renamed\\\",\\n      \\\"notice\\\": \\\"Renamed to timeout_ms (milliseconds, default 10000).\\\"\\n    },\\n    {\\n      \\\"since\\\": \\\"3.0.0\\\",\\n      \\\"symbol\\\": \\\"TooManyRequestsError\\\",\\n      \\\"kind\\\": \\\"renamed\\\",\\n      \\\"notice\\\": \\\"Renamed to RateLimitError (carries retry_after_seconds).\\\"\\n    },\\n    {\\n      \\\"since\\\": \\\"3.0.0\\\",\\n      \\\"symbol\\\": \\\"retry_backoff_ms\\\",\\n      \\\"kind\\\": \\\"default_changed\\\",\\n      \\\"notice\\\": \\\"Default reduced from 2000 ms to 500 ms.\\\"\\n    },\\n    {\\n      \\\"since\\\": \\\"3.2.0\\\",\\n      \\\"symbol\\\": \\\"timeout_s\\\",\\n      \\\"kind\\\": \\\"removed\\\",\\n      \\\"notice\\\": \\\"The 3.0-3.1 compatibility shim that accepted timeout_s with a DeprecationWarning is gone; passing it now raises TypeError.\\\"\\n    }\\n  ]\\n}\"}],\"isError\":false}}",
+   "message": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "result": {
+     "content": [
+      {
+       "type": "text",
+       "text": "{\n  \"package\": \"acme-sdk\",\n  \"version\": \"3.2.0\",\n  \"notices\": [\n    {\n      \"since\": \"2.9.0\",\n      \"symbol\": \"acme-sdk 2.x\",\n      \"kind\": \"end_of_support\",\n      \"notice\": \"2.x receives security fixes only; end of support 2026-12-31. Migrate to 3.x.\"\n    },\n    {\n      \"since\": \"3.0.0\",\n      \"symbol\": \"Client.request\",\n      \"kind\": \"removed\",\n      \"notice\": \"Removed; use Client.send().\"\n    },\n    {\n      \"since\": \"3.0.0\",\n      \"symbol\": \"paginate_auto\",\n      \"kind\": \"removed\",\n      \"notice\": \"Removed in favour of explicit cursor pagination via list_after().\"\n    },\n    {\n      \"since\": \"3.0.0\",\n      \"symbol\": \"timeout_s\",\n      \"kind\": \"renamed\",\n      \"notice\": \"Renamed to timeout_ms (milliseconds, default 10000).\"\n    },\n    {\n      \"since\": \"3.0.0\",\n      \"symbol\": \"TooManyRequestsError\",\n      \"kind\": \"renamed\",\n      \"notice\": \"Renamed to RateLimitError (carries retry_after_seconds).\"\n    },\n    {\n      \"since\": \"3.0.0\",\n      \"symbol\": \"retry_backoff_ms\",\n      \"kind\": \"default_changed\",\n      \"notice\": \"Default reduced from 2000 ms to 500 ms.\"\n    },\n    {\n      \"since\": \"3.2.0\",\n      \"symbol\": \"timeout_s\",\n      \"kind\": \"removed\",\n      \"notice\": \"The 3.0-3.1 compatibility shim that accepted timeout_s with a DeprecationWarning is gone; passing it now raises TypeError.\"\n    }\n  ]\n}"
+      }
+     ],
+     "isError": false
+    }
+   },
+   "annotations": {
+    "jsonrpc": "\"2.0\".",
+    "id": "3.",
+    "result": "content = a list of content blocks; here one {type: text, text: <JSON string>}. The tool returned a dict and FastMCP serialised it to text, so the host has to json.loads it. The partial version 3.2 was resolved to 3.2.0 and 7 notices came back. isError = false. A failing tool (e.g. version 4.0) still answers with \"result\" (not a JSON-RPC \"error\") with isError: true and the message as text. That is how a tool failure reaches the model as something it can read and recover from. JSON-RPC \"error\" is reserved for protocol faults such as an unknown method or malformed params."
+   }
+  }
+ ]
+}

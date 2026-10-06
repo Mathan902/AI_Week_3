@@ -1,0 +1,5 @@
+3 before -> 6 after   (from tools/list, via week9_agent.py --list-tools)
+before (3): docs-search:search_docs, docs-search:get_openapi_spec, docs-search:check_deprecation
+after  (6): docs-search:search_docs, docs-search:get_openapi_spec, docs-search:check_deprecation, package-registry:get_package_versions, package-registry:get_release_info, package-registry:get_deprecation_notices
+added  (3): get_package_versions, get_release_info, get_deprecation_notices
+resources (resources/list, attached to the prompt, not tools): before ['docs://version-support-matrix'], after ['docs://version-support-matrix']

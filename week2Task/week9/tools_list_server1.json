@@ -1,0 +1,29 @@
+{
+ "config": "week9/mcp_config.json",
+ "tool_count": 3,
+ "tools": {
+  "search_docs": "docs-search",
+  "get_openapi_spec": "docs-search",
+  "check_deprecation": "docs-search"
+ },
+ "servers": {
+  "docs-search": {
+   "serverInfo": {
+    "name": "docs-search",
+    "title": null,
+    "version": "1.30.0",
+    "websiteUrl": null,
+    "icons": null
+   },
+   "protocolVersion": "2025-11-25",
+   "tools": [
+    "search_docs",
+    "get_openapi_spec",
+    "check_deprecation"
+   ]
+  }
+ },
+ "resources": [
+  "docs://version-support-matrix"
+ ]
+}
