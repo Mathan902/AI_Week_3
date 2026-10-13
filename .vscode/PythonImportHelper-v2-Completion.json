@@ -138,6 +138,72 @@
         "documentation": {}
     },
     {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "week10_squad",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "week10_squad",
+        "description": "week10_squad",
+        "detail": "week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "HOP_CODE",
+        "importPath": "week10_squad",
+        "description": "week10_squad",
+        "isExtraImport": true,
+        "detail": "week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "HOP_PLAN",
+        "importPath": "week10_squad",
+        "description": "week10_squad",
+        "isExtraImport": true,
+        "detail": "week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "HOP_SYNTH",
+        "importPath": "week10_squad",
+        "description": "week10_squad",
+        "isExtraImport": true,
+        "detail": "week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "HOP_VERSION",
+        "importPath": "week10_squad",
+        "description": "week10_squad",
+        "isExtraImport": true,
+        "detail": "week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "run_squad",
+        "importPath": "week10_squad",
+        "description": "week10_squad",
+        "isExtraImport": true,
+        "detail": "week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "run_squad",
+        "importPath": "week10_squad",
+        "description": "week10_squad",
+        "isExtraImport": true,
+        "detail": "week10_squad",
+        "documentation": {}
+    },
+    {
         "label": "week6_eval",
         "kind": 6,
         "isExtraImport": true,
@@ -147,12 +213,35 @@
         "documentation": {}
     },
     {
-        "label": "json",
-        "kind": 6,
+        "label": "call_judge",
+        "importPath": "week6_eval",
+        "description": "week6_eval",
         "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
+        "detail": "week6_eval",
+        "documentation": {}
+    },
+    {
+        "label": "load_prompt",
+        "importPath": "week6_eval",
+        "description": "week6_eval",
+        "isExtraImport": true,
+        "detail": "week6_eval",
+        "documentation": {}
+    },
+    {
+        "label": "render_context",
+        "importPath": "week6_eval",
+        "description": "week6_eval",
+        "isExtraImport": true,
+        "detail": "week6_eval",
+        "documentation": {}
+    },
+    {
+        "label": "run_assertions",
+        "importPath": "week6_eval",
+        "description": "week6_eval",
+        "isExtraImport": true,
+        "detail": "week6_eval",
         "documentation": {}
     },
     {
@@ -251,6 +340,38 @@
         "description": "week7_agent",
         "isExtraImport": true,
         "detail": "week7_agent",
+        "documentation": {}
+    },
+    {
+        "label": "run_agent",
+        "importPath": "week7_agent",
+        "description": "week7_agent",
+        "isExtraImport": true,
+        "detail": "week7_agent",
+        "documentation": {}
+    },
+    {
+        "label": "Budgets",
+        "importPath": "week7_agent",
+        "description": "week7_agent",
+        "isExtraImport": true,
+        "detail": "week7_agent",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
         "documentation": {}
     },
     {
@@ -655,6 +776,14 @@
         "documentation": {}
     },
     {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
         "label": "week8_defenses",
         "kind": 6,
         "isExtraImport": true,
@@ -706,6 +835,54 @@
     },
     {
         "label": "parse_contract",
+        "importPath": "week7_tools",
+        "description": "week7_tools",
+        "isExtraImport": true,
+        "detail": "week7_tools",
+        "documentation": {}
+    },
+    {
+        "label": "CONTRACT",
+        "importPath": "week7_tools",
+        "description": "week7_tools",
+        "isExtraImport": true,
+        "detail": "week7_tools",
+        "documentation": {}
+    },
+    {
+        "label": "TOOLS",
+        "importPath": "week7_tools",
+        "description": "week7_tools",
+        "isExtraImport": true,
+        "detail": "week7_tools",
+        "documentation": {}
+    },
+    {
+        "label": "LLMError",
+        "importPath": "week7_tools",
+        "description": "week7_tools",
+        "isExtraImport": true,
+        "detail": "week7_tools",
+        "documentation": {}
+    },
+    {
+        "label": "call_llm",
+        "importPath": "week7_tools",
+        "description": "week7_tools",
+        "isExtraImport": true,
+        "detail": "week7_tools",
+        "documentation": {}
+    },
+    {
+        "label": "parse_contract",
+        "importPath": "week7_tools",
+        "description": "week7_tools",
+        "isExtraImport": true,
+        "detail": "week7_tools",
+        "documentation": {}
+    },
+    {
+        "label": "run_tool",
         "importPath": "week7_tools",
         "description": "week7_tools",
         "isExtraImport": true,
@@ -1279,6 +1456,22 @@
         "documentation": {}
     },
     {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "ClientSession",
         "importPath": "mcp",
         "description": "mcp",
@@ -1587,6 +1780,14 @@
         "documentation": {}
     },
     {
+        "label": "defaultdict",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
         "label": "Counter",
         "importPath": "collections",
         "description": "collections",
@@ -1829,6 +2030,15 @@
         "documentation": {}
     },
     {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
         "label": "statistics",
         "kind": 6,
         "isExtraImport": true,
@@ -1838,12 +2048,44 @@
         "documentation": {}
     },
     {
-        "label": "random",
+        "label": "threading",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "random",
-        "description": "random",
-        "detail": "random",
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "ThreadPoolExecutor",
+        "importPath": "concurrent.futures",
+        "description": "concurrent.futures",
+        "isExtraImport": true,
+        "detail": "concurrent.futures",
+        "documentation": {}
+    },
+    {
+        "label": "ThreadPoolExecutor",
+        "importPath": "concurrent.futures",
+        "description": "concurrent.futures",
+        "isExtraImport": true,
+        "detail": "concurrent.futures",
+        "documentation": {}
+    },
+    {
+        "label": "ThreadPoolExecutor",
+        "importPath": "concurrent.futures",
+        "description": "concurrent.futures",
+        "isExtraImport": true,
+        "detail": "concurrent.futures",
+        "documentation": {}
+    },
+    {
+        "label": "ThreadPoolExecutor",
+        "importPath": "concurrent.futures",
+        "description": "concurrent.futures",
+        "isExtraImport": true,
+        "detail": "concurrent.futures",
         "documentation": {}
     },
     {
@@ -1905,45 +2147,12 @@
         "documentation": {}
     },
     {
-        "label": "ThreadPoolExecutor",
-        "importPath": "concurrent.futures",
-        "description": "concurrent.futures",
-        "isExtraImport": true,
-        "detail": "concurrent.futures",
-        "documentation": {}
-    },
-    {
-        "label": "ThreadPoolExecutor",
-        "importPath": "concurrent.futures",
-        "description": "concurrent.futures",
-        "isExtraImport": true,
-        "detail": "concurrent.futures",
-        "documentation": {}
-    },
-    {
-        "label": "ThreadPoolExecutor",
-        "importPath": "concurrent.futures",
-        "description": "concurrent.futures",
-        "isExtraImport": true,
-        "detail": "concurrent.futures",
-        "documentation": {}
-    },
-    {
         "label": "csv",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "csv",
         "description": "csv",
         "detail": "csv",
-        "documentation": {}
-    },
-    {
-        "label": "threading",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "threading",
-        "description": "threading",
-        "detail": "threading",
         "documentation": {}
     },
     {
@@ -2022,6 +2231,33 @@
         "description": "week2Task.tests.test_rag",
         "peekOfCode": "class RagTests(unittest.TestCase):\n    def test_chunking_preserves_metadata_and_overlap(self):\n        doc = Document(\n            \"# Rules\\nOne two three four. Five six seven eight. Nine ten eleven.\",\n            \"rules.md\",\n            \"Rules\",\n        )\n        chunks = chunk_document(doc, chunk_size=8, overlap=4)\n        self.assertGreaterEqual(len(chunks), 2)\n        self.assertEqual(chunks[0].source, \"rules.md\")",
         "detail": "week2Task.tests.test_rag",
+        "documentation": {}
+    },
+    {
+        "label": "SquadTests",
+        "kind": 6,
+        "importPath": "week2Task.tests.test_week10_squad",
+        "description": "week2Task.tests.test_week10_squad",
+        "peekOfCode": "class SquadTests(unittest.TestCase):\n    def test_every_llm_call_is_a_logged_handoff(self):\n        llm, prompts = fake_llm()\n        r = run_squad(\"client.request example\", llm=llm, echo=False)\n        self.assertEqual([h[\"hop\"] for h in r[\"handoffs\"]], [HOP_PLAN, HOP_VERSION, HOP_CODE, HOP_SYNTH])\n        self.assertEqual(r[\"tokens\"], sum(h[\"tokens\"] for h in r[\"handoffs\"]))\n        self.assertEqual(r[\"llm_calls\"], len(prompts))\n        self.assertEqual(r[\"output\"], FINAL)\n    def test_code_worker_brief_carries_the_target_version(self):\n        llm, prompts = fake_llm()",
+        "detail": "week2Task.tests.test_week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "fake_llm",
+        "kind": 2,
+        "importPath": "week2Task.tests.test_week10_squad",
+        "description": "week2Task.tests.test_week10_squad",
+        "peekOfCode": "def fake_llm():\n    \"\"\"Plan, then each worker finishes on its first lap, then the synthesis writes the contract.\"\"\"\n    prompts = []\n    def llm(system, prompt, timeout_s=120):\n        prompts.append((system, prompt))\n        if system.startswith(\"You are the orchestrator of a two-worker team answering\"):\n            text = {\"target_version\": \"v3\", \"symbols\": [\"client.request\"], \"version_task\": \"t\", \"code_task\": \"c\"}\n        elif system.startswith(\"You are the version/deprecation worker\"):\n            text = {\"final\": {\"target_version\": \"v3\", \"changes\": [], \"facts\": \"f\", \"sources\": []}}\n        elif system.startswith(\"You are the code-sample worker\"):",
+        "detail": "week2Task.tests.test_week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "FINAL",
+        "kind": 5,
+        "importPath": "week2Task.tests.test_week10_squad",
+        "description": "week2Task.tests.test_week10_squad",
+        "peekOfCode": "FINAL = {\"answer\": \"Use `Client.send()` in v3.\", \"v3_code\": \"client.send(url='/v3/invoices', method='GET')\",\n         \"deprecations\": [{\"symbol\": \"Client.request\", \"replacement\": \"Client.send()\"}], \"sources\": []}\ndef fake_llm():\n    \"\"\"Plan, then each worker finishes on its first lap, then the synthesis writes the contract.\"\"\"\n    prompts = []\n    def llm(system, prompt, timeout_s=120):\n        prompts.append((system, prompt))\n        if system.startswith(\"You are the orchestrator of a two-worker team answering\"):\n            text = {\"target_version\": \"v3\", \"symbols\": [\"client.request\"], \"version_task\": \"t\", \"code_task\": \"c\"}\n        elif system.startswith(\"You are the version/deprecation worker\"):",
+        "detail": "week2Task.tests.test_week10_squad",
         "documentation": {}
     },
     {
@@ -3093,6 +3329,429 @@
         "description": "week2Task.vector_store",
         "peekOfCode": "_TOKEN_RE = re.compile(r\"[^a-z0-9]+\")\ndef _tokens(text: str) -> list[str]:\n    return [token for token in _TOKEN_RE.split(text.lower()) if token]\n@dataclass(frozen=True)\nclass Hit:\n    chunk: Chunk\n    dense_score: float\n    final_score: float\nclass SdkVectorStore:\n    def __init__(self) -> None:",
         "detail": "week2Task.vector_store",
+        "documentation": {}
+    },
+    {
+        "label": "now",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def now() -> str:\n    return datetime.now(timezone.utc).isoformat(timespec=\"seconds\")\ndef sha(data: bytes) -> str:\n    return hashlib.sha256(data).hexdigest()\n# ---------------------------------------------------------------- shared plumbing (both arms)\n_search_lock = threading.Lock()\n_search = week7_tools.search_docs\ndef _locked_search(query: str, api_version: str) -> dict:  # chroma + the embedder are not thread-safe\n    with _search_lock:\n        return _search(query, api_version)",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "sha",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def sha(data: bytes) -> str:\n    return hashlib.sha256(data).hexdigest()\n# ---------------------------------------------------------------- shared plumbing (both arms)\n_search_lock = threading.Lock()\n_search = week7_tools.search_docs\ndef _locked_search(query: str, api_version: str) -> dict:  # chroma + the embedder are not thread-safe\n    with _search_lock:\n        return _search(query, api_version)\nweek7_tools.search_docs = week7_tools.TOOL_FUNCS[\"search_docs\"] = _locked_search\n# The single agent's tool results are captured per thread, so the judge sees what that run saw.",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "configure",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def configure() -> None:\n    week7_tools.THINKING_TOKENS = 0\n    week7_tools.VALIDATE_ARGS = True\n    week7_tools.warm_up()\ndef render_answer(output: dict | None) -> str:\n    \"\"\"The Week 7 contract as the Week 6 answer text. One renderer for both arms.\"\"\"\n    if not output:\n        return \"I don't know based on the provided documents.\"\n    parts = [output[\"answer\"].strip()]\n    code = output[\"v3_code\"].strip().removeprefix(\"```python\").removeprefix(\"```\").removesuffix(\"```\").strip()",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "render_answer",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def render_answer(output: dict | None) -> str:\n    \"\"\"The Week 7 contract as the Week 6 answer text. One renderer for both arms.\"\"\"\n    if not output:\n        return \"I don't know based on the provided documents.\"\n    parts = [output[\"answer\"].strip()]\n    code = output[\"v3_code\"].strip().removeprefix(\"```python\").removeprefix(\"```\").removesuffix(\"```\").strip()\n    if code:\n        parts.append(f\"```python\\n{code}\\n```\")\n    changes = [d for d in output[\"deprecations\"] if isinstance(d, dict) and d.get(\"symbol\")]\n    if changes:",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "documentation_shown",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def documentation_shown(seen: list[dict]) -> list[dict]:\n    \"\"\"Every doc chunk, changelog entry and spec entry the run's tools returned, in the Week 6 context shape.\"\"\"\n    out, ids = [], set()\n    def add(chunk_id: str, version: str, text: str) -> None:\n        if chunk_id not in ids:\n            ids.add(chunk_id)\n            out.append({\"rank\": len(out) + 1, \"chunk_id\": chunk_id, \"sdk_version\": version, \"text\": text})\n    for item in seen:\n        res = item[\"result\"] if isinstance(item[\"result\"], dict) else {}\n        if item[\"tool\"] == \"search_docs\":",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "run_arm",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def run_arm(arm: str, case: dict, rep: int, inject_500: bool = False) -> dict:\n    if arm == \"single\":\n        _seen.items = []\n        log = W10 / \"logs\" / f\"single_{case['id']}_r{rep}.jsonl\"\n        log.parent.mkdir(parents=True, exist_ok=True)\n        r = run_agent(case[\"question\"], Budgets(), log_path=log, echo=False)\n        seen, handoffs = _seen.items, []\n    else:\n        r = run_squad(case[\"question\"], inject_500=inject_500, echo=False)\n        seen, handoffs = r[\"seen\"], r[\"handoffs\"]",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "judge_rows",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def judge_rows(rows: list[dict], cases: dict[str, dict]) -> None:\n    template, _ = load_prompt(JUDGE_VERSION)\n    def one(row: dict) -> dict:\n        c = cases[row[\"case\"]]\n        prompt = (template.replace(\"{question}\", c[\"question\"]).replace(\"{context}\", render_context(row[\"context\"]))\n                  .replace(\"{answer}\", row[\"answer\"]))\n        return call_judge(prompt)\n    with ThreadPoolExecutor(4) as pool:\n        for row, verdict in zip(rows, pool.map(one, rows)):\n            row[\"judge\"] = {k: verdict[k] for k in (\"verdict\", \"reason\", \"model\")}",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "cmd_select",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def cmd_select() -> None:\n    \"\"\"Stratified by Week 5 mode (25 -> 10 keeps each mode's share), seeded, decided before any run.\"\"\"\n    if CASES.exists():\n        raise SystemExit(\"week10/cases.json already exists. The case set is fixed; delete it only to restart the race.\")\n    cases = [json.loads(line) for line in EVAL_SET.read_text().splitlines() if line.strip()]\n    by_mode = defaultdict(list)\n    for c in cases:\n        by_mode[c[\"mode\"]].append(c[\"id\"])\n    rng = random.Random(10)\n    quota = {m: round(len(ids) * 10 / len(cases)) for m, ids in sorted(by_mode.items())}",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "load_selected",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def load_selected() -> dict[str, dict]:\n    if not CASES.exists():\n        raise SystemExit(\"run `week10_race.py select` first\")\n    sel = json.loads(CASES.read_text())\n    if sha(EVAL_SET.read_bytes()) != sel[\"eval_set_sha256\"]:\n        raise SystemExit(\"week6/eval_set.jsonl changed since the cases were selected; that moves the ruler.\")\n    cases = {c[\"id\"]: c for c in map(json.loads, EVAL_SET.read_text().splitlines()) if c[\"id\"] in sel[\"case_ids\"]}\n    return dict(sorted(cases.items()))\ndef cmd_run(workers: int) -> None:\n    cases = load_selected()",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "cmd_run",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def cmd_run(workers: int) -> None:\n    cases = load_selected()\n    configure()\n    jobs = [(arm, c, rep) for rep in range(1, REPEATS + 1) for c in cases.values() for arm in ARMS]\n    random.Random(10).shuffle(jobs)\n    started = now()\n    with ThreadPoolExecutor(workers) as pool:\n        rows = list(pool.map(lambda j: run_arm(*j), jobs))\n    print(\"judging ...\", flush=True)\n    judge_rows(rows, cases)",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "load_runs",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def load_runs(path: Path) -> tuple[dict, list[dict]]:\n    rows = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]\n    return rows[0], rows[1:]\ndef nearest_rank(values: list[float], p: float) -> float:\n    s = sorted(values)\n    return s[max(0, math.ceil(p * len(s)) - 1)]\ndef summarise(rows: list[dict], repeats: int) -> dict:\n    lat = [r[\"latency_s\"] for r in rows]\n    return {\"runs\": len(rows), \"pass\": sum(r[\"pass\"] for r in rows),\n            \"assert_pass\": sum(r[\"assertions_ok\"] for r in rows),",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "nearest_rank",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def nearest_rank(values: list[float], p: float) -> float:\n    s = sorted(values)\n    return s[max(0, math.ceil(p * len(s)) - 1)]\ndef summarise(rows: list[dict], repeats: int) -> dict:\n    lat = [r[\"latency_s\"] for r in rows]\n    return {\"runs\": len(rows), \"pass\": sum(r[\"pass\"] for r in rows),\n            \"assert_pass\": sum(r[\"assertions_ok\"] for r in rows),\n            \"judge_pass\": sum(r[\"judge\"][\"verdict\"] == \"PASS\" for r in rows),\n            \"p50\": statistics.median(lat), \"p99\": nearest_rank(lat, 0.99),\n            \"total_tokens\": sum(r[\"tokens\"] for r in rows) / repeats,",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "summarise",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def summarise(rows: list[dict], repeats: int) -> dict:\n    lat = [r[\"latency_s\"] for r in rows]\n    return {\"runs\": len(rows), \"pass\": sum(r[\"pass\"] for r in rows),\n            \"assert_pass\": sum(r[\"assertions_ok\"] for r in rows),\n            \"judge_pass\": sum(r[\"judge\"][\"verdict\"] == \"PASS\" for r in rows),\n            \"p50\": statistics.median(lat), \"p99\": nearest_rank(lat, 0.99),\n            \"total_tokens\": sum(r[\"tokens\"] for r in rows) / repeats,\n            \"tokens_per_q\": sum(r[\"tokens\"] for r in rows) / len(rows),\n            \"cost_per_q\": sum(r[\"cost_usd\"] for r in rows) / len(rows),\n            \"calls_per_q\": sum(r[\"llm_calls\"] for r in rows) / len(rows)}",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "hop_shares",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def hop_shares(rows: list[dict]) -> list[tuple[str, int, float, int]]:\n    total = sum(r[\"tokens\"] for r in rows)\n    by_hop, calls = defaultdict(int), defaultdict(int)\n    for r in rows:\n        for h in r[\"handoffs\"]:\n            by_hop[h[\"hop\"]] += h[\"tokens\"]\n            calls[h[\"hop\"]] += h[\"lap\"] > 0\n    return sorted(((hop, t, t / total, calls[hop]) for hop, t in by_hop.items()), key=lambda x: -x[1])\ndef cmd_report() -> None:\n    meta, rows = load_runs(RUNS)",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "cmd_report",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def cmd_report() -> None:\n    meta, rows = load_runs(RUNS)\n    cases = load_selected()\n    reps = meta[\"repeats\"]\n    s = {arm: summarise([r for r in rows if r[\"arm\"] == arm], reps) for arm in ARMS}\n    mult = s[\"squad\"][\"total_tokens\"] / s[\"single\"][\"total_tokens\"]\n    shares = hop_shares([r for r in rows if r[\"arm\"] == \"squad\"])\n    top_hop, top_tok, top_share, top_calls = shares[0]\n    multiplier = (f\"Context re-send multiplier: squad {s['squad']['total_tokens']:,.0f} / single \"\n                  f\"{s['single']['total_tokens']:,.0f} tokens = {mult:.1f}x. Largest share: \"",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "cmd_failure",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def cmd_failure(case_id: str, repeats: int) -> None:\n    cases = load_selected()\n    configure()\n    case = cases[case_id]\n    rows = [run_arm(\"squad\", case, rep, inject_500=True) for rep in range(1, repeats + 1)]\n    judge_rows(rows, cases)\n    meta = {\"meta\": True, \"at_utc\": now(), \"case\": case_id, \"injected\": \"version worker -> HTTP 500\", \"repeats\": repeats}\n    FAILURE_RUNS.write_text(\"\\n\".join(json.dumps(r) for r in [meta, *rows]) + \"\\n\")\n    for r in rows:\n        fails = [n for n, (st, _) in r[\"assertions\"].items() if st == \"fail\"]",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "def main() -> None:\n    p = argparse.ArgumentParser()\n    p.add_argument(\"cmd\", choices=[\"select\", \"run\", \"report\", \"failure\"])\n    p.add_argument(\"--workers\", type=int, default=3)\n    p.add_argument(\"--case\", default=\"E07\")\n    p.add_argument(\"--repeats\", type=int, default=3)\n    a = p.parse_args()\n    {\"select\": cmd_select, \"report\": cmd_report}.get(a.cmd, lambda: None)()\n    if a.cmd == \"run\":\n        cmd_run(a.workers)",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "ROOT = Path(__file__).parent\nW10 = ROOT / \"week10\"\nEVAL_SET = ROOT / \"week6\" / \"eval_set.jsonl\"\nCASES = W10 / \"cases.json\"\nRUNS = W10 / \"runs.jsonl\"\nFAILURE_RUNS = W10 / \"failure_runs.jsonl\"\nJUDGE_VERSION = \"v2\"\nREPEATS = 3\nARMS = (\"single\", \"squad\")\nCHUNK_ID = re.compile(r\"^v[23]-[\\w-]+::\")",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "W10",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "W10 = ROOT / \"week10\"\nEVAL_SET = ROOT / \"week6\" / \"eval_set.jsonl\"\nCASES = W10 / \"cases.json\"\nRUNS = W10 / \"runs.jsonl\"\nFAILURE_RUNS = W10 / \"failure_runs.jsonl\"\nJUDGE_VERSION = \"v2\"\nREPEATS = 3\nARMS = (\"single\", \"squad\")\nCHUNK_ID = re.compile(r\"^v[23]-[\\w-]+::\")\ndef now() -> str:",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "EVAL_SET",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "EVAL_SET = ROOT / \"week6\" / \"eval_set.jsonl\"\nCASES = W10 / \"cases.json\"\nRUNS = W10 / \"runs.jsonl\"\nFAILURE_RUNS = W10 / \"failure_runs.jsonl\"\nJUDGE_VERSION = \"v2\"\nREPEATS = 3\nARMS = (\"single\", \"squad\")\nCHUNK_ID = re.compile(r\"^v[23]-[\\w-]+::\")\ndef now() -> str:\n    return datetime.now(timezone.utc).isoformat(timespec=\"seconds\")",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "CASES",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "CASES = W10 / \"cases.json\"\nRUNS = W10 / \"runs.jsonl\"\nFAILURE_RUNS = W10 / \"failure_runs.jsonl\"\nJUDGE_VERSION = \"v2\"\nREPEATS = 3\nARMS = (\"single\", \"squad\")\nCHUNK_ID = re.compile(r\"^v[23]-[\\w-]+::\")\ndef now() -> str:\n    return datetime.now(timezone.utc).isoformat(timespec=\"seconds\")\ndef sha(data: bytes) -> str:",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "RUNS",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "RUNS = W10 / \"runs.jsonl\"\nFAILURE_RUNS = W10 / \"failure_runs.jsonl\"\nJUDGE_VERSION = \"v2\"\nREPEATS = 3\nARMS = (\"single\", \"squad\")\nCHUNK_ID = re.compile(r\"^v[23]-[\\w-]+::\")\ndef now() -> str:\n    return datetime.now(timezone.utc).isoformat(timespec=\"seconds\")\ndef sha(data: bytes) -> str:\n    return hashlib.sha256(data).hexdigest()",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "FAILURE_RUNS",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "FAILURE_RUNS = W10 / \"failure_runs.jsonl\"\nJUDGE_VERSION = \"v2\"\nREPEATS = 3\nARMS = (\"single\", \"squad\")\nCHUNK_ID = re.compile(r\"^v[23]-[\\w-]+::\")\ndef now() -> str:\n    return datetime.now(timezone.utc).isoformat(timespec=\"seconds\")\ndef sha(data: bytes) -> str:\n    return hashlib.sha256(data).hexdigest()\n# ---------------------------------------------------------------- shared plumbing (both arms)",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "JUDGE_VERSION",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "JUDGE_VERSION = \"v2\"\nREPEATS = 3\nARMS = (\"single\", \"squad\")\nCHUNK_ID = re.compile(r\"^v[23]-[\\w-]+::\")\ndef now() -> str:\n    return datetime.now(timezone.utc).isoformat(timespec=\"seconds\")\ndef sha(data: bytes) -> str:\n    return hashlib.sha256(data).hexdigest()\n# ---------------------------------------------------------------- shared plumbing (both arms)\n_search_lock = threading.Lock()",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "REPEATS",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "REPEATS = 3\nARMS = (\"single\", \"squad\")\nCHUNK_ID = re.compile(r\"^v[23]-[\\w-]+::\")\ndef now() -> str:\n    return datetime.now(timezone.utc).isoformat(timespec=\"seconds\")\ndef sha(data: bytes) -> str:\n    return hashlib.sha256(data).hexdigest()\n# ---------------------------------------------------------------- shared plumbing (both arms)\n_search_lock = threading.Lock()\n_search = week7_tools.search_docs",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "ARMS",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "ARMS = (\"single\", \"squad\")\nCHUNK_ID = re.compile(r\"^v[23]-[\\w-]+::\")\ndef now() -> str:\n    return datetime.now(timezone.utc).isoformat(timespec=\"seconds\")\ndef sha(data: bytes) -> str:\n    return hashlib.sha256(data).hexdigest()\n# ---------------------------------------------------------------- shared plumbing (both arms)\n_search_lock = threading.Lock()\n_search = week7_tools.search_docs\ndef _locked_search(query: str, api_version: str) -> dict:  # chroma + the embedder are not thread-safe",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "CHUNK_ID",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "CHUNK_ID = re.compile(r\"^v[23]-[\\w-]+::\")\ndef now() -> str:\n    return datetime.now(timezone.utc).isoformat(timespec=\"seconds\")\ndef sha(data: bytes) -> str:\n    return hashlib.sha256(data).hexdigest()\n# ---------------------------------------------------------------- shared plumbing (both arms)\n_search_lock = threading.Lock()\n_search = week7_tools.search_docs\ndef _locked_search(query: str, api_version: str) -> dict:  # chroma + the embedder are not thread-safe\n    with _search_lock:",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "_search_lock",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "_search_lock = threading.Lock()\n_search = week7_tools.search_docs\ndef _locked_search(query: str, api_version: str) -> dict:  # chroma + the embedder are not thread-safe\n    with _search_lock:\n        return _search(query, api_version)\nweek7_tools.search_docs = week7_tools.TOOL_FUNCS[\"search_docs\"] = _locked_search\n# The single agent's tool results are captured per thread, so the judge sees what that run saw.\n_seen = threading.local()\n_run_tool = week7_agent.run_tool\ndef _recording_run_tool(name: str, args: dict) -> dict:",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "_search",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "_search = week7_tools.search_docs\ndef _locked_search(query: str, api_version: str) -> dict:  # chroma + the embedder are not thread-safe\n    with _search_lock:\n        return _search(query, api_version)\nweek7_tools.search_docs = week7_tools.TOOL_FUNCS[\"search_docs\"] = _locked_search\n# The single agent's tool results are captured per thread, so the judge sees what that run saw.\n_seen = threading.local()\n_run_tool = week7_agent.run_tool\ndef _recording_run_tool(name: str, args: dict) -> dict:\n    result = _run_tool(name, args)",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "week7_tools.search_docs",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "week7_tools.search_docs = week7_tools.TOOL_FUNCS[\"search_docs\"] = _locked_search\n# The single agent's tool results are captured per thread, so the judge sees what that run saw.\n_seen = threading.local()\n_run_tool = week7_agent.run_tool\ndef _recording_run_tool(name: str, args: dict) -> dict:\n    result = _run_tool(name, args)\n    getattr(_seen, \"items\", []).append({\"tool\": name, \"args\": args, \"result\": result})\n    return result\nweek7_agent.run_tool = _recording_run_tool\ndef configure() -> None:",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "_seen",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "_seen = threading.local()\n_run_tool = week7_agent.run_tool\ndef _recording_run_tool(name: str, args: dict) -> dict:\n    result = _run_tool(name, args)\n    getattr(_seen, \"items\", []).append({\"tool\": name, \"args\": args, \"result\": result})\n    return result\nweek7_agent.run_tool = _recording_run_tool\ndef configure() -> None:\n    week7_tools.THINKING_TOKENS = 0\n    week7_tools.VALIDATE_ARGS = True",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "_run_tool",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "_run_tool = week7_agent.run_tool\ndef _recording_run_tool(name: str, args: dict) -> dict:\n    result = _run_tool(name, args)\n    getattr(_seen, \"items\", []).append({\"tool\": name, \"args\": args, \"result\": result})\n    return result\nweek7_agent.run_tool = _recording_run_tool\ndef configure() -> None:\n    week7_tools.THINKING_TOKENS = 0\n    week7_tools.VALIDATE_ARGS = True\n    week7_tools.warm_up()",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "week7_agent.run_tool",
+        "kind": 5,
+        "importPath": "week2Task.week10_race",
+        "description": "week2Task.week10_race",
+        "peekOfCode": "week7_agent.run_tool = _recording_run_tool\ndef configure() -> None:\n    week7_tools.THINKING_TOKENS = 0\n    week7_tools.VALIDATE_ARGS = True\n    week7_tools.warm_up()\ndef render_answer(output: dict | None) -> str:\n    \"\"\"The Week 7 contract as the Week 6 answer text. One renderer for both arms.\"\"\"\n    if not output:\n        return \"I don't know based on the provided documents.\"\n    parts = [output[\"answer\"].strip()]",
+        "detail": "week2Task.week10_race",
+        "documentation": {}
+    },
+    {
+        "label": "parse_action",
+        "kind": 2,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "def parse_action(text: str) -> dict:\n    \"\"\"The first JSON object in a reply, or {}.\"\"\"\n    start = text.find(\"{\")\n    if start < 0:\n        return {}\n    try:\n        obj, _ = json.JSONDecoder().raw_decode(text[start:])\n    except json.JSONDecodeError:\n        return {}\n    return obj if isinstance(obj, dict) else {}",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "run_squad",
+        "kind": 2,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "def run_squad(question: str, llm=call_llm, inject_500: bool = False, echo: bool = True) -> dict:\n    t0 = time.perf_counter()\n    handoffs: list[dict] = []        # one record per LLM call, labelled with the hand-off it belongs to\n    seen: list[dict] = []            # every tool result any worker saw, for the judge's \"documentation shown\"\n    events: list[dict] = []\n    def emit(event: dict) -> None:\n        event = {\"t\": round(time.perf_counter() - t0, 2), **event}\n        events.append(event)\n        if echo:\n            print(json.dumps(event)[:300])",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "def main() -> None:\n    import week7_tools\n    p = argparse.ArgumentParser()\n    p.add_argument(\"question\")\n    p.add_argument(\"--inject-500\", action=\"store_true\")\n    a = p.parse_args()\n    week7_tools.THINKING_TOKENS = 0\n    week7_tools.VALIDATE_ARGS = True\n    r = run_squad(a.question, inject_500=a.inject_500)\n    print(json.dumps(r[\"output\"], indent=2))",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "HOP_PLAN",
+        "kind": 5,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "HOP_PLAN = \"user -> orchestrator (plan)\"\nHOP_VERSION = \"orchestrator -> version worker\"\nHOP_CODE = \"orchestrator -> code-sample worker\"\nHOP_SYNTH = \"workers -> orchestrator (synthesis)\"\nWORKER_MAX_LAPS = 4\nPLAN_SYSTEM = \"\"\"You are the orchestrator of a two-worker team answering developer questions about the Acme Python SDK.\nSplit the question for your workers. Reply with ONE JSON object only:\n{\"target_version\": \"v2\" or \"v3\" (the SDK version the developer's code will run on; v3 unless the question says otherwise),\n \"symbols\": [\"<SDK methods, exceptions or parameters the question names>\"],\n \"version_task\": \"<what the version/deprecation worker must establish>\",",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "HOP_VERSION",
+        "kind": 5,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "HOP_VERSION = \"orchestrator -> version worker\"\nHOP_CODE = \"orchestrator -> code-sample worker\"\nHOP_SYNTH = \"workers -> orchestrator (synthesis)\"\nWORKER_MAX_LAPS = 4\nPLAN_SYSTEM = \"\"\"You are the orchestrator of a two-worker team answering developer questions about the Acme Python SDK.\nSplit the question for your workers. Reply with ONE JSON object only:\n{\"target_version\": \"v2\" or \"v3\" (the SDK version the developer's code will run on; v3 unless the question says otherwise),\n \"symbols\": [\"<SDK methods, exceptions or parameters the question names>\"],\n \"version_task\": \"<what the version/deprecation worker must establish>\",\n \"code_task\": \"<the code sample the code-sample worker must write, or null if no code is needed>\"}\"\"\"",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "HOP_CODE",
+        "kind": 5,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "HOP_CODE = \"orchestrator -> code-sample worker\"\nHOP_SYNTH = \"workers -> orchestrator (synthesis)\"\nWORKER_MAX_LAPS = 4\nPLAN_SYSTEM = \"\"\"You are the orchestrator of a two-worker team answering developer questions about the Acme Python SDK.\nSplit the question for your workers. Reply with ONE JSON object only:\n{\"target_version\": \"v2\" or \"v3\" (the SDK version the developer's code will run on; v3 unless the question says otherwise),\n \"symbols\": [\"<SDK methods, exceptions or parameters the question names>\"],\n \"version_task\": \"<what the version/deprecation worker must establish>\",\n \"code_task\": \"<the code sample the code-sample worker must write, or null if no code is needed>\"}\"\"\"\ndef _tools(names: list[str]) -> str:",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "HOP_SYNTH",
+        "kind": 5,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "HOP_SYNTH = \"workers -> orchestrator (synthesis)\"\nWORKER_MAX_LAPS = 4\nPLAN_SYSTEM = \"\"\"You are the orchestrator of a two-worker team answering developer questions about the Acme Python SDK.\nSplit the question for your workers. Reply with ONE JSON object only:\n{\"target_version\": \"v2\" or \"v3\" (the SDK version the developer's code will run on; v3 unless the question says otherwise),\n \"symbols\": [\"<SDK methods, exceptions or parameters the question names>\"],\n \"version_task\": \"<what the version/deprecation worker must establish>\",\n \"code_task\": \"<the code sample the code-sample worker must write, or null if no code is needed>\"}\"\"\"\ndef _tools(names: list[str]) -> str:\n    return json.dumps([t for t in TOOLS if t[\"name\"] in names], indent=1)",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "WORKER_MAX_LAPS",
+        "kind": 5,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "WORKER_MAX_LAPS = 4\nPLAN_SYSTEM = \"\"\"You are the orchestrator of a two-worker team answering developer questions about the Acme Python SDK.\nSplit the question for your workers. Reply with ONE JSON object only:\n{\"target_version\": \"v2\" or \"v3\" (the SDK version the developer's code will run on; v3 unless the question says otherwise),\n \"symbols\": [\"<SDK methods, exceptions or parameters the question names>\"],\n \"version_task\": \"<what the version/deprecation worker must establish>\",\n \"code_task\": \"<the code sample the code-sample worker must write, or null if no code is needed>\"}\"\"\"\ndef _tools(names: list[str]) -> str:\n    return json.dumps([t for t in TOOLS if t[\"name\"] in names], indent=1)\nVERSION_TOOLS = [\"check_deprecation\", \"search_docs\"]",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "PLAN_SYSTEM",
+        "kind": 5,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "PLAN_SYSTEM = \"\"\"You are the orchestrator of a two-worker team answering developer questions about the Acme Python SDK.\nSplit the question for your workers. Reply with ONE JSON object only:\n{\"target_version\": \"v2\" or \"v3\" (the SDK version the developer's code will run on; v3 unless the question says otherwise),\n \"symbols\": [\"<SDK methods, exceptions or parameters the question names>\"],\n \"version_task\": \"<what the version/deprecation worker must establish>\",\n \"code_task\": \"<the code sample the code-sample worker must write, or null if no code is needed>\"}\"\"\"\ndef _tools(names: list[str]) -> str:\n    return json.dumps([t for t in TOOLS if t[\"name\"] in names], indent=1)\nVERSION_TOOLS = [\"check_deprecation\", \"search_docs\"]\nCODE_TOOLS = [\"search_docs\", \"get_openapi_spec\"]",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "VERSION_TOOLS",
+        "kind": 5,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "VERSION_TOOLS = [\"check_deprecation\", \"search_docs\"]\nCODE_TOOLS = [\"search_docs\", \"get_openapi_spec\"]\nVERSION_SYSTEM = f\"\"\"You are the version/deprecation worker for the Acme Python SDK. Your only job: for the given symbols and\nquestion, establish which SDK version applies and what was removed, renamed or changed between v2 and v3. Do not write code.\nEach reply is exactly ONE JSON object:\n  {{\"thought\": \"<why>\", \"tool\": \"<tool name>\", \"args\": {{...}}}}   to call one tool, or\n  {{\"thought\": \"<why>\", \"final\": {{\"target_version\": \"v2|v3\", \"changes\": [{{\"symbol\": \"...\", \"status\": \"...\", \"replacement\": \"...\"}}],\n     \"facts\": \"<1-3 sentences of version facts from tool results>\", \"sources\": [\"<chunk_id or changelog source>\"]}}}}\nTools:\n{_tools(VERSION_TOOLS)}\"\"\"",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "CODE_TOOLS",
+        "kind": 5,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "CODE_TOOLS = [\"search_docs\", \"get_openapi_spec\"]\nVERSION_SYSTEM = f\"\"\"You are the version/deprecation worker for the Acme Python SDK. Your only job: for the given symbols and\nquestion, establish which SDK version applies and what was removed, renamed or changed between v2 and v3. Do not write code.\nEach reply is exactly ONE JSON object:\n  {{\"thought\": \"<why>\", \"tool\": \"<tool name>\", \"args\": {{...}}}}   to call one tool, or\n  {{\"thought\": \"<why>\", \"final\": {{\"target_version\": \"v2|v3\", \"changes\": [{{\"symbol\": \"...\", \"status\": \"...\", \"replacement\": \"...\"}}],\n     \"facts\": \"<1-3 sentences of version facts from tool results>\", \"sources\": [\"<chunk_id or changelog source>\"]}}}}\nTools:\n{_tools(VERSION_TOOLS)}\"\"\"\nCODE_SYSTEM = f\"\"\"You are the code-sample worker for the Acme Python SDK. Your only job: write a short, runnable Python sample for",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "VERSION_SYSTEM",
+        "kind": 5,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "VERSION_SYSTEM = f\"\"\"You are the version/deprecation worker for the Acme Python SDK. Your only job: for the given symbols and\nquestion, establish which SDK version applies and what was removed, renamed or changed between v2 and v3. Do not write code.\nEach reply is exactly ONE JSON object:\n  {{\"thought\": \"<why>\", \"tool\": \"<tool name>\", \"args\": {{...}}}}   to call one tool, or\n  {{\"thought\": \"<why>\", \"final\": {{\"target_version\": \"v2|v3\", \"changes\": [{{\"symbol\": \"...\", \"status\": \"...\", \"replacement\": \"...\"}}],\n     \"facts\": \"<1-3 sentences of version facts from tool results>\", \"sources\": [\"<chunk_id or changelog source>\"]}}}}\nTools:\n{_tools(VERSION_TOOLS)}\"\"\"\nCODE_SYSTEM = f\"\"\"You are the code-sample worker for the Acme Python SDK. Your only job: write a short, runnable Python sample for\nthe target SDK version, using only calls that appear in tool results. Respect the version findings you are given.",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "CODE_SYSTEM",
+        "kind": 5,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "CODE_SYSTEM = f\"\"\"You are the code-sample worker for the Acme Python SDK. Your only job: write a short, runnable Python sample for\nthe target SDK version, using only calls that appear in tool results. Respect the version findings you are given.\nEach reply is exactly ONE JSON object:\n  {{\"thought\": \"<why>\", \"tool\": \"<tool name>\", \"args\": {{...}}}}   to call one tool, or\n  {{\"thought\": \"<why>\", \"final\": {{\"code\": \"<python, newlines as \\\\n, or empty if no code applies>\",\n     \"facts\": \"<1-3 sentences: the fact the developer asked for, from tool results>\", \"sources\": [\"<chunk_id or spec path>\"]}}}}\nTools:\n{_tools(CODE_TOOLS)}\"\"\"\nSYNTH_SYSTEM = f\"\"\"You are the orchestrator of a two-worker team for the Acme Python SDK. Using ONLY your workers' reports, write\nthe answer for the developer.",
+        "detail": "week2Task.week10_squad",
+        "documentation": {}
+    },
+    {
+        "label": "SYNTH_SYSTEM",
+        "kind": 5,
+        "importPath": "week2Task.week10_squad",
+        "description": "week2Task.week10_squad",
+        "peekOfCode": "SYNTH_SYSTEM = f\"\"\"You are the orchestrator of a two-worker team for the Acme Python SDK. Using ONLY your workers' reports, write\nthe answer for the developer.\n{CONTRACT}\"\"\"\ndef parse_action(text: str) -> dict:\n    \"\"\"The first JSON object in a reply, or {}.\"\"\"\n    start = text.find(\"{\")\n    if start < 0:\n        return {}\n    try:\n        obj, _ = json.JSONDecoder().raw_decode(text[start:])",
+        "detail": "week2Task.week10_squad",
         "documentation": {}
     },
     {

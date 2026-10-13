@@ -1,0 +1,41 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Acme SDK Docs Squad",
+  "description": "Answers developer questions about the Acme Python SDK with a version/deprecation check and a runnable code sample for the developer's SDK version. Orchestrates two internal workers (version/deprecation, code-sample); callers see one agent.",
+  "url": "https://agents.internal.example/acme-docs-squad/a2a/v1",
+  "preferredTransport": "JSONRPC",
+  "version": "0.10.0",
+  "provider": {"organization": "Acme DevRel (coursework, synthetic)", "url": "https://agents.internal.example"},
+  "capabilities": {"streaming": false, "pushNotifications": false, "stateTransitionHistory": true},
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["application/json", "text/plain"],
+  "skills": [
+    {
+      "id": "sdk-answer-with-version-check",
+      "name": "Answer an SDK question for a specific SDK version",
+      "description": "Returns {answer, v3_code, deprecations[], sources[]}. Every code sample is backed by a version/deprecation check; if that check cannot run, the task asks for the SDK version (input-required) instead of shipping an unchecked sample.",
+      "tags": ["acme-sdk", "docs", "deprecation", "code-sample", "v2", "v3"],
+      "examples": ["client.request example", "TooManyRequestsError how to get the retry delay", "what is retry_backoff_ms"],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"]
+    },
+    {
+      "id": "v2-to-v3-deprecation-lookup",
+      "name": "Check whether an SDK symbol changed between v2 and v3",
+      "description": "Removed / renamed / default-changed status and the v3 replacement for one symbol, from the v3 changelog.",
+      "tags": ["acme-sdk", "deprecation", "changelog"],
+      "examples": ["paginate_auto", "timeout_s"],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"]
+    }
+  ],
+  "securitySchemes": {
+    "devrelOAuth": {
+      "type": "oauth2",
+      "flows": {"clientCredentials": {"tokenUrl": "https://auth.internal.example/oauth/token",
+                                      "scopes": {"docs:read": "Ask SDK documentation questions"}}}
+    }
+  },
+  "security": [{"devrelOAuth": ["docs:read"]}],
+  "supportsAuthenticatedExtendedCard": false
+}

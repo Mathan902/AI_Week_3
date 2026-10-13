@@ -1,0 +1,62 @@
+squad  E09 r1 done        26.4s  11381 tok $0.0029 6 calls
+squad  E09 r2 done        33.8s  11937 tok $0.0032 6 calls
+squad  E09 r3 done        26.3s  10259 tok $0.0025 6 calls
+
+--- E09 r1 pass=True judge=PASS fails=[]
+In v3, catch `RateLimitError` (raised on HTTP 429) and read its `retry_after_seconds` attribute, which the SDK parses from the Retry-After header, falling back to a default when it's absent. The v3 docs also say the built-in retry policy honors Retry-After automatically, so manual retries may be unnecessary. The version/deprecation check failed, so I could not confirm whether `TooManyRequestsError` was renamed, and the `RateLimitError` import path is unverified.
+
+```python
+import time
+from acme import RateLimitError  # import path assumed; verify against the v3 package
+
+DEFAULT_RETRY_DELAY = 5  # seconds, used when the server gives no Retry-After
+
+def call_with_retry(request_fn, max_attempts=3):
+    for attempt in range(max_attempts):
+        try:
+            return request_fn()
+        except RateLimitError as err:
+            if attempt == max_attempts - 1:
+                raise
+            delay = getattr(err, "retry_after_seconds", None) or DEFAULT_RETRY_DELAY
+            time.sleep(delay)
+``` [chunk:v3-errors::ratelimiterror::2]
+
+--- E09 r2 pass=False judge=PASS fails=['deprecation_has_migration_note']
+In v3 the 429 error is named RateLimitError, not TooManyRequestsError. Read the delay from err.retry_after_seconds (parsed from the Retry-After header) and fall back to 0.5 s if it is missing. The SDK's built-in retries already honor Retry-After, so manual handling is only needed when those retries are disabled or exhausted. The version/deprecation check failed, so the rename rests on the code-sample worker's report alone, and the exact import path for RateLimitError is unconfirmed.
+
+```python
+import time
+
+# Import RateLimitError from the Acme v3 SDK. The exact import path was not confirmed by the docs lookup, so verify it before running.
+
+DEFAULT_BACKOFF_S = 0.5  # v3 default retry backoff (500 ms)
+
+def call_with_retry(do_request):
+    try:
+        return do_request()
+    except RateLimitError as err:
+        delay = getattr(err, "retry_after_seconds", None)
+        if delay is None:
+            delay = DEFAULT_BACKOFF_S
+        time.sleep(delay)
+        return do_request()
+```
+
+Changed in v3: `TooManyRequestsError` -> `RateLimitError` [chunk:v3-errors::ratelimiterror::2]
+
+--- E09 r3 pass=False judge=FAIL fails=['deprecation_has_migration_note']
+In v3, the rate-limit error is RateLimitError (raised on HTTP 429), not TooManyRequestsError. The docs say to wait for the Retry-After duration, and the SDK's built-in retry policy honors Retry-After automatically. The reports don't document a retry_after attribute or a way to read the header from the exception, so I can't confirm a supported way to read the delay yourself. The version/deprecation check failed, so the v2-to-v3 rename is based only on the v3 docs.
+
+```python
+# Retry-After is handled by the SDK's built-in retry policy.
+# Catch RateLimitError only if you need to handle a 429 after retries are exhausted.
+# The import path for RateLimitError was not in the reports, so adjust it to your package.
+try:
+    response = client.send(request)
+except RateLimitError:
+    # Retries are exhausted or disabled. Log the event or back off at a higher level.
+    raise
+```
+
+Changed in v3: `TooManyRequestsError` -> `RateLimitError` [chunk:v3-errors::error-class-table::1-table]

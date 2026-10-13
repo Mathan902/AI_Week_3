@@ -64,3 +64,14 @@ Each run is scored on the answer (Week 7 grader) and on the path: expected tool 
 ```
 
 The agent (`week9_agent.py`) discovers every tool over MCP from a config file. Server one is our docs-search server (`week9_docs_server.py`); server two is DevRel's package-registry server, vendored in `week9/vendor/`. Adding it changed 0 lines of the agent and took tools from 3 to 6. The deliverables are `week9/agent_diff.txt`, `config_diff.txt`, `wire.json`, `tool_counts.txt`, `error_before_after.md` and `risk_note.md`. The write-up and numbers are in `week9/notes.md`; the bonus gateway is `week9_gateway.py`.
+
+## Week 10: race the docs squad against the single agent
+
+```bash
+.venv/bin/python week10_race.py select                 # pick 10 of the 25 Week-6 cases once -> week10/cases.json
+.venv/bin/python week10_race.py run                    # 10 cases x 3 repeats x {single, squad}, Week-6 judge_v2 + 8 assertions
+.venv/bin/python week10_race.py failure --case E09     # version/deprecation worker returns HTTP 500
+.venv/bin/python -m unittest tests.test_week10_squad   # hand-off logging, target version in the brief, injected 500 (fake LLM)
+```
+
+The squad (`week10_squad.py`) is an orchestrator with two narrow workers: version/deprecation, then code-sample. The single agent is the Week 7 loop. Both arms use the same model, tools, contract and judge. The deliverables are in `week10/`: `race_table.md`, `handoffs.log`, `multiplier.txt`, `failure_case.md`, `verdict.md` and `agent_card.json`. The write-up is `week10/notes.md`. Result: the squad costs 1.7x the tokens, runs 2.5x slower at p50 and has no pass-rate gain, so the verdict is KILL.
