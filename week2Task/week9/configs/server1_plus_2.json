@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "docs-search": {
+      "command": ".venv/bin/python",
+      "args": ["week9_docs_server.py"],
+      "env": {}
+    },
+    "package-registry": {
+      "command": ".venv/bin/python",
+      "args": ["week9/vendor/package_registry/server.py"],
+      "env": {
+        "REGISTRY_SNAPSHOT": "week9/vendor/package_registry/registry_snapshot.json",
+        "REGISTRY_ACCESS_LOG": "week9/logs/registry_access.log"
+      }
+    }
+  }
+}

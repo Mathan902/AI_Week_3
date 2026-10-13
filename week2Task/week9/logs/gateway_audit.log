@@ -1,0 +1,23 @@
+{"ts": "2026-10-05T08:21:13Z", "caller": "docs-assistant", "tool": "get_deprecation_notices", "requested": "acme-sdk@3.2", "server": "package-registry", "decision": "denied"}
+{"ts": "2026-10-05T08:21:14Z", "caller": "docs-assistant", "tool": "get_release_info", "requested": "acme-sdk@3", "server": "package-registry", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:21:43Z", "caller": "docs-assistant", "tool": "get_deprecation_notices", "requested": "acme-sdk@3.2", "server": "package-registry", "decision": "denied"}
+{"ts": "2026-10-05T08:21:48Z", "caller": "docs-assistant", "tool": "get_package_versions", "requested": "acme-sdk@*", "server": "package-registry", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:21:56Z", "caller": "docs-assistant", "tool": "check_deprecation", "requested": "acme-sdk@v3", "server": "docs-search", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:22:01Z", "caller": "docs-assistant", "tool": "check_deprecation", "requested": "acme-sdk@v3", "server": "docs-search", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:22:11Z", "caller": "docs-assistant", "tool": "get_deprecation_notices", "requested": "acme-sdk@3.2", "server": "package-registry", "decision": "denied"}
+{"ts": "2026-10-05T08:22:16Z", "caller": "docs-assistant", "tool": "get_package_versions", "requested": "acme-sdk@*", "server": "package-registry", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:22:23Z", "caller": "docs-assistant", "tool": "check_deprecation", "requested": "acme-sdk@v3", "server": "docs-search", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:22:38Z", "caller": "docs-assistant", "tool": "get_deprecation_notices", "requested": "acme-sdk@3.2", "server": "package-registry", "decision": "denied"}
+{"ts": "2026-10-05T08:22:44Z", "caller": "docs-assistant", "tool": "get_package_versions", "requested": "acme-sdk@*", "server": "package-registry", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:22:49Z", "caller": "docs-assistant", "tool": "check_deprecation", "requested": "acme-sdk@v3", "server": "docs-search", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:23:06Z", "caller": "docs-assistant", "tool": "get_deprecation_notices", "requested": "acme-sdk@3.2", "server": "package-registry", "decision": "denied"}
+{"ts": "2026-10-05T08:23:10Z", "caller": "docs-assistant", "tool": "get_package_versions", "requested": "acme-sdk@*", "server": "package-registry", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:23:14Z", "caller": "docs-assistant", "tool": "check_deprecation", "requested": "acme-sdk@v3", "server": "docs-search", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:25:12Z", "caller": "docs-assistant", "tool": "get_deprecation_notices", "requested": "acme-sdk@3.2", "server": "package-registry", "decision": "denied"}
+{"ts": "2026-10-05T08:25:13Z", "caller": "docs-assistant", "tool": "get_release_info", "requested": "acme-sdk@3", "server": "package-registry", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:25:25Z", "caller": "docs-assistant", "tool": "get_deprecation_notices", "requested": "acme-sdk@3.2", "server": "package-registry", "decision": "denied"}
+{"ts": "2026-10-05T08:25:25Z", "caller": "docs-assistant", "tool": "get_release_info", "requested": "acme-sdk@3", "server": "package-registry", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:26:31Z", "caller": "docs-assistant", "tool": "get_deprecation_notices", "requested": "acme-sdk@3.2", "server": "package-registry", "decision": "denied"}
+{"ts": "2026-10-05T08:26:32Z", "caller": "docs-assistant", "tool": "get_release_info", "requested": "acme-sdk@3", "server": "package-registry", "decision": "allowed", "isError": false}
+{"ts": "2026-10-05T08:34:22Z", "caller": "docs-assistant", "tool": "get_deprecation_notices", "requested": "acme-sdk@3.2", "server": "package-registry", "decision": "denied"}
+{"ts": "2026-10-05T08:34:23Z", "caller": "docs-assistant", "tool": "get_release_info", "requested": "acme-sdk@3", "server": "package-registry", "decision": "allowed", "isError": false}

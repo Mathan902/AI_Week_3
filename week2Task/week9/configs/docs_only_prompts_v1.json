@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "docs-search": {
+      "command": ".venv/bin/python",
+      "args": [
+        "week9_docs_server.py"
+      ],
+      "env": {
+        "DOCS_PROMPTS": "v1"
+      }
+    }
+  }
+}

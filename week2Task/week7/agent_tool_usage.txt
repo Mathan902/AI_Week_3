@@ -1,0 +1,4 @@
+race: 30 agent runs | tool calls {'search_docs': 29, 'check_deprecation': 17, 'get_openapi_spec': 8} | repeated identical calls 0 | unparseable replies 5
+   distinct tool paths (c=check_deprecation s=search_docs g=get_openapi_spec F=final): {'sF': 10, 'cF': 5, 'csF': 3, 'scF': 2, 'gcF': 2, 'cgF': 2, 'gF': 2, 'cssgF': 1, 'cssssssF': 1, 'csssssF': 1, 'sgF': 1}
+race_no_thinking: 30 agent runs | tool calls {'get_openapi_spec': 8, 'check_deprecation': 10, 'search_docs': 22} | repeated identical calls 0 | unparseable replies 25
+   distinct tool paths (c=check_deprecation s=search_docs g=get_openapi_spec F=final): {'sF': 12, 'gF': 5, 'csF': 4, 'F': 3, 'cF': 2, 'csssgF': 1, 'cgF': 1, 'cssgF': 1, 'scF': 1}

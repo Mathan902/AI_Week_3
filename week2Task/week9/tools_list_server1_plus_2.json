@@ -1,0 +1,47 @@
+{
+ "config": "week9/mcp_config.json",
+ "tool_count": 6,
+ "tools": {
+  "search_docs": "docs-search",
+  "get_openapi_spec": "docs-search",
+  "check_deprecation": "docs-search",
+  "get_package_versions": "package-registry",
+  "get_release_info": "package-registry",
+  "get_deprecation_notices": "package-registry"
+ },
+ "servers": {
+  "docs-search": {
+   "serverInfo": {
+    "name": "docs-search",
+    "title": null,
+    "version": "1.30.0",
+    "websiteUrl": null,
+    "icons": null
+   },
+   "protocolVersion": "2025-11-25",
+   "tools": [
+    "search_docs",
+    "get_openapi_spec",
+    "check_deprecation"
+   ]
+  },
+  "package-registry": {
+   "serverInfo": {
+    "name": "package-registry",
+    "title": null,
+    "version": "1.30.0",
+    "websiteUrl": null,
+    "icons": null
+   },
+   "protocolVersion": "2025-11-25",
+   "tools": [
+    "get_package_versions",
+    "get_release_info",
+    "get_deprecation_notices"
+   ]
+  }
+ },
+ "resources": [
+  "docs://version-support-matrix"
+ ]
+}

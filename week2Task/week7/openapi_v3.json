@@ -1,0 +1,49 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Acme API v3",
+    "version": "3.0",
+    "description": "Written for Week 7: no spec ships with the corpus. Every operation, parameter and SDK call below is taken from corpus/sdk_v3 except the list_after() page shape, which the docs name but never document."
+  },
+  "paths": {
+    "/v3/invoices": {
+      "get": {
+        "operationId": "listInvoices",
+        "summary": "List invoices with explicit cursor pagination.",
+        "parameters": [
+          {"name": "cursor", "in": "query", "required": false, "schema": {"type": "string"}, "description": "Cursor from the previous page; omit for the first page."},
+          {"name": "page_size", "in": "query", "required": false, "schema": {"type": "integer", "default": 100}}
+        ],
+        "x-sdk-call": "cursor = None\nwhile True:\n    page = client.list_after(url=\"/v3/invoices\", cursor=cursor)\n    for invoice in page.items:\n        print(invoice.id)\n    cursor = page.next_cursor\n    if cursor is None:\n        break"
+      },
+      "post": {
+        "operationId": "createInvoice",
+        "summary": "Create an invoice.",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"type": "object", "properties": {"amount": {"type": "integer"}}, "required": ["amount"]}}}},
+        "x-sdk-call": "response = client.send(url=\"/v3/invoices\", method=\"POST\", body={\"amount\": 4200})\nprint(response.status_code)"
+      }
+    },
+    "/v3/events": {
+      "get": {
+        "operationId": "streamEvents",
+        "summary": "Server-sent event stream.",
+        "parameters": [
+          {"name": "buffer_size_ms", "in": "query", "required": false, "schema": {"type": "integer", "default": 250}},
+          {"name": "heartbeat_interval_ms", "in": "query", "required": false, "schema": {"type": "integer", "default": 15000}}
+        ],
+        "x-sdk-call": "with client.stream(url=\"/v3/events\") as events:\n    for event in events:\n        print(event.type, event.data)"
+      }
+    },
+    "/v3/files": {
+      "post": {
+        "operationId": "uploadFile",
+        "summary": "Upload a file; multipart above part_size_mb, resumable for 24 hours via upload_id.",
+        "parameters": [
+          {"name": "max_file_size_mb", "in": "query", "required": false, "schema": {"type": "integer", "default": 25}},
+          {"name": "part_size_mb", "in": "query", "required": false, "schema": {"type": "integer", "default": 5}}
+        ],
+        "x-sdk-call": "client.files.upload(file_path=\"dataset.csv\", max_file_size_mb=25)"
+      }
+    }
+  }
+}
