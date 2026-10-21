@@ -1,0 +1,35 @@
+$ .venv/bin/python week11_suite.py run --prompt v4 --label green_r3
+Week 11 suite, release v4 {"prompt": "answer_v4.txt", "top_k": 4, "filter_to_target": true, "deprecations_from": "question+context", "spec_for_replacements": true}
+28 cases (25 Week 6 + 3 from week11/eval_cases.jsonl), 2026-10-21T10:37:28+00:00
+
+  PASS  E01    what scheme does verify_signature expect       
+  PASS  E02    how to verify webhook payload                  
+  PASS  E03    how do I stream events                         
+  PASS  E04    verify_signature parameters                    
+  PASS  E05    hw to verify webhok signature                  
+  PASS  E06    paginate_auto example                          
+  PASS  E07    client.request example                         
+  PASS  E08    upload_file is not an attribute of Client      
+  PASS  E09    TooManyRequestsError how to get the retry dela 
+  PASS  E10    does the sdk automatically retry 429s          
+  PASS  E11    what is part_size_mb                           
+  PASS  E12    NotFoundError retryable?                       
+  PASS  E13    how do I send json in the body of a request    
+  PASS  E14    what is retry_backoff_ms                       
+  PASS  E15    what happens if the stream disconnects         
+  PASS  E16    v2 upload limit vs v3                          
+  PASS  E17    create invoice example                         
+  PASS  E18    how do I authenticate the client?              
+  PASS  E19    how many failures before my webhook is turned  
+  PASS  E20    webhook retry schedule                         
+  PASS  E21    list of removed apis in v3                     
+  PASS  E22    what changed between v2 and v3                 
+  PASS  E23    what attribute tells me how long to wait after 
+  PASS  E24    what was the old default backoff               
+  PASS  E25    is the client thread safe                      
+  PASS  W11-01 set timeout to 2 minutes                       
+  PASS  W11-02 how do I iterate every invoice                 
+  FAIL  W11-03 I'm still on SDK v2, how do I iterate every in judge: The answer tells a v2 developer to use `paginate_auto()` and shows the loop, which does an
+
+assertions 28/28   judge 27/28
+SUITE green_r3: 27/28 pass  (incident cases: RED)

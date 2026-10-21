@@ -1,0 +1,113 @@
+{
+  "trace_id": "tr-c4c1d08790dc",
+  "schema": 1,
+  "ts": "2026-10-14T11:30:28+00:00",
+  "user_id": "u-b052",
+  "session_id": "s-49e2d754",
+  "input_type": "question",
+  "sdk_target": "v3",
+  "prompt_version": "v1",
+  "prompt_sha": "7da4c4e195c2",
+  "model": "claude-haiku-5-5",
+  "question": "upload a file example",
+  "retrieved_context_ids": [
+    "v2-uploads::upload-parameters::1-table",
+    "v2-uploads::file-uploads::0",
+    "v3-files::upload-parameters::1-table",
+    "v3-files::upload-parameters::3-code"
+  ],
+  "retrieved": [
+    {
+      "rank": 1,
+      "chunk_id": "v2-uploads::upload-parameters::1-table",
+      "sdk_version": "v2",
+      "score": 0.5692
+    },
+    {
+      "rank": 2,
+      "chunk_id": "v2-uploads::file-uploads::0",
+      "sdk_version": "v2",
+      "score": 0.504
+    },
+    {
+      "rank": 3,
+      "chunk_id": "v3-files::upload-parameters::1-table",
+      "sdk_version": "v3",
+      "score": 0.5017
+    },
+    {
+      "rank": 4,
+      "chunk_id": "v3-files::upload-parameters::3-code",
+      "sdk_version": "v3",
+      "score": 0.4717
+    }
+  ],
+  "tool_calls": [],
+  "output": {
+    "answer": "In SDK v3, call `client.upload_file()` with the local path of the file; `max_file_size_mb` (default 25) caps the accepted size. Files larger than the limit are rejected before the upload starts.",
+    "code": "client.upload_file(file_path=\"dataset.csv\", max_file_size_mb=25)",
+    "sources": [
+      "v3-files::upload-parameters::3-code",
+      "v3-files::upload-parameters::1-table",
+      "v2-uploads::file-uploads::0"
+    ]
+  },
+  "answer_text": "In SDK v3, call `client.upload_file()` with the local path of the file; `max_file_size_mb` (default 25) caps the accepted size. Files larger than the limit are rejected before the upload starts.\n\n```python\nclient.upload_file(file_path=\"dataset.csv\", max_file_size_mb=25)\n``` [chunk:v3-files::upload-parameters::3-code]",
+  "status": "ok",
+  "spans": [
+    {
+      "name": "retrieval",
+      "latency_ms": 8.8,
+      "tokens": {
+        "embed_in": 7
+      },
+      "cost_usd": 0.0,
+      "attrs": {
+        "top_k": 4,
+        "filters": null,
+        "embedder": "all-MiniLM-L6-v2 (local)"
+      }
+    },
+    {
+      "name": "tools",
+      "latency_ms": 0.0,
+      "tokens": {
+        "in": 0,
+        "out": 0
+      },
+      "cost_usd": 0.0,
+      "attrs": {
+        "calls": []
+      }
+    },
+    {
+      "name": "generation",
+      "latency_ms": 4786.7,
+      "tokens": {
+        "in": 1262,
+        "out": 558
+      },
+      "cost_usd": 0.0002918,
+      "attrs": {
+        "model": "claude-haiku-5-5",
+        "api_ms": 3110,
+        "prompt_chars": 1645
+      }
+    }
+  ],
+  "latency_ms": 4795.7,
+  "tokens": 1820,
+  "cost_usd": 0.0002918,
+  "ts_source": "traffic-replay",
+  "output_index": {
+    "deprecated_in_code": [
+      "Client.upload_file()"
+    ],
+    "served_from": {
+      "Client.upload_file()": "retrieved_v2_page"
+    },
+    "flags": [
+      "deprecated_call_in_code"
+    ]
+  }
+}

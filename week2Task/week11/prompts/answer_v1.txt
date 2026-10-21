@@ -1,0 +1,15 @@
+Answer the developer's question about the Acme Python SDK using the documentation excerpts below.
+Be concise: 1-3 sentences. If a short code sample would help, include one that the developer can paste and run.
+If the excerpts do not contain the answer, say "I don't know based on the provided documents." and leave code empty.
+
+QUESTION:
+{question}
+
+DOCUMENTATION EXCERPTS:
+{context}
+
+DEPRECATION LOOKUPS:
+{deprecations}
+
+Return ONE JSON object with exactly these keys:
+{"answer": "<1-3 sentences>", "code": "<Python code sample, newlines as \n, or empty string>", "sources": ["<chunk id you relied on, most important first>"]}

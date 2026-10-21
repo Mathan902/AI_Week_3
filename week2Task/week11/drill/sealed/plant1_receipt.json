@@ -1,0 +1,14 @@
+{
+  "trace_id": "tr-a3d4b7eb86a5",
+  "file": "week11/logs/requests-2026-10-18.jsonl",
+  "line_number": 15,
+  "ts": "2026-10-18T14:58:59+00:00",
+  "user_id": "u-8bc9",
+  "session_id": "s-c97aa3bc",
+  "sdk_target": "v3",
+  "method_chosen": "a",
+  "deprecated_symbol": "timeout_s",
+  "question": "set timeout to 2 minutes",
+  "what_changed": "Edited output.answer, output.code and answer_text only. Code changed from Client(timeout_ms=120000) to Client(timeout_s=120); answer prose rewritten to recommend the timeout_s parameter in seconds (dropped the 'In SDK v3' / timeout_ms wording). All other fields (ids, ts, retrieval, spans, tokens, cost, sources) untouched. Original file preserved at week11/drill/sealed/plant1_original_requests-2026-10-18.jsonl.",
+  "planted_at_utc": "2026-10-21T10:19:57Z"
+}

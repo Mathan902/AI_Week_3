@@ -1,0 +1,101 @@
+{
+  "trace_id": "tr-a3d4b7eb86a5",
+  "schema": 1,
+  "ts": "2026-10-18T14:58:59+00:00",
+  "user_id": "u-8bc9",
+  "session_id": "s-c97aa3bc",
+  "input_type": "question",
+  "sdk_target": "v3",
+  "prompt_version": "v1",
+  "prompt_sha": "7da4c4e195c2",
+  "model": "claude-haiku-5-5",
+  "question": "set timeout to 2 minutes",
+  "retrieved_context_ids": [
+    "v3-changelog::timeout-units-renamed::2",
+    "v2-errors::toomanyrequestserror::4",
+    "v3-changelog::retry-defaults-changed::1",
+    "v3-client::client-constructor-parameters::3-table"
+  ],
+  "retrieved": [
+    {
+      "rank": 1,
+      "chunk_id": "v3-changelog::timeout-units-renamed::2",
+      "sdk_version": "v3",
+      "score": 0.6477
+    },
+    {
+      "rank": 2,
+      "chunk_id": "v2-errors::toomanyrequestserror::4",
+      "sdk_version": "v2",
+      "score": 0.4085
+    },
+    {
+      "rank": 3,
+      "chunk_id": "v3-changelog::retry-defaults-changed::1",
+      "sdk_version": "v3",
+      "score": 0.3979
+    },
+    {
+      "rank": 4,
+      "chunk_id": "v3-client::client-constructor-parameters::3-table",
+      "sdk_version": "v3",
+      "score": 0.3732
+    }
+  ],
+  "tool_calls": [],
+  "output": {
+    "answer": "Timeouts are set on the client constructor with the `timeout_s` parameter, which takes a value in seconds, so a 2-minute timeout is 120. The excerpts don't show a Python SDK-specific client constructor example beyond the parameter table, but this value applies to the `timeout_s` parameter.",
+    "code": "from acme import Client\n\nclient = Client(timeout_s=120)  # 2 minutes\n",
+    "sources": [
+      "v3-changelog::timeout-units-renamed::2",
+      "v3-client::client-constructor-parameters::3-table"
+    ]
+  },
+  "answer_text": "Timeouts are set on the client constructor with the `timeout_s` parameter, which takes a value in seconds, so a 2-minute timeout is 120. The excerpts don't show a Python SDK-specific client constructor example beyond the parameter table, but this value applies to the `timeout_s` parameter.\n\n```python\nfrom acme import Client\n\nclient = Client(timeout_s=120)  # 2 minutes\n``` [chunk:v3-changelog::timeout-units-renamed::2]",
+  "status": "ok",
+  "spans": [
+    {
+      "name": "retrieval",
+      "latency_ms": 9.8,
+      "tokens": {
+        "embed_in": 8
+      },
+      "cost_usd": 0.0,
+      "attrs": {
+        "top_k": 4,
+        "filters": null,
+        "embedder": "all-MiniLM-L6-v2 (local)"
+      }
+    },
+    {
+      "name": "tools",
+      "latency_ms": 0.0,
+      "tokens": {
+        "in": 0,
+        "out": 0
+      },
+      "cost_usd": 0.0,
+      "attrs": {
+        "calls": []
+      }
+    },
+    {
+      "name": "generation",
+      "latency_ms": 3426.9,
+      "tokens": {
+        "in": 1310,
+        "out": 202
+      },
+      "cost_usd": 0.0001143,
+      "attrs": {
+        "model": "claude-haiku-5-5",
+        "api_ms": 1968,
+        "prompt_chars": 1770
+      }
+    }
+  ],
+  "latency_ms": 3436.9,
+  "tokens": 1512,
+  "cost_usd": 0.0001143,
+  "ts_source": "traffic-replay"
+}
