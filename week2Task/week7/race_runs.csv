@@ -1,0 +1,299 @@
+system,qid,class,repeat,pass,status,latency_s,tokens,cost_usd,llm_calls,fails,v3_code
+agent,Q01,dependent,1,1,done,15.78,5566,0.010182,3,,"response = client.send(url=""/v3/invoices"", method=""POST"", body={""amount"": 4200})"
+agent,Q01,dependent,2,1,done,16.21,5700,0.010444,3,,"response = client.send(url=""/v3/invoices"", method=""POST"", body={""amount"": 4200})
+print(response.status_code)"
+agent,Q01,dependent,3,1,done,19.99,5791,0.010939,3,,"response = client.send(url=""/v3/invoices"", method=""POST"", body={""amount"": 4200})
+print(response.status_code)"
+agent,Q02,dependent,1,1,done,23.4,10117,0.016141,5,,"cursor = None
+while True:
+    page = client.list_after(url=""/v3/invoices"", cursor=cursor)
+    for invoice in page.items:
+        print(invoice.id)
+    cursor = page.next_cursor
+    if cursor is None:
+        break"
+agent,Q02,dependent,2,1,done,14.5,5342,0.009622,3,,"cursor = None
+while True:
+    page = client.list_after(url=""/v3/invoices"", cursor=cursor)
+    for invoice in page.items:
+        print(invoice.id)
+    cursor = page.next_cursor
+    if cursor is None:
+        break"
+agent,Q02,dependent,3,1,done,16.5,5487,0.010139,3,,"cursor = None
+while True:
+    page = client.list_after(url=""/v3/invoices"", cursor=cursor)
+    for invoice in page.items:
+        print(invoice.id)
+    cursor = page.next_cursor
+    if cursor is None:
+        break"
+agent,Q03,dependent,1,0,done,66.58,16888,0.03784,6,v3_code missing /RateLimitError/; v3_code missing /retry_after_seconds/; deprecations missing TooManyRequestsError,
+agent,Q03,dependent,2,1,done,10.98,3165,0.005673,2,,"from acme import RateLimitError
+
+try:
+    # your SDK call
+    pass
+except RateLimitError as exc:
+    wait_time = exc.retry_after_seconds
+    # use wait_time to know how long to wait"
+agent,Q03,dependent,3,1,done,10.12,3360,0.006552,2,,"from acme import RateLimitError
+
+try:
+    # your API call here
+    client.invoices.list()
+except RateLimitError as exc:
+    wait_time = exc.retry_after_seconds
+    print(f""Rate limited, retry after {wait_time} seconds"")"
+agent,Q04,dependent,1,1,done,8.74,3085,0.005297,2,,"from acme import Client
+
+client = Client(timeout_ms=30000)"
+agent,Q04,dependent,2,1,done,15.18,5539,0.009775,3,,"from acme import Client
+
+client = Client(timeout_ms=30000)"
+agent,Q04,dependent,3,1,done,11.27,3319,0.006523,2,,"from acme import Client
+
+client = Client(timeout_ms=30000)"
+agent,Q05,dependent,1,1,done,15.67,5203,0.009659,3,,"client.files.upload(file_path=""report.pdf"")"
+agent,Q05,dependent,2,1,done,13.73,4915,0.008203,3,,"client.files.upload(file_path=""report.pdf"")"
+agent,Q05,dependent,3,1,done,12.9,4815,0.007859,3,,"client.files.upload(file_path=""report.pdf"")"
+agent,Q06,dependent,1,1,done,16.71,5708,0.01024,3,,"from acme import Client
+
+# Restore v2 retry backoff behavior
+client = Client(
+    api_key=""your-api-key"",
+    retry_backoff_ms=2000  # Explicitly set to v2 default
+)"
+agent,Q06,dependent,2,1,done,41.68,20208,0.030368,8,,"from acme import Client
+
+# Restore v2 retry backoff behavior (2000ms instead of new default 500ms)
+client = Client(
+    base_url=""https://api.acme.dev"",
+    retry_backoff_ms=2000  # Match v2 default
+)
+
+# Now requests will use the old 2000ms backoff delay
+response = client.send(url=""/invoices"", method=""GET"")"
+agent,Q06,dependent,3,1,done,33.29,16806,0.025026,7,,"from acme import Client
+
+client = Client(
+    base_url=""https://api.acme.dev"",
+    api_key=""your-api-key"",
+    retry_backoff_ms=2000  # Restore v2 default
+)"
+agent,Q07,lookup,1,1,done,10.08,3235,0.005887,2,,"with client.stream(url=""/v3/events"") as events:
+    for event in events:
+        print(event.type, event.data)"
+agent,Q07,lookup,2,1,done,10.18,3212,0.005804,2,,"with client.stream(url=""/v3/events"") as events:
+    for event in events:
+        print(event.type, event.data)"
+agent,Q07,lookup,3,1,done,10.59,3301,0.006229,2,,"with client.stream(url=""/v3/events"") as events:
+    for event in events:
+        print(event.type, event.data)"
+agent,Q08,lookup,1,1,done,9.55,3280,0.005576,2,,"response = client.send(url=""/v3/invoices"", method=""POST"", body={""amount"": 4200})
+print(response.status_code)"
+agent,Q08,lookup,2,1,done,14.15,5382,0.008638,3,,"from acme import Client
+
+client = Client()
+response = client.send(url=""/v3/invoices"", method=""POST"", body={""amount"": 4200})
+print(response.status_code)"
+agent,Q08,lookup,3,1,done,11.83,3390,0.006122,2,,"response = client.send(url=""/v3/invoices"", method=""POST"", body={""amount"": 4200})
+print(response.status_code)"
+agent,Q09,lookup,1,1,done,10.15,3220,0.005752,2,,"from acme.webhooks import verify_signature
+
+verify_signature(
+    payload=raw_body,
+    signature_header=request.headers[""X-Acme-Signature""],
+    secret=WEBHOOK_SIGNING_SECRET,
+)"
+agent,Q09,lookup,2,1,done,9.17,3169,0.005497,2,,"from acme.webhooks import verify_signature
+
+verify_signature(
+    payload=raw_body,
+    signature_header=request.headers[""X-Acme-Signature""],
+    secret=WEBHOOK_SIGNING_SECRET,
+)"
+agent,Q09,lookup,3,1,done,9.63,3205,0.005677,2,,"from acme.webhooks import verify_signature
+
+verify_signature(
+    payload=raw_body,
+    signature_header=request.headers[""X-Acme-Signature""],
+    secret=WEBHOOK_SIGNING_SECRET,
+)"
+agent,Q10,lookup,1,1,done,13.01,3684,0.00764,2,,"import time
+from acme import RateLimitError
+
+try:
+    result = client.invoices.list()
+except RateLimitError as e:
+    print(f""Rate limited. Waiting {e.retry_after_seconds} seconds..."")
+    time.sleep(e.retry_after_seconds)
+    result = client.invoices.list()  # Retry"
+agent,Q10,lookup,2,1,done,10.16,3319,0.005947,2,,"from acme.errors import RateLimitError
+import time
+
+try:
+    client.send(url=""/v3/invoices"")
+except RateLimitError as exc:
+    print(f""Rate limited; waiting {exc.retry_after_seconds}s"")
+    time.sleep(exc.retry_after_seconds)
+    # retry logic here"
+agent,Q10,lookup,3,1,done,11.0,3370,0.00621,2,,"from acme.errors import RateLimitError
+import time
+
+try:
+    result = client.send(url=""/v3/invoices"")
+except RateLimitError as exc:
+    print(f""Rate limited, waiting {exc.retry_after_seconds}s"")
+    time.sleep(exc.retry_after_seconds)
+    result = client.send(url=""/v3/invoices"")  # retry"
+workflow,Q01,dependent,1,1,done,20.9,3911,0.012199,2,,"response = client.send(
+    url=""/v3/invoices"",
+    method=""POST"",
+    body={""amount"": 4200}
+)"
+workflow,Q01,dependent,2,1,done,15.5,3074,0.008218,2,,"response = client.send(url=""/v3/invoices"", method=""POST"", body={""amount"": 4200})
+print(response.status_code)"
+workflow,Q01,dependent,3,1,done,17.01,3131,0.008723,2,,"response = client.send(url=""/v3/invoices"", method=""POST"", body={""amount"": 4200})
+print(response.status_code)"
+workflow,Q02,dependent,1,1,done,17.28,3295,0.009223,2,,"cursor = None
+while True:
+    page = client.list_after(url=""/v3/invoices"", cursor=cursor)
+    for invoice in page.items:
+        print(invoice.id)
+    cursor = page.next_cursor
+    if cursor is None:
+        break"
+workflow,Q02,dependent,2,1,done,16.33,3144,0.008468,2,,"cursor = None
+while True:
+    page = client.list_after(url=""/v3/invoices"", cursor=cursor)
+    for invoice in page.items:
+        print(invoice.id)
+    cursor = page.next_cursor
+    if cursor is None:
+        break"
+workflow,Q02,dependent,3,1,done,13.89,2970,0.007634,2,,"cursor = None
+while True:
+    page = client.list_after(url=""/v3/invoices"", cursor=cursor)
+    for invoice in page.items:
+        print(invoice.id)
+    cursor = page.next_cursor
+    if cursor is None:
+        break"
+workflow,Q03,dependent,1,0,done,15.23,2643,0.007383,2,v3_code does not parse: expected an indented block after 'try' statement on line 1,"try:
+    # your SDK call
+except RateLimitError as exc:
+    wait_seconds = exc.retry_after_seconds
+    # implement your retry logic with wait_seconds"
+workflow,Q03,dependent,2,1,done,11.61,2572,0.007036,2,,"from acme import RateLimitError
+import time
+
+try:
+    # your API call
+    client.some_method()
+except RateLimitError as exc:
+    wait_seconds = exc.retry_after_seconds
+    time.sleep(wait_seconds)
+    # retry your call"
+workflow,Q03,dependent,3,0,done,18.93,3182,0.010078,2,v3_code does not parse: expected an indented block after 'try' statement on line 1,"try:
+    # your SDK call
+except RateLimitError as exc:
+    wait_seconds = exc.retry_after_seconds
+    # wait or implement custom backoff logic"
+workflow,Q04,dependent,1,1,done,13.29,2613,0.007605,2,,Client(timeout_ms=30000)
+workflow,Q04,dependent,2,1,done,20.07,3203,0.010263,2,,"from acme import Client
+
+client = Client(timeout_ms=30000)"
+workflow,Q04,dependent,3,1,done,13.85,2437,0.006585,2,,"from acme import Client
+
+client = Client(timeout_ms=30000)"
+workflow,Q05,dependent,1,1,done,11.01,2239,0.005519,2,,"client.files.upload(file_path=""report.pdf"")"
+workflow,Q05,dependent,2,1,done,13.64,2445,0.006549,2,,"client.files.upload(file_path=""report.pdf"")"
+workflow,Q05,dependent,3,1,done,12.46,2360,0.006124,2,,"client.files.upload(file_path=""report.pdf"")"
+workflow,Q06,dependent,1,1,done,41.85,5429,0.021197,2,,"from acme import Client
+
+# Restore v2 retry backoff behavior
+client = Client(retry_backoff_ms=2000)
+
+# Or override on individual requests
+response = client.send(url='/endpoint', retry_backoff_ms=2000)"
+workflow,Q06,dependent,2,1,done,16.17,2612,0.007612,2,,"from acme import Client
+
+# Option 1: Set globally in constructor
+client = Client(retry_backoff_ms=2000)
+
+# Option 2: Override per-request
+client.send(request, retry_backoff_ms=2000)"
+workflow,Q06,dependent,3,1,done,22.37,3173,0.010413,2,,"from acme_sdk import AcmeClient
+
+client = AcmeClient(retry_backoff_ms=2000)"
+workflow,Q07,lookup,1,1,done,46.65,5625,0.022929,2,,"with client.stream(url=""/v3/events"") as events:
+    for event in events:
+        print(event.type, event.data)"
+workflow,Q07,lookup,2,1,done,11.16,2215,0.005887,2,,"with client.stream(url=""/v3/events"") as events:
+    for event in events:
+        print(event.type, event.data)"
+workflow,Q07,lookup,3,1,done,15.1,2459,0.007111,2,,"with client.stream(url=""/v3/events"") as events:
+    for event in events:
+        print(event.type, event.data)"
+workflow,Q08,lookup,1,1,done,12.42,2629,0.006161,2,,"response = client.send(url=""/v3/invoices"", method=""POST"", body={""amount"": 4200})
+print(response.status_code)"
+workflow,Q08,lookup,2,1,done,23.75,3798,0.012126,2,,"response = client.send(url=""/v3/invoices"", method=""POST"", body={""amount"": 4200})
+print(response.status_code)"
+workflow,Q08,lookup,3,1,done,19.98,3384,0.010056,2,,"response = client.send(
+    url=""/v3/invoices"",
+    method=""POST"",
+    body={""amount"": 4200}
+)
+print(response.status_code)"
+workflow,Q09,lookup,1,1,done,15.16,2667,0.007731,2,,"from acme.webhooks import verify_signature
+verify_signature(
+    payload=raw_body,
+    signature_header=request.headers[""X-Acme-Signature""],
+    secret=WEBHOOK_SIGNING_SECRET,
+)"
+workflow,Q09,lookup,2,1,done,18.21,3046,0.009626,2,,"from acme.webhooks import verify_signature
+
+verify_signature(
+    payload=raw_body,
+    signature_header=request.headers[""X-Acme-Signature""],
+    secret=WEBHOOK_SIGNING_SECRET,
+    tolerance_seconds=300,  # optional: reject if older than 300 seconds
+    scheme=""v3"",  # optional: signature scheme prefix
+)"
+workflow,Q09,lookup,3,1,done,11.96,2444,0.006616,2,,"from acme.webhooks import verify_signature
+verify_signature(
+    payload=raw_body,
+    signature_header=request.headers[""X-Acme-Signature""],
+    secret=WEBHOOK_SIGNING_SECRET,
+)"
+workflow,Q10,lookup,1,1,done,18.48,3073,0.009605,2,,"import time
+from acme import AcmeClient, RateLimitError
+
+client = AcmeClient(api_key=""your-key"")
+
+try:
+    response = client.some_operation()
+except RateLimitError as e:
+    wait_time = e.retry_after_seconds
+    print(f""Rate limited. Waiting {wait_time} seconds as requested..."")
+    time.sleep(wait_time)
+    response = client.some_operation()  # Retry after waiting"
+workflow,Q10,lookup,2,1,done,19.08,3023,0.009535,2,,"import time
+from acme import RateLimitError, Client
+
+client = Client()
+
+try:
+    response = client.some_api_call()
+except RateLimitError as e:
+    wait_seconds = e.retry_after_seconds
+    print(f""Rate limited. Waiting {wait_seconds} seconds..."")
+    time.sleep(wait_seconds)
+    response = client.some_api_call()  # Retry after waiting"
+workflow,Q10,lookup,3,1,done,41.75,5495,0.021859,2,,"import time
+from acme.errors import RateLimitError
+try:
+    client.send(url=""/v3/invoices"")
+except RateLimitError as exc:
+    time.sleep(exc.retry_after_seconds)"

@@ -1,0 +1,23 @@
+Answer the developer's question about the Acme Python SDK using the documentation excerpts below.
+The developer is on SDK {sdk_target} unless the question says otherwise.
+Be concise: 1-3 sentences. If a short code sample would help, include one that the developer can paste and run, written on separate lines: the import (e.g. `from acme import Client`, as in the docs), then the call.
+Every name in the code sample must exist in the SDK version the developer is on:
+- If DEPRECATION LOOKUPS mark a symbol removed or renamed for that version, do not use it in code. Use the replacement, and say in the answer, with the words "removed in v3" or "renamed in v3", what happened to the old name.
+- If the excerpts only show a v2 call for a v3 developer, write the v3 replacement named in the changelog or deprecation lookups instead of copying the v2 call. When a SPEC LOOKUP gives the replacement's x-sdk-call, base the code sample on it.
+The deprecation and spec lookups are documentation too. For a v2 developer, give v2 code, and add one sentence saying which of its names were removed or renamed in v3 and their replacements.
+If neither the excerpts nor the lookups contain the answer, say "I don't know based on the provided documents." and leave code empty.
+
+QUESTION:
+{question}
+
+DOCUMENTATION EXCERPTS:
+{context}
+
+DEPRECATION LOOKUPS:
+{deprecations}
+
+SPEC LOOKUPS:
+{spec}
+
+Return ONE JSON object with exactly these keys:
+{"answer": "<1-3 sentences>", "code": "<Python code sample, newlines as \n, or empty string>", "sources": ["<chunk id you relied on, most important first>"]}

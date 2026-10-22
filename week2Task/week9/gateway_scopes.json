@@ -1,0 +1,11 @@
+{
+  "about": "Token scopes for week9_gateway.py. Keys are sha256(token); plaintext tokens are never stored here.",
+  "tokens": {
+    "93944ad05621812ad9dc631fa1c32a98f3bf9dfc27bac9fe1108b6280162d06a": {
+      "caller": "docs-assistant",
+      "deny": [
+        "get_deprecation_notices"
+      ]
+    }
+  }
+}

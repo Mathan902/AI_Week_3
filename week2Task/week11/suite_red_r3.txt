@@ -1,0 +1,35 @@
+$ .venv/bin/python week11_suite.py run --prompt v1 --label red_r3
+Week 11 suite, release v1 {"prompt": "answer_v1.txt", "top_k": 4, "filter_to_target": false, "deprecations_from": "question"}
+28 cases (25 Week 6 + 3 from week11/eval_cases.jsonl), 2026-10-21T10:24:53+00:00
+
+  PASS  E01    what scheme does verify_signature expect       
+  PASS  E02    how to verify webhook payload                  
+  PASS  E03    how do I stream events                         
+  PASS  E04    verify_signature parameters                    
+  PASS  E05    hw to verify webhok signature                  
+  FAIL  E06    paginate_auto example                          endpoints_in_spec: not in openapi_v3.json: ['/v2/invoices']
+  FAIL  E07    client.request example                         code_parses: fenced code is on a single line; endpoints_in_spec: not in openapi_v3.json: ['/v2/invoices']; cites_question_version: cites v2, question is v3
+  FAIL  E08    upload_file is not an attribute of Client      code_parses: fenced code is on a single line
+  FAIL  E09    TooManyRequestsError how to get the retry dela endpoints_in_spec: not in openapi_v3.json: ['/v2/invoices']; deprecation_has_migration_note: ['Client.request()', 'TooManyRequestsError', '/v2/ endpoint paths'] with no migration note (use Client.send())
+  FAIL  E10    does the sdk automatically retry 429s          deprecation_has_migration_note: ['TooManyRequestsError'] with no migration note (use RateLimitError)
+  PASS  E11    what is part_size_mb                           
+  PASS  E12    NotFoundError retryable?                       
+  PASS  E13    how do I send json in the body of a request    
+  PASS  E14    what is retry_backoff_ms                       
+  PASS  E15    what happens if the stream disconnects         
+  PASS  E16    v2 upload limit vs v3                          
+  PASS  E17    create invoice example                         
+  PASS  E18    how do I authenticate the client?              
+  PASS  E19    how many failures before my webhook is turned  
+  FAIL  E20    webhook retry schedule                         answered_when_answerable: refused an answerable question; required_facts_present: refused
+  PASS  E21    list of removed apis in v3                     
+  PASS  E22    what changed between v2 and v3                 
+  PASS  E23    what attribute tells me how long to wait after 
+  PASS  E24    what was the old default backoff               
+  PASS  E25    is the client thread safe                      
+  FAIL  W11-01 set timeout to 2 minutes                       code_parses: fenced code is on a single line
+  FAIL  W11-02 how do I iterate every invoice                 endpoints_in_spec: not in openapi_v3.json: ['/v2/invoices']; deprecation_has_migration_note: ['paginate_auto()', '/v2/ endpoint paths'] with no migration note (use list_after()); cites_question_version: cites v2, question is v3; required_facts_present: missing /list_after/; no_deprecated_call_in_code: code block matches /\bpaginate_auto\b/
+  FAIL  W11-03 I'm still on SDK v2, how do I iterate every in cites_question_version: cites nothing, question is v2
+
+assertions 19/28   judge 25/28
+SUITE red_r3: 19/28 pass  (incident cases: RED)

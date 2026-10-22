@@ -1,0 +1,53 @@
+diff --git a/week2Task/week7_tools.py b/week2Task/week7_tools.py
+index 21810414..92638f5b 100644
+--- a/week2Task/week7_tools.py
++++ b/week2Task/week7_tools.py
+@@ -113,9 +113,48 @@ def check_deprecation(symbol: str, api_version: str) -> dict:
+ TOOL_FUNCS = {"search_docs": search_docs, "get_openapi_spec": get_openapi_spec, "check_deprecation": check_deprecation}
+ 
+ 
++# Week 8, the ONE mitigation: argument validation. Before Week 8 a call with missing or off-enum
++# arguments fell through to Python's TypeError text, which the model answered by sending the same empty
++# call again. Now the arguments are checked against the tool's declared parameters first, and the error
++# restates the exact schema with an example call. Off by default (Week 7 behaviour); the Week 8 "after"
++# runs turn it on.
++VALIDATE_ARGS = False
++_PARAMS = {t["name"]: t["parameters"] for t in TOOLS}
++_EXAMPLES = {"search_docs": {"query": "how do I upload a file", "api_version": "v3"},
++             "get_openapi_spec": {"path": "/v3/invoices"},
++             "check_deprecation": {"symbol": "paginate_auto", "api_version": "v3"}}
++
++
++def validate_args(name: str, args) -> str | None:
++    """Why these arguments don't fit the tool's declared parameters, or None if they do."""
++    schema = _PARAMS[name]
++    problems = []
++    if not isinstance(args, dict):
++        problems.append(f"args must be an object, got {type(args).__name__}")
++        args = {}
++    for key, spec in schema.items():
++        if key not in args or args[key] is None:
++            problems.append(f"missing {key!r}")
++        elif "enum" in spec and args[key] not in spec["enum"]:
++            problems.append(f"{key!r} must be one of {spec['enum']}, got {args[key]!r}")
++        elif not isinstance(args[key], str) or not args[key].strip():
++            problems.append(f"{key!r} must be a non-empty string")
++    for key in set(args) - set(schema):
++        problems.append(f"unknown argument {key!r}")
++    if not problems:
++        return None
++    shape = {k: (f"one of {v['enum']}" if "enum" in v else "<string>") for k, v in schema.items()}
++    return (f"{name}: {'; '.join(problems)}. It takes exactly {json.dumps(shape)}. "
++            f"Resend as {json.dumps({'tool': name, 'args': _EXAMPLES[name]})}")
++
++
+ def run_tool(name: str, args: dict) -> dict:
+     if name not in TOOL_FUNCS:
+         return {"error": f"unknown tool {name!r}; tools are {sorted(TOOL_FUNCS)}"}
++    if VALIDATE_ARGS:
++        problem = validate_args(name, args)
++        if problem:
++            return {"error": problem}
+     try:
+         return TOOL_FUNCS[name](**args)
+     except TypeError as exc:

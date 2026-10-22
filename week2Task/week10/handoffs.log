@@ -1,0 +1,310 @@
+# handoffs.log: every squad hand-off (one LLM call each) with the tokens it was billed for
+# tokens = input (incl. cache read/creation) + output, from the claude CLI usage block; brief_chars = size of the prompt re-sent on that call
+# case rep hand-off                               lap brief_ch     in   out tokens      usd
+  E01  r1  user -> orchestrator (plan)              1       50    764   208    972  0.00026
+  E01  r1  orchestrator -> version worker           1      458   1426   132   1558  0.00022
+  E01  r1  orchestrator -> version worker           2      933   1608   250   1858  0.00031
+  E01  r1  orchestrator -> version worker           3     2299   2164   290   2454  0.00044
+  E01  r1  orchestrator -> version worker           4     3677   2718   293   3011  0.00055
+  E01  r1  orchestrator -> code-sample worker       1      397   1278   218   1496  0.00025
+  E01  r1  orchestrator -> code-sample worker       2     1679   1800  1392   3192  0.00094
+  E01  r1  workers -> orchestrator (synthesis)      1     1448   1435  1330   2765  0.00095
+  E01  r1  = run total                                                       17306  0.00392
+  E01  r2  user -> orchestrator (plan)              1       50    764   199    963  0.00011
+  E01  r2  orchestrator -> version worker           1      446   1426   106   1532  0.00020
+  E01  r2  orchestrator -> version worker           2      844   1582   196   1778  0.00028
+  E01  r2  orchestrator -> version worker           3     2142   2120   401   2521  0.00049
+  E01  r2  orchestrator -> version worker           4     3634   2734   262   2996  0.00054
+  E01  r2  orchestrator -> code-sample worker       1      364   1269   208   1477  0.00024
+  E01  r2  orchestrator -> code-sample worker       2     1647   1787   956   2743  0.00072
+  E01  r2  workers -> orchestrator (synthesis)      1     1347   1380  1110   2490  0.00083
+  E01  r2  = run total                                                       16500  0.00341
+  E01  r3  user -> orchestrator (plan)              1       50    764   221    985  0.00012
+  E01  r3  orchestrator -> version worker           1      463   1419   181   1600  0.00024
+  E01  r3  orchestrator -> version worker           2      940   1595   232   1827  0.00030
+  E01  r3  orchestrator -> version worker           3     2383   2182   406   2588  0.00050
+  E01  r3  orchestrator -> version worker           4     2912   2399   344   2743  0.00052
+  E01  r3  orchestrator -> code-sample worker       1      461   1298   203   1501  0.00025
+  E01  r3  orchestrator -> code-sample worker       2     1787   1825   429   2254  0.00046
+  E01  r3  orchestrator -> code-sample worker       3     3086   2318   426   2744  0.00056
+  E01  r3  orchestrator -> code-sample worker       4     4483   2875  1616   4491  0.00127
+  E01  r3  workers -> orchestrator (synthesis)      1     1308   1353  1199   2552  0.00087
+  E01  r3  = run total                                                       23285  0.00508
+  E05  r1  user -> orchestrator (plan)              1       39    762   306   1068  0.00031
+  E05  r1  orchestrator -> version worker           1      542   1442   158   1600  0.00023
+  E05  r1  orchestrator -> version worker           2     1922   1998   369   2367  0.00045
+  E05  r1  orchestrator -> version worker           3     3405   2578   304   2882  0.00053
+  E05  r1  orchestrator -> version worker           4     3859   2765   395   3160  0.00061
+  E05  r1  orchestrator -> code-sample worker       1      570   1356   170   1526  0.00024
+  E05  r1  orchestrator -> code-sample worker       2     1619   1788   412   2200  0.00045
+  E05  r1  orchestrator -> code-sample worker       3     3068   2374   266   2640  0.00049
+  E05  r1  orchestrator -> code-sample worker       4     4371   2867   440   3307  0.00068
+  E05  r1  workers -> orchestrator (synthesis)      1      190    908   294   1202  0.00033
+  E05  r1  = run total                                                       21952  0.00432
+  E05  r2  user -> orchestrator (plan)              1       39    762   491   1253  0.00025
+  E05  r2  orchestrator -> version worker           1      461   1413   166   1579  0.00023
+  E05  r2  orchestrator -> version worker           2     1864   1977   307   2284  0.00041
+  E05  r2  orchestrator -> version worker           3     2338   2168   316   2484  0.00046
+  E05  r2  orchestrator -> version worker           4     3685   2684   396   3080  0.00060
+  E05  r2  orchestrator -> code-sample worker       1      662   1361   308   1669  0.00031
+  E05  r2  orchestrator -> code-sample worker       2     1744   1807  1451   3258  0.00097
+  E05  r2  workers -> orchestrator (synthesis)      1     1531   1445  1471   2916  0.00102
+  E05  r2  = run total                                                       18523  0.00426
+  E05  r3  user -> orchestrator (plan)              1       39    762   503   1265  0.00026
+  E05  r3  orchestrator -> version worker           1      503   1420   205   1625  0.00025
+  E05  r3  orchestrator -> version worker           2     1849   1958   472   2430  0.00049
+  E05  r3  orchestrator -> version worker           3     2369   2179   310   2489  0.00046
+  E05  r3  orchestrator -> version worker           4     3865   2767   372   3139  0.00060
+  E05  r3  orchestrator -> code-sample worker       1      622   1354   194   1548  0.00025
+  E05  r3  orchestrator -> code-sample worker       2     1703   1787   397   2184  0.00044
+  E05  r3  orchestrator -> code-sample worker       3     3078   2346   325   2671  0.00052
+  E05  r3  orchestrator -> code-sample worker       4     4585   2972   581   3553  0.00077
+  E05  r3  workers -> orchestrator (synthesis)      1      190    908   627   1535  0.00032
+  E05  r3  = run total                                                       22439  0.00436
+  E09  r1  user -> orchestrator (plan)              1       57    769   286   1055  0.00030
+  E09  r1  orchestrator -> version worker           1      539   1460   108   1568  0.00021
+  E09  r1  orchestrator -> version worker           2     1139   1708   232   1940  0.00032
+  E09  r1  orchestrator -> version worker           3     1557   1886   331   2217  0.00041
+  E09  r1  orchestrator -> version worker           4     2937   2418   973   3391  0.00083
+  E09  r1  orchestrator -> code-sample worker       1     1303   1639   421   2060  0.00042
+  E09  r1  orchestrator -> code-sample worker       2     2492   2112   255   2367  0.00043
+  E09  r1  orchestrator -> code-sample worker       3     3414   2467   484   2951  0.00062
+  E09  r1  orchestrator -> code-sample worker       4     4287   2829   348   3177  0.00062
+  E09  r1  workers -> orchestrator (synthesis)      1      965   1222  1428   2650  0.00096
+  E09  r1  = run total                                                       23376  0.00513
+  E09  r2  user -> orchestrator (plan)              1       57    769   212    981  0.00011
+  E09  r2  orchestrator -> version worker           1      419   1419   128   1547  0.00021
+  E09  r2  orchestrator -> version worker           2     1082   1687   581   2268  0.00049
+  E09  r2  orchestrator -> version worker           3     2608   2290   538   2828  0.00059
+  E09  r2  orchestrator -> version worker           4     4030   2882  1047   3929  0.00096
+  E09  r2  orchestrator -> code-sample worker       1     1454   1727   373   2100  0.00042
+  E09  r2  orchestrator -> code-sample worker       2     2810   2277   521   2798  0.00060
+  E09  r2  orchestrator -> code-sample worker       3     4021   2758   942   3700  0.00091
+  E09  r2  workers -> orchestrator (synthesis)      1     1922   1646   911   2557  0.00078
+  E09  r2  = run total                                                       22708  0.00508
+  E09  r3  user -> orchestrator (plan)              1       57    769   216    985  0.00012
+  E09  r3  orchestrator -> version worker           1      436   1421   128   1549  0.00021
+  E09  r3  orchestrator -> version worker           2     1103   1689   295   1984  0.00035
+  E09  r3  orchestrator -> version worker           3     2574   2275   955   3230  0.00080
+  E09  r3  orchestrator -> code-sample worker       1     1302   1637   543   2180  0.00048
+  E09  r3  orchestrator -> code-sample worker       2     2764   2216  1401   3617  0.00103
+  E09  r3  workers -> orchestrator (synthesis)      1     2227   1715  1376   3091  0.00103
+  E09  r3  = run total                                                       16636  0.00402
+  E10  r1  user -> orchestrator (plan)              1       47    765   216    981  0.00026
+  E10  r1  orchestrator -> version worker           1      394   1403    94   1497  0.00019
+  E10  r1  orchestrator -> version worker           2      743   1548   164   1712  0.00026
+  E10  r1  orchestrator -> version worker           3     2038   2034   261   2295  0.00040
+  E10  r1  orchestrator -> version worker           4     2509   2210   278   2488  0.00045
+  E10  r1  orchestrator -> code-sample worker       1      451   1310   294   1604  0.00029
+  E10  r1  orchestrator -> code-sample worker       2     1872   1865   499   2364  0.00051
+  E10  r1  orchestrator -> code-sample worker       3     3178   2367   448   2815  0.00058
+  E10  r1  orchestrator -> code-sample worker       4     4729   2946   891   3837  0.00092
+  E10  r1  workers -> orchestrator (synthesis)      1     1285   1346   954   2300  0.00075
+  E10  r1  = run total                                                       21893  0.00460
+  E10  r2  user -> orchestrator (plan)              1       47    765   250   1015  0.00013
+  E10  r2  orchestrator -> version worker           1      540   1450   275   1725  0.00029
+  E10  r2  orchestrator -> version worker           2     1942   1991   328   2319  0.00043
+  E10  r2  orchestrator -> version worker           3     2440   2189   189   2378  0.00040
+  E10  r2  orchestrator -> version worker           4     3754   2696   282   2978  0.00054
+  E10  r2  orchestrator -> code-sample worker       1      464   1298   330   1628  0.00031
+  E10  r2  orchestrator -> code-sample worker       2     1788   1787   389   2176  0.00044
+  E10  r2  orchestrator -> code-sample worker       3     3322   2351   446   2797  0.00058
+  E10  r2  orchestrator -> code-sample worker       4     4855   2919  2225   5144  0.00158
+  E10  r2  workers -> orchestrator (synthesis)      1     1804   1587  1758   3345  0.00120
+  E10  r2  = run total                                                       25505  0.00589
+  E10  r3  user -> orchestrator (plan)              1       47    765   268   1033  0.00014
+  E10  r3  orchestrator -> version worker           1      561   1453   184   1637  0.00025
+  E10  r3  orchestrator -> version worker           2     1934   1959   374   2333  0.00044
+  E10  r3  orchestrator -> version worker           3     3369   2502   479   2981  0.00060
+  E10  r3  orchestrator -> version worker           4     5137   3222   410   3632  0.00071
+  E10  r3  orchestrator -> code-sample worker       1      486   1313   281   1594  0.00029
+  E10  r3  orchestrator -> code-sample worker       2     1883   1846   371   2217  0.00044
+  E10  r3  orchestrator -> code-sample worker       3     3366   2409  1592   4001  0.00116
+  E10  r3  workers -> orchestrator (synthesis)      1     1329   1354  1243   2597  0.00089
+  E10  r3  = run total                                                       22025  0.00493
+  E11  r1  user -> orchestrator (plan)              1       30    760   190    950  0.00010
+  E11  r1  orchestrator -> version worker           1      383   1399   117   1516  0.00020
+  E11  r1  orchestrator -> version worker           2      796   1567   367   1934  0.00036
+  E11  r1  orchestrator -> version worker           3     2020   2070   270   2340  0.00041
+  E11  r1  orchestrator -> version worker           4     3068   2512   966   3478  0.00085
+  E11  r1  orchestrator -> code-sample worker       1     1075   1546   268   1814  0.00033
+  E11  r1  orchestrator -> code-sample worker       2     2199   2007   349   2356  0.00046
+  E11  r1  orchestrator -> code-sample worker       3     3422   2499   601   3100  0.00068
+  E11  r1  workers -> orchestrator (synthesis)      1     1362   1338   836   2174  0.00069
+  E11  r1  = run total                                                       19662  0.00409
+  E11  r2  user -> orchestrator (plan)              1       30    760   403   1163  0.00021
+  E11  r2  orchestrator -> version worker           1      454   1419   131   1550  0.00021
+  E11  r2  orchestrator -> version worker           2      929   1601   238   1839  0.00030
+  E11  r2  orchestrator -> version worker           3     2583   2246   485   2731  0.00056
+  E11  r2  orchestrator -> version worker           4     3102   2455   734   3189  0.00072
+  E11  r2  orchestrator -> code-sample worker       1     1131   1560   262   1822  0.00033
+  E11  r2  orchestrator -> code-sample worker       2     2363   2042   415   2457  0.00050
+  E11  r2  orchestrator -> code-sample worker       3     3353   2420   808   3228  0.00077
+  E11  r2  workers -> orchestrator (synthesis)      1     1579   1435  1263   2698  0.00092
+  E11  r2  = run total                                                       20677  0.00452
+  E11  r3  user -> orchestrator (plan)              1       30    760   260   1020  0.00028
+  E11  r3  orchestrator -> version worker           1      478   1434   109   1543  0.00021
+  E11  r3  orchestrator -> version worker           2      865   1594   211   1805  0.00029
+  E11  r3  orchestrator -> version worker           3     2115   2094   259   2353  0.00041
+  E11  r3  orchestrator -> version worker           4     3148   2540   464   3004  0.00060
+  E11  r3  orchestrator -> code-sample worker       1      474   1314   191   1505  0.00024
+  E11  r3  orchestrator -> code-sample worker       2     1622   1782   918   2700  0.00070
+  E11  r3  workers -> orchestrator (synthesis)      1      830   1147   719   1866  0.00059
+  E11  r3  = run total                                                       15796  0.00332
+  E14  r1  user -> orchestrator (plan)              1       34    763   211    974  0.00026
+  E14  r1  orchestrator -> version worker           1      413   1412   148   1560  0.00022
+  E14  r1  orchestrator -> version worker           2     1144   1709   353   2062  0.00038
+  E14  r1  orchestrator -> version worker           3     2264   2145   462   2607  0.00052
+  E14  r1  orchestrator -> version worker           4     2746   2348   440   2788  0.00055
+  E14  r1  orchestrator -> code-sample worker       1      406   1293   268   1561  0.00028
+  E14  r1  orchestrator -> code-sample worker       2     1573   1726   871   2597  0.00066
+  E14  r1  workers -> orchestrator (synthesis)      1     1184   1285  1171   2456  0.00084
+  E14  r1  = run total                                                       16605  0.00372
+  E14  r2  user -> orchestrator (plan)              1       34    763   189    952  0.00010
+  E14  r2  orchestrator -> version worker           1      370   1398   165   1563  0.00023
+  E14  r2  orchestrator -> version worker           2      953   1649   225   1874  0.00031
+  E14  r2  orchestrator -> version worker           3     2106   2085   396   2481  0.00048
+  E14  r2  orchestrator -> version worker           4     3521   2649   497   3146  0.00064
+  E14  r2  orchestrator -> code-sample worker       1      354   1285   191   1476  0.00024
+  E14  r2  orchestrator -> code-sample worker       2     1457   1696  1284   2980  0.00087
+  E14  r2  workers -> orchestrator (synthesis)      1      897   1179   961   2140  0.00072
+  E14  r2  = run total                                                       16612  0.00358
+  E14  r3  user -> orchestrator (plan)              1       34    763   522   1285  0.00027
+  E14  r3  orchestrator -> version worker           1      558   1450   153   1603  0.00023
+  E14  r3  orchestrator -> version worker           2     1287   1752   279   2031  0.00035
+  E14  r3  orchestrator -> version worker           3     2801   2341   374   2715  0.00052
+  E14  r3  orchestrator -> version worker           4     4653   3083  1193   4276  0.00108
+  E14  r3  orchestrator -> code-sample worker       1     1303   1630   291   1921  0.00036
+  E14  r3  orchestrator -> code-sample worker       2     2817   2219   473   2692  0.00056
+  E14  r3  orchestrator -> code-sample worker       3     4429   2817   334   3151  0.00061
+  E14  r3  orchestrator -> code-sample worker       4     5690   3305  1389   4694  0.00124
+  E14  r3  workers -> orchestrator (synthesis)      1     2081   1635  1508   3143  0.00108
+  E14  r3  = run total                                                       27511  0.00631
+  E18  r1  user -> orchestrator (plan)              1       43    762   199    961  0.00011
+  E18  r1  orchestrator -> version worker           1      438   1418   224   1642  0.00026
+  E18  r1  orchestrator -> version worker           2     1468   1802   241   2043  0.00035
+  E18  r1  orchestrator -> version worker           3     1901   1986   243   2229  0.00038
+  E18  r1  orchestrator -> version worker           4     2341   2176   348   2524  0.00047
+  E18  r1  orchestrator -> code-sample worker       1      362   1273   223   1496  0.00025
+  E18  r1  orchestrator -> code-sample worker       2     1515   1713   419   2132  0.00044
+  E18  r1  orchestrator -> code-sample worker       3     2686   2172   327   2499  0.00048
+  E18  r1  orchestrator -> code-sample worker       4     4047   2687   953   3640  0.00090
+  E18  r1  workers -> orchestrator (synthesis)      1      907   1156   799   1955  0.00063
+  E18  r1  = run total                                                       21121  0.00427
+  E18  r2  user -> orchestrator (plan)              1       43    762   211    973  0.00011
+  E18  r2  orchestrator -> version worker           1      456   1417   237   1654  0.00027
+  E18  r2  orchestrator -> version worker           2     1535   1809   412   2221  0.00043
+  E18  r2  orchestrator -> version worker           3     1993   2000   340   2340  0.00043
+  E18  r2  orchestrator -> version worker           4     3389   2542   534   3076  0.00064
+  E18  r2  orchestrator -> code-sample worker       1      396   1286   280   1566  0.00028
+  E18  r2  orchestrator -> code-sample worker       2     1826   1814   324   2138  0.00041
+  E18  r2  orchestrator -> code-sample worker       3     3168   2319   237   2556  0.00047
+  E18  r2  orchestrator -> code-sample worker       4     4258   2705  1045   3750  0.00095
+  E18  r2  workers -> orchestrator (synthesis)      1     1324   1305   866   2171  0.00069
+  E18  r2  = run total                                                       22445  0.00468
+  E18  r3  user -> orchestrator (plan)              1       43    762   274   1036  0.00029
+  E18  r3  orchestrator -> version worker           1      571   1456   249   1705  0.00028
+  E18  r3  orchestrator -> version worker           2     2048   2013   249   2262  0.00039
+  E18  r3  orchestrator -> version worker           3     2482   2192   403   2595  0.00050
+  E18  r3  orchestrator -> version worker           4     2915   2367   395   2762  0.00054
+  E18  r3  orchestrator -> code-sample worker       1      473   1310   251   1561  0.00027
+  E18  r3  orchestrator -> code-sample worker       2     1573   1702   399   2101  0.00042
+  E18  r3  orchestrator -> code-sample worker       3     2702   2113  1150   3263  0.00088
+  E18  r3  workers -> orchestrator (synthesis)      1      856   1153   757   1910  0.00061
+  E18  r3  = run total                                                       19195  0.00419
+  E19  r1  user -> orchestrator (plan)              1       59    765   146    911  0.00008
+  E19  r1  orchestrator -> version worker           1      485   1427   109   1536  0.00020
+  E19  r1  orchestrator -> version worker           2      876   1589   230   1819  0.00030
+  E19  r1  orchestrator -> version worker           3     2091   2036   327   2363  0.00044
+  E19  r1  orchestrator -> version worker           4     3422   2572   292   2864  0.00052
+  E19  r1  orchestrator -> code-sample worker       1      223   1231   141   1372  0.00008
+  E19  r1  orchestrator -> code-sample worker       2     1407   1674   554   2228  0.00050
+  E19  r1  workers -> orchestrator (synthesis)      1      468   1003   394   1397  0.00040
+  E19  r1  = run total                                                       14490  0.00252
+  E19  r2  user -> orchestrator (plan)              1       59    765   162    927  0.00023
+  E19  r2  orchestrator -> version worker           1      553   1443   164   1607  0.00023
+  E19  r2  orchestrator -> version worker           2     1910   1972   293   2265  0.00041
+  E19  r2  orchestrator -> version worker           3     3522   2615   351   2966  0.00056
+  E19  r2  orchestrator -> version worker           4     4002   2808   387   3195  0.00062
+  E19  r2  orchestrator -> code-sample worker       1      223   1231   172   1403  0.00022
+  E19  r2  orchestrator -> code-sample worker       2     1364   1663   347   2010  0.00039
+  E19  r2  workers -> orchestrator (synthesis)      1      443    993   114   1107  0.00026
+  E19  r2  = run total                                                       15480  0.00292
+  E19  r3  user -> orchestrator (plan)              1       59    765   125    890  0.00007
+  E19  r3  orchestrator -> version worker           1      424   1406   165   1571  0.00023
+  E19  r3  orchestrator -> version worker           2     1546   1836   281   2117  0.00037
+  E19  r3  orchestrator -> version worker           3     2841   2349   296   2645  0.00048
+  E19  r3  orchestrator -> version worker           4     3329   2536   487   3023  0.00062
+  E19  r3  orchestrator -> code-sample worker       1      223   1231   181   1412  0.00010
+  E19  r3  orchestrator -> code-sample worker       2     1340   1642   331   1973  0.00038
+  E19  r3  workers -> orchestrator (synthesis)      1      447    993   581   1574  0.00049
+  E19  r3  = run total                                                       15205  0.00274
+  E21  r1  user -> orchestrator (plan)              1       36    761   150    911  0.00008
+  E21  r1  orchestrator -> version worker           1      497   1426   296   1722  0.00030
+  E21  r1  orchestrator -> version worker           2     1554   1847   327   2174  0.00040
+  E21  r1  orchestrator -> version worker           3     2816   2344   356   2700  0.00051
+  E21  r1  orchestrator -> version worker           4     4429   2981   602   3583  0.00076
+  E21  r1  orchestrator -> code-sample worker       1      200   1227   203   1430  0.00011
+  E21  r1  orchestrator -> code-sample worker       2     1133   1602   404   2006  0.00041
+  E21  r1  workers -> orchestrator (synthesis)      1      491   1019  1055   2074  0.00073
+  E21  r1  = run total                                                       16600  0.00330
+  E21  r2  user -> orchestrator (plan)              1       36    761   106    867  0.00006
+  E21  r2  orchestrator -> version worker           1      348   1382   228   1610  0.00025
+  E21  r2  orchestrator -> version worker           2     1462   1834   334   2168  0.00040
+  E21  r2  orchestrator -> version worker           3     2750   2343   401   2744  0.00053
+  E21  r2  orchestrator -> version worker           4     4326   2978   395   3373  0.00066
+  E21  r2  orchestrator -> code-sample worker       1      200   1227   173   1400  0.00010
+  E21  r2  orchestrator -> code-sample worker       2     1466   1738   453   2191  0.00046
+  E21  r2  orchestrator -> code-sample worker       3     2627   2208   679   2887  0.00067
+  E21  r2  workers -> orchestrator (synthesis)      1      564   1038   840   1878  0.00063
+  E21  r2  = run total                                                       19118  0.00375
+  E21  r3  user -> orchestrator (plan)              1       36    761    93    854  0.00020
+  E21  r3  orchestrator -> version worker           1      317   1369   262   1631  0.00027
+  E21  r3  orchestrator -> version worker           2     1225   1740   229   1969  0.00033
+  E21  r3  orchestrator -> version worker           3     2160   2097   400   2497  0.00048
+  E21  r3  orchestrator -> version worker           4     3331   2557   505   3062  0.00063
+  E21  r3  orchestrator -> code-sample worker       1      200   1227   166   1393  0.00021
+  E21  r3  orchestrator -> code-sample worker       2     1672   1825   218   2043  0.00036
+  E21  r3  orchestrator -> code-sample worker       3     2569   2196   329   2525  0.00049
+  E21  r3  orchestrator -> code-sample worker       4     3606   2615   473   3088  0.00064
+  E21  r3  workers -> orchestrator (synthesis)      1      484   1014   629   1643  0.00052
+  E21  r3  = run total                                                       20705  0.00413
+  E25  r1  user -> orchestrator (plan)              1       35    759   247   1006  0.00028
+  E25  r1  orchestrator -> version worker           1      499   1426   151   1577  0.00023
+  E25  r1  orchestrator -> version worker           2     1574   1808   359   2167  0.00041
+  E25  r1  orchestrator -> version worker           3     2037   1988   245   2233  0.00038
+  E25  r1  orchestrator -> version worker           4     3100   2374   362   2736  0.00052
+  E25  r1  orchestrator -> code-sample worker       1      469   1307   218   1525  0.00025
+  E25  r1  orchestrator -> code-sample worker       2     1494   1668   360   2028  0.00040
+  E25  r1  orchestrator -> code-sample worker       3     2568   2039   340   2379  0.00046
+  E25  r1  orchestrator -> code-sample worker       4     3726   2445  1512   3957  0.00113
+  E25  r1  workers -> orchestrator (synthesis)      1     1479   1373  1139   2512  0.00084
+  E25  r1  = run total                                                       22120  0.00490
+  E25  r2  user -> orchestrator (plan)              1       35    759   253   1012  0.00013
+  E25  r2  orchestrator -> version worker           1      511   1427   184   1611  0.00024
+  E25  r2  orchestrator -> version worker           2     1584   1804   341   2145  0.00040
+  E25  r2  orchestrator -> version worker           3     1995   1969   314   2283  0.00042
+  E25  r2  orchestrator -> version worker           4     3007   2334   485   2819  0.00057
+  E25  r2  orchestrator -> code-sample worker       1      465   1312   243   1555  0.00027
+  E25  r2  orchestrator -> code-sample worker       2     1536   1689   230   1919  0.00034
+  E25  r2  orchestrator -> code-sample worker       3     2558   2042   352   2394  0.00047
+  E25  r2  orchestrator -> code-sample worker       4     3463   2381  1378   3759  0.00105
+  E25  r2  workers -> orchestrator (synthesis)      1     2012   1621  1302   2923  0.00097
+  E25  r2  = run total                                                       22420  0.00486
+  E25  r3  user -> orchestrator (plan)              1       35    759   154    913  0.00008
+  E25  r3  orchestrator -> version worker           1      506   1429   212   1641  0.00026
+  E25  r3  orchestrator -> version worker           2     1576   1821   318   2139  0.00039
+  E25  r3  orchestrator -> version worker           3     2676   2212   276   2488  0.00044
+  E25  r3  orchestrator -> version worker           4     3731   2593   359   2952  0.00056
+  E25  r3  orchestrator -> code-sample worker       1      199   1225   164   1389  0.00021
+  E25  r3  orchestrator -> code-sample worker       2     1143   1566   328   1894  0.00036
+  E25  r3  workers -> orchestrator (synthesis)      1      457    991   147   1138  0.00027
+  E25  r3  = run total                                                       14554  0.00258
+
+# totals by hand-off over all 30 squad runs (592,464 tokens)
+  orchestrator -> version worker         119 calls  277,047 tokens  46.8%  (2,328 per call)
+  orchestrator -> code-sample worker      90 calls  218,497 tokens  36.9%  (2,428 per call)
+  workers -> orchestrator (synthesis)     30 calls   66,759 tokens  11.3%  (2,225 per call)
+  user -> orchestrator (plan)             30 calls   30,161 tokens   5.1%  (1,005 per call)
+
+# Context re-send multiplier: squad 197,488 / single 117,861 tokens = 1.7x. Largest share: "orchestrator -> version worker" (119 calls), 47% of all squad tokens.
