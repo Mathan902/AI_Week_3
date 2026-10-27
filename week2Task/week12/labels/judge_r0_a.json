@@ -1,0 +1,202 @@
+{
+  "run": "r0_a",
+  "judge": "week6/judge_v2.txt",
+  "prompt_sha256": "1258f4fb5f50a4e7f78c4040fb009d00a654aefc80a2b42eeecb819c228b56d3",
+  "judged_at_utc": "2026-10-27T09:41:29+00:00",
+  "labels_sha256": null,
+  "answers_sha256": "b4ea5ad55c50829f4475d54a8022214e59002db27cb884a97812f3a46ce41f01",
+  "verdicts": {
+    "C01": {
+      "verdict": "FAIL",
+      "reason": "The user is on SDK 2.4 (v2), but the answer gives v3 guidance (`client.list_after`, `paginate_auto()` removed in v3) and cites v3 docs, so it does not give the v2 pagination fact the developer needs and answers a different version's question.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The user is on SDK 2.4 (v2), but the answer gives v3 guidance (`client.list_after`, `paginate_auto()` removed in v3) and cites v3 docs, so it does not give the v2 pagination fact the developer needs and answers a different version's question.\"}"
+    },
+    "C02": {
+      "verdict": "FAIL",
+      "reason": "The only documentation shown is the /v3/invoices operation, with no SDK 2.4 applicability, yet the answer gives it to a 2.4 user without any version caveat, and it adds an unsupported claim that amount is in the smallest currency unit.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The only documentation shown is the /v3/invoices operation, with no SDK 2.4 applicability, yet the answer gives it to a 2.4 user without any version caveat, and it adds an unsupported claim that amount is in the smallest currency unit.\"}"
+    },
+    "C03": {
+      "verdict": "FAIL",
+      "reason": "The caller is on SDK 2.4, but the answer gives v3 usage (`Client(timeout_ms=60000)`) and the shown docs contain no v2 timeout instructions, so the developer cannot act on it for their version.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The caller is on SDK 2.4, but the answer gives v3 usage (`Client(timeout_ms=60000)`) and the shown docs contain no v2 timeout instructions, so the developer cannot act on it for their version.\"}"
+    },
+    "C04": {
+      "verdict": "FAIL",
+      "reason": "The caller is on SDK 2.4, but the answer gives the SDK v3 upload method (`client.files.upload`) and v3 defaults, so it answers a different version's question and leaves out the v2 `client.upload_file(file_path=...)` usage the developer needs.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The caller is on SDK 2.4, but the answer gives the SDK v3 upload method (`client.files.upload`) and v3 defaults, so it answers a different version's question and leaves out the v2 `client.upload_file(file_path=...)` usage the developer needs.\"}"
+    },
+    "C05": {
+      "verdict": "FAIL",
+      "reason": "The caller is on SDK 2.4, but the answer gives v3 guidance (`RateLimitError`, `retry_after_seconds`), which does not apply to v2 and cannot be acted on for their installed version.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The caller is on SDK 2.4, but the answer gives v3 guidance (`RateLimitError`, `retry_after_seconds`), which does not apply to v2 and cannot be acted on for their installed version.\"}"
+    },
+    "C06": {
+      "verdict": "PASS",
+      "reason": "The caller is on SDK 2.4 (v2), and the answer correctly states the v2 default retry_backoff_ms of 2000 ms per the constructor parameters table, with the v3 change clearly marked as separate context and the example code is supplementary.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The caller is on SDK 2.4 (v2), and the answer correctly states the v2 default retry_backoff_ms of 2000 ms per the constructor parameters table, with the v3 change clearly marked as separate context and the example code is supplementary.\"}"
+    },
+    "C07": {
+      "verdict": "FAIL",
+      "reason": "The developer is on SDK 2.4, but the answer gives the SDK v3 `client.stream()` usage without noting that the retrieved docs are v3-only, so it does not give the v2.4 streaming fact they need.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The developer is on SDK 2.4, but the answer gives the SDK v3 `client.stream()` usage without noting that the retrieved docs are v3-only, so it does not give the v2.4 streaming fact they need.\"}"
+    },
+    "C08": {
+      "verdict": "FAIL",
+      "reason": "The caller is on SDK 2.4, but every shown chunk is SDK v3, and the answer gives the v3 procedure while admitting it could not confirm the v2 equivalent or how failures are signalled, so the developer cannot act on it alone.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The caller is on SDK 2.4, but every shown chunk is SDK v3, and the answer gives the v3 procedure while admitting it could not confirm the v2 equivalent or how failures are signalled, so the developer cannot act on it alone.\"}"
+    },
+    "C09": {
+      "verdict": "PASS",
+      "reason": "The answer gives `max_retries=0` at client construction, which the SDK v2 docs confirm disables automatic retries for the caller's 2.4 version, so a developer can act on it directly.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer gives `max_retries=0` at client construction, which the SDK v2 docs confirm disables automatic retries for the caller's 2.4 version, so a developer can act on it directly.\"}"
+    },
+    "C10": {
+      "verdict": "PASS",
+      "reason": "The answer directly states the SDK 2.4 default maximum upload size of 10 MB, which matches the v2 docs, though its extra v3 and multipart-mode claims are not supported for v2.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer directly states the SDK 2.4 default maximum upload size of 10 MB, which matches the v2 docs, though its extra v3 and multipart-mode claims are not supported for v2.\"}"
+    },
+    "C11": {
+      "verdict": "PASS",
+      "reason": "The answer gives the concrete v3 fix (loop over client.list_after() passing next_cursor until None), which matches the openapi x-sdk-call example and the changelog note that paginate_auto was replaced by list_after, so a developer can act on it directly.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer gives the concrete v3 fix (loop over client.list_after() passing next_cursor until None), which matches the openapi x-sdk-call example and the changelog note that paginate_auto was replaced by list_after, so a developer can act on it directly.\"}"
+    },
+    "C12": {
+      "verdict": "PASS",
+      "reason": "The answer correctly states that Client.request() was removed in SDK 3.0 and replaced by Client.send(), and gives the correct POST call with url, method, and required integer amount body, which the shown documentation supports.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer correctly states that Client.request() was removed in SDK 3.0 and replaced by Client.send(), and gives the correct POST call with url, method, and required integer amount body, which the shown documentation supports.\"}"
+    },
+    "C13": {
+      "verdict": "PASS",
+      "reason": "The answer states that paginate_auto() was removed in v3 and replaced by explicit cursor pagination via Client.list_after(), and the code example directly shows how to loop on next_cursor, which is what the developer asked for and is supported by the documentation shown.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer states that paginate_auto() was removed in v3 and replaced by explicit cursor pagination via Client.list_after(), and the code example directly shows how to loop on next_cursor, which is what the developer asked for and is supported by the documentation shown.\"}"
+    },
+    "C14": {
+      "verdict": "PASS",
+      "reason": "The answer states the specific fix the developer needs: in SDK v3 `timeout_s` was renamed to `timeout_ms`, so the call should be `Client(timeout_ms=30000)`, which matches the changelog chunk.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer states the specific fix the developer needs: in SDK v3 `timeout_s` was renamed to `timeout_ms`, so the call should be `Client(timeout_ms=30000)`, which matches the changelog chunk.\"}"
+    },
+    "C15": {
+      "verdict": "PASS",
+      "reason": "For SDK 3.0 the answer correctly states that TooManyRequestsError was renamed to RateLimitError, shows how to import and catch it, and gives the retry_after_seconds attribute, all supported by the v3 chunks.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"For SDK 3.0 the answer correctly states that TooManyRequestsError was renamed to RateLimitError, shows how to import and catch it, and gives the retry_after_seconds attribute, all supported by the v3 chunks.\"}"
+    },
+    "C16": {
+      "verdict": "FAIL",
+      "reason": "The question asks why client.upload_file() raises AttributeError, and the answer gives a partial explanation (the method is replaced by client.files.upload()) plus a hedge that the removal wasn't confirmed, but it does not directly state the documented fact that upload_file was removed or renamed in v3, so the developer's question is not fully answered from the shown docs.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The question asks why client.upload_file() raises AttributeError, and the answer gives a partial explanation (the method is replaced by client.files.upload()) plus a hedge that the removal wasn't confirmed, but it does not directly state the documented fact that upload_file was removed or renamed in v3, so the developer's question is not fully answered from the shown docs.\"}"
+    },
+    "C17": {
+      "verdict": "PASS",
+      "reason": "The answer states the specific usage (`client.stream(url=...)`, iterate `StreamEvent` objects with `event.type` and `event.data`, connection lifecycle), which matches the SDK v3 documentation shown and directly answers how to stream events.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer states the specific usage (`client.stream(url=...)`, iterate `StreamEvent` objects with `event.type` and `event.data`, connection lifecycle), which matches the SDK v3 documentation shown and directly answers how to stream events.\"}"
+    },
+    "C18": {
+      "verdict": "PASS",
+      "reason": "The answer states the specific steps for SDK v3.0 (call verify_signature from acme.webhooks with the raw body, X-Acme-Signature header, and signing secret), which is what the docs show, so a developer can act on it.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer states the specific steps for SDK v3.0 (call verify_signature from acme.webhooks with the raw body, X-Acme-Signature header, and signing secret), which is what the docs show, so a developer can act on it.\"}"
+    },
+    "C19": {
+      "verdict": "PASS",
+      "reason": "The question asks for the default retry backoff on SDK 3.0, and the answer correctly states 500 ms per the v3 docs (chunk 1 and the parameter table), with the per-request override accurately described.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The question asks for the default retry backoff on SDK 3.0, and the answer correctly states 500 ms per the v3 docs (chunk 1 and the parameter table), with the per-request override accurately described.\"}"
+    },
+    "C20": {
+      "verdict": "PASS",
+      "reason": "The answer states the free tier limit directly (60 requests per minute with a burst allowance of 10), which matches the v3 rate-limit table and text shown.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer states the free tier limit directly (60 requests per minute with a burst allowance of 10), which matches the v3 rate-limit table and text shown.\"}"
+    },
+    "C21": {
+      "verdict": "FAIL",
+      "reason": "The user is on SDK 2.4, but the answer gives v3-only guidance (list_after cursor loop) and says it assumes a v3 client, so it answers a different version's question and offers nothing actionable for 2.4.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The user is on SDK 2.4, but the answer gives v3-only guidance (list_after cursor loop) and says it assumes a v3 client, so it answers a different version's question and offers nothing actionable for 2.4.\"}"
+    },
+    "C22": {
+      "verdict": "PASS",
+      "reason": "The answer gives the exact v3 usage the developer needs, `Client(timeout_ms=120000)`, which the constructor table and changelog support, so they can act on it directly.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer gives the exact v3 usage the developer needs, `Client(timeout_ms=120000)`, which the constructor table and changelog support, so they can act on it directly.\"}"
+    },
+    "C23": {
+      "verdict": "FAIL",
+      "reason": "The question asks how to change the page size, but the answer explicitly says it could not confirm the keyword for passing page_size to list_after() and gives only the default-page-size example, so the requested usage is not provided even though the openapi spec chunk documents the page_size parameter.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The question asks how to change the page size, but the answer explicitly says it could not confirm the keyword for passing page_size to list_after() and gives only the default-page-size example, so the requested usage is not provided even though the openapi spec chunk documents the page_size parameter.\"}"
+    },
+    "C24": {
+      "verdict": "PASS",
+      "reason": "The answer states the concrete usage (`client.files.upload(file_path=...)`) with the documented defaults for `max_file_size_mb` and `part_size_mb`, all of which are supported by the SDK v3 chunks shown, so a developer can act on it directly.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer states the concrete usage (`client.files.upload(file_path=...)`) with the documented defaults for `max_file_size_mb` and `part_size_mb`, all of which are supported by the SDK v3 chunks shown, so a developer can act on it directly.\"}"
+    },
+    "C25": {
+      "verdict": "PASS",
+      "reason": "The answer gives the v3 replacement (`client.send()` with the same `url` and `method`), shows a usable rewritten call, and matches the removal note and parameter table in the shown docs.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer gives the v3 replacement (`client.send()` with the same `url` and `method`), shows a usable rewritten call, and matches the removal note and parameter table in the shown docs.\"}"
+    },
+    "C26": {
+      "verdict": "PASS",
+      "reason": "The answer states the specific fact the developer needs (paginate_auto was removed in v3, replace with a cursor loop over list_after() until next_cursor is None) and provides correct v3 code from the shown documentation, which is the right migration path for a developer migrating to 3.0.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer states the specific fact the developer needs (paginate_auto was removed in v3, replace with a cursor loop over list_after() until next_cursor is None) and provides correct v3 code from the shown documentation, which is the right migration path for a developer migrating to 3.0.\"}"
+    },
+    "C27": {
+      "verdict": "FAIL",
+      "reason": "The question asks about client.batch() in SDK 2.4, but the answer addresses v3 and substitutes a thread-pool workaround using client.send() from v3 docs, which does not answer how to use batch() in the caller's v2.4 SDK.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The question asks about client.batch() in SDK 2.4, but the answer addresses v3 and substitutes a thread-pool workaround using client.send() from v3 docs, which does not answer how to use batch() in the caller's v2.4 SDK.\"}"
+    },
+    "C28": {
+      "verdict": "FAIL",
+      "reason": "The question asks why `Client.query` is missing, and the answer does not state the replacement for `query` (the docs contain none), instead answering a different question about raw HTTP calls via `Client.send()`, which is not the fact requested.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The question asks why `Client.query` is missing, and the answer does not state the replacement for `query` (the docs contain none), instead answering a different question about raw HTTP calls via `Client.send()`, which is not the fact requested.\"}"
+    },
+    "C29": {
+      "verdict": "PASS",
+      "reason": "The documentation shown contains no mention of GraphQL support, so the assistant's statement that it cannot confirm GraphQL support is correct, and its hedged example does not misstate any documented fact.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The documentation shown contains no mention of GraphQL support, so the assistant's statement that it cannot confirm GraphQL support is correct, and its hedged example does not misstate any documented fact.\"}"
+    },
+    "C30": {
+      "verdict": "FAIL",
+      "reason": "The answer never states what is new, and instead offers related text (the changelog intro and the Client description) and unsupported claims about published versions, so a developer cannot act on it.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The answer never states what is new, and instead offers related text (the changelog intro and the Client description) and unsupported claims about published versions, so a developer cannot act on it.\"}"
+    },
+    "C31": {
+      "verdict": "FAIL",
+      "reason": "The developer is on SDK 2.4, but the answer gives v3 token instructions (ACME_API_TOKEN with Client()) and recommends migrating, so it answers a different question and the developer cannot act on it for 2.4.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"FAIL\", \"reason\": \"The developer is on SDK 2.4, but the answer gives v3 token instructions (ACME_API_TOKEN with Client()) and recommends migrating, so it answers a different question and the developer cannot act on it for 2.4.\"}"
+    },
+    "C32": {
+      "verdict": "PASS",
+      "reason": "The answer states the specific fact the developer asked for, that `base_url` is a `Client` constructor parameter with default https://api.acme.dev, which the shown constructor table confirms for SDK 3.0.",
+      "model": "claude-haiku-5-5",
+      "raw": "{\"verdict\": \"PASS\", \"reason\": \"The answer states the specific fact the developer asked for, that `base_url` is a `Client` constructor parameter with default https://api.acme.dev, which the shown constructor table confirms for SDK 3.0.\"}"
+    }
+  }
+}

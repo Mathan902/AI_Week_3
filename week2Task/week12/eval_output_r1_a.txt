@@ -1,0 +1,61 @@
+running 32 cases on release r1 (mcp.json) -> runs/r1_a.jsonl
+  C01 PASS tr-43c669fb2f79 $0.0016 17.3s 
+  C03 PASS tr-5cd5656fdca4 $0.0033 23.8s 
+  C02 FAIL tr-4773aa022db4 $0.0026 25.3s code_presence: no code sample
+  C04 PASS tr-1cb99f9933d3 $0.0041 31.1s 
+  C06 FAIL tr-9fd47d42b17e $0.0020 16.7s deprecation_surfaced: not surfaced with its 3.0 change: ['retry_backoff_ms']
+  C07 PASS tr-ad520ff97647 $0.0019 16.3s 
+  C08 PASS tr-eba1af6dfb33 $0.0019 15.2s 
+  C05 FAIL tr-49837fd1ffea $0.0054 35.9s cites_version: no citation; deprecation_surfaced: not surfaced with its 3.0 change: ['TooManyRequestsError']; answered_when_answerable: refused / no o
+  C09 PASS tr-61424a5f43a7 $0.0029 25.2s 
+  C10 PASS tr-5e30626b943e $0.0030 24.4s 
+  C12 PASS tr-44bf28c3f3c8 $0.0017 15.9s 
+  C11 PASS tr-9d095deb9a55 $0.0034 25.0s 
+  C15 PASS tr-2f70da7b2797 $0.0023 20.1s 
+  C14 PASS tr-4876b02ba791 $0.0028 27.7s 
+  C13 PASS tr-45458078bdac $0.0047 33.1s 
+  C17 PASS tr-b64f0dfff77b $0.0013 14.4s 
+  C18 FAIL tr-3a6c2bdb2c47 $0.0012 11.9s code_parses: SyntaxError: unmatched ']'; code_runs_on_version: does not parse: unmatched ']' (line 4)
+  C20 PASS tr-ddc2a3320ef2 $0.0006 6.7s 
+  C19 PASS tr-3d56df905ee2 $0.0015 14.9s 
+  C16 FAIL tr-e26de4cd2cdb $0.0046 44.2s cites_version: no citation; deprecation_surfaced: not surfaced with its 3.0 change: ['upload_file']; removed_said_plainly: never says it no longer exi
+  C21 PASS tr-27947c38835a $0.0018 16.6s 
+  C24 PASS tr-e298a065e8d7 $0.0014 15.4s 
+  C23 PASS tr-e7daf1bf5382 $0.0032 25.0s 
+  C25 PASS tr-e00aadcd61d8 $0.0022 21.8s 
+  C22 PASS tr-9469bc86a09a $0.0042 34.5s 
+  C29 PASS tr-20bed9b63d13 $0.0011 12.2s 
+  C27 PASS tr-9c081ab062cc $0.0023 23.0s 
+  C26 FAIL tr-686c220511b8 $0.0044 31.6s code_presence: no code sample; cites_version: no citation; deprecation_surfaced: not surfaced with its 3.0 change: ['paginate_auto']; answered_when_an
+  C28 FAIL tr-d83b4df0cba2 $0.0046 38.9s required_facts_present: missing /query/
+  C30 PASS tr-3ea73d35442d $0.0037 30.7s 
+  C32 PASS tr-509c629296df $0.0055 36.6s 
+  C31 PASS tr-a1f06320f67d $0.0055 41.2s 
+
+== r1_a: 32 cases, outcome (all assertions) 25/32 (78.1%)
+   W1 Code for the wrong SDK version (a v2 caller gets v3 code, or v3 gets v  11/14 (78.6%)
+   W2 Removed/renamed API not called out plainly for a v3 caller                5/7 (71.4%)
+   W3 Changed default answered without the version difference                   1/2 (50.0%)
+   W4 Invented method or signature for something that does not exist            1/2 (50.0%)
+   W5 Coverage: answers from the other version's docs, or refuses what the d   5/5 (100.0%)
+   W7 Pasted secret reaches the model, the MCP server or a log line            2/2 (100.0%)
+
+   assertion                  applies  fails
+   version_resolved                32      0
+   code_presence                   14      2
+   code_parses                     19      1
+   code_runs_on_version            19      1
+   code_must_not                   13      0
+   cites_version                   26      3
+   citations_grounded              26      0
+   deprecation_surfaced            15      4
+   removed_said_plainly             5      1
+   answered_when_answerable        32      3
+   required_facts_present          29      4
+   pii_never_logged                 2      0
+
+   WRONG-VERSION CODE RATE: 1/19 (5.3%) of answers with code fail the caller's symbol table
+   'looks like code' -> red: 0 of 18 samples that PARSE fail the symbol-table check
+   trajectory (n=13): tool-choice 55/55 (100.0%), outcome 9/13 (69.2%), trajectory 5/13 (38.5%), gap +30.8 pts; right answer / wrong path: ['C03', 'C11', 'C14', 'C15', 'C27']
+   trace id survived every MCP hop: 32/32 (100.0%) of traces with an MCP call
+   cost/question mean $0.00290 p50 $0.00285 max $0.00549; latency p50 24.4s p95 38.9s; 5.34 LLM calls/question

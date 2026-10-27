@@ -1,0 +1,100 @@
+{
+ "v2": {
+  "version": "v2",
+  "modules": {
+   "acme": [
+    "Client"
+   ],
+   "acme.errors": [
+    "AcmeError",
+    "ApiError",
+    "AuthenticationError",
+    "NotFoundError",
+    "ServerError",
+    "TooManyRequestsError"
+   ]
+  },
+  "client_methods": {
+   "paginate_auto": [
+    "page_size",
+    "url"
+   ],
+   "request": [
+    "method",
+    "retry_backoff_ms",
+    "url"
+   ],
+   "upload_file": [
+    "file_path",
+    "max_file_size_mb",
+    "mime_type"
+   ]
+  },
+  "functions": {},
+  "constructor": [
+   "base_url",
+   "max_retries",
+   "retry_backoff_ms",
+   "timeout_s"
+  ]
+ },
+ "v3": {
+  "version": "v3",
+  "modules": {
+   "acme": [
+    "Client"
+   ],
+   "acme.errors": [
+    "AcmeError",
+    "ApiError",
+    "AuthenticationError",
+    "NotFoundError",
+    "PermissionDeniedError",
+    "RateLimitError",
+    "ServerError",
+    "TransportError"
+   ],
+   "acme.webhooks": [
+    "verify_signature"
+   ]
+  },
+  "client_methods": {
+   "files.upload": [
+    "file_path",
+    "max_file_size_mb",
+    "part_size_mb"
+   ],
+   "list_after": [
+    "cursor",
+    "url"
+   ],
+   "send": [
+    "body",
+    "headers",
+    "method",
+    "retry_backoff_ms",
+    "url"
+   ],
+   "stream": [
+    "buffer_size_ms",
+    "heartbeat_interval_ms",
+    "url"
+   ]
+  },
+  "functions": {
+   "acme.webhooks.verify_signature": [
+    "payload",
+    "scheme",
+    "secret",
+    "signature_header",
+    "tolerance_seconds"
+   ]
+  },
+  "constructor": [
+   "base_url",
+   "max_retries",
+   "retry_backoff_ms",
+   "timeout_ms"
+  ]
+ }
+}

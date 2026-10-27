@@ -1,0 +1,174 @@
+{
+  "run": "r2_b",
+  "criterion": "DIRECTLY ANSWERS",
+  "labeler": "Claude (claude-opus-5-5) at the student's request, from week12/labels/sheet_r2_b.md, BEFORE any judge output existed for this run. NOT a human labeller: the student should spot-check and relabel, then re-lock and re-judge (see eval_report.md section 4).",
+  "answers_sha256": "a127fbfbb3c860b794a2f0fc3904a4361f80d773bbd9213cba779faf8f6aff35",
+  "labels": [
+    {
+      "id": "C01",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C02",
+      "label": "PASS",
+      "note": "Gives the documented v2 POST call client.request(url, method='POST') and correctly says the v2 docs show no body parameter; that caveat is true of the docs shown."
+    },
+    {
+      "id": "C03",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C04",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C05",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C06",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C07",
+      "label": "PASS",
+      "note": "v2 docs shown have no streaming page; the decline is correct for 2.4."
+    },
+    {
+      "id": "C08",
+      "label": "PASS",
+      "note": "v2 docs shown have no webhook page; decline correct."
+    },
+    {
+      "id": "C09",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C10",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C11",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C12",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C13",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C14",
+      "label": "PASS",
+      "note": "No search results, but the check_deprecation result shown states timeout_s -> timeout_ms; answer correct."
+    },
+    {
+      "id": "C15",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C16",
+      "label": "FAIL",
+      "note": "'I don't know' although symbol_exists/check_deprecation results shown say upload_file -> Client.files.upload() and the v3 files page was retrieved."
+    },
+    {
+      "id": "C17",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C18",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C19",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C20",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C21",
+      "label": "FAIL",
+      "note": "'I don't know' although v2-pagination::paginate-auto::1 (shown) states paginate_auto() walks every page."
+    },
+    {
+      "id": "C22",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C23",
+      "label": "FAIL",
+      "note": "'I don't know' although the v2 pagination table and symbol_exists (shown) list page_size."
+    },
+    {
+      "id": "C24",
+      "label": "FAIL",
+      "note": "'I don't know' although v3-files::file-uploads::0 (shown) says uploads go through Client.files.upload()."
+    },
+    {
+      "id": "C25",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C26",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C27",
+      "label": "PASS",
+      "note": "Says client.batch() does not exist in 2.4 or 3.0 and points to the one-request-per-call API; no invented signature."
+    },
+    {
+      "id": "C28",
+      "label": "PASS",
+      "note": "Says client.query does not exist and points to Client.send(); the POST example is generic but correct v3."
+    },
+    {
+      "id": "C29",
+      "label": "PASS",
+      "note": "GraphQL is not in the docs shown; decline correct."
+    },
+    {
+      "id": "C30",
+      "label": "PASS",
+      "note": "No v4 docs; says so and names the latest published version."
+    },
+    {
+      "id": "C31",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C32",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    },
+    {
+      "id": "C33",
+      "label": "PASS",
+      "note": "States the asked fact/usage for the resolved version, consistent with the documentation shown."
+    }
+  ],
+  "labelled_without_seeing_judge_output": true
+}

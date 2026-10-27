@@ -1,0 +1,222 @@
+
+====================================================================================================
+PART 1 - a real run: a v2.4 caller, version resolved BEFORE retrieval, v2 citation, unasked deprecation
+====================================================================================================
+
+$ capstone.py ask 'how do I paginate through all invoices' --sdk-version 2.4
+On SDK 2.4, `client.paginate_auto(url="/v2/invoices")` walks every page of the invoices collection and yields one invoice at a time. This method was removed in SDK 3.0, so if you upgrade, you'll need explicit cursor pagination with `list_after()` instead (the v3 docs cover that, not v2).
+
+```python
+for invoice in client.paginate_auto(url="/v2/invoices"):
+    print(invoice.id)
+```
+
+Version notes (SDK 2.4):
+- `paginate_auto()` works on 2.4, but was removed in 3.0. When you upgrade, use list_after() (explicit cursor pagination).
+
+Sources:
+- [SDK v2 2.0-2.9] [v2-pagination::paginate-auto::3-code](corpus/sdk_v2/pagination.md#paginate-auto)
+- [SDK v2 2.0-2.9] [v2-pagination::paginate-auto::1](corpus/sdk_v2/pagination.md#paginate-auto)
+- [SDK v2 2.0-2.9] [v2-pagination::paginate-auto::4](corpus/sdk_v2/pagination.md#paginate-auto)
+
+Code checked against the SDK v2 symbol table: pass (1 symbols).
+
+--- trace tr-1c522333f6c7  release r2  status done
+    version: SDK 2.4 -> docs v2, code must run on v2 (resolved from flag: --sdk-version 2.4)
+      s1 intake                                   0.1 ms  $0.000000
+      s2 agent.lap                             3272.6 ms  $0.000097  tokens={'in': 2703, 'out': 139} action=search_docs
+      s3 mcp.tools/call search_docs              79.5 ms  $0.000000  server span mcp.server.search_docs 74.8 ms  trace_id=tr-1c522333f6c7
+      s4 agent.lap                             3826.6 ms  $0.000363  tokens={'in': 3321, 'out': 213} action=symbol_exists
+      s5 mcp.tools/call symbol_exists             5.4 ms  $0.000000  server span mcp.server.symbol_exists 0.1 ms  trace_id=tr-1c522333f6c7
+      s6 agent.lap                             3907.7 ms  $0.000463  tokens={'in': 3507, 'out': 339} action=check_deprecation
+      s7 mcp.tools/call check_deprecation         4.6 ms  $0.000000  server span mcp.server.check_deprecation 0.1 ms  trace_id=tr-1c522333f6c7
+      s8 agent.lap                             6955.4 ms  $0.000870  tokens={'in': 3849, 'out': 1016} action=final
+      s9 code_check                               0.5 ms  $0.000000
+     s10 render                                   0.3 ms  $0.000000
+    total 18054 ms  $0.001793  4 LLM calls  15087 tokens  |  trace id survived the MCP hop: True (3/3 server spans carry tr-1c522333f6c7)
+
+====================================================================================================
+PART 1b - the removed method, said plainly, for a 3.0 caller
+====================================================================================================
+
+$ capstone.py ask 'how do I use client.request() to POST an invoice?' --sdk-version 3.0
+`client.request()` no longer exists in 3.0. To create an invoice, call `client.send()` with `method="POST"`, `url="/v3/invoices"`, and a JSON `body` containing `amount`; this assumes `client` is an existing Client instance.
+
+```python
+response = client.send(url="/v3/invoices", method="POST", body={"amount": 4200})
+print(response.status_code)
+```
+
+Version notes (SDK 3.0):
+- `Client.request()` no longer exists in 3.0 (removed). Use Client.send().
+
+Sources:
+- [SDK v3 3.0-3.2] [v3-client::client-send::8-code](corpus/sdk_v3/client.md#client-send)
+- [SDK v3 3.0-3.2] [v3-client::client-send::5](corpus/sdk_v3/client.md#client-send)
+
+Code checked against the SDK v3 symbol table: pass (1 symbols).
+
+--- trace tr-f8ac3e752124  release r2  status done
+    version: SDK 3.0 -> docs v3, code must run on v3 (resolved from flag: --sdk-version 3.0)
+      s1 intake                                   0.1 ms  $0.000000
+      s2 agent.lap                             2682.4 ms  $0.000118  tokens={'in': 2708, 'out': 181} action=symbol_exists
+      s3 mcp.tools/call symbol_exists             6.0 ms  $0.000000  server span mcp.server.symbol_exists 0.2 ms  trace_id=tr-f8ac3e752124
+      s4 agent.lap                             3583.2 ms  $0.000306  tokens={'in': 2880, 'out': 276} action=symbol_exists
+      s5 mcp.tools/call symbol_exists             4.5 ms  $0.000000  server span mcp.server.symbol_exists 0.1 ms  trace_id=tr-f8ac3e752124
+      s6 agent.lap                             4438.3 ms  $0.000385  tokens={'in': 3083, 'out': 352} action=check_deprecation
+      s7 mcp.tools/call check_deprecation         7.6 ms  $0.000000  server span mcp.server.check_deprecation 0.2 ms  trace_id=tr-f8ac3e752124
+      s8 agent.lap                             3632.0 ms  $0.000410  tokens={'in': 3383, 'out': 282} action=get_openapi_spec
+      s9 mcp.tools/call get_openapi_spec          2.7 ms  $0.000000  server span mcp.server.get_openapi_spec 0.0 ms  trace_id=tr-f8ac3e752124
+     s10 agent.lap                             3674.9 ms  $0.000567  tokens={'in': 3974, 'out': 359} action=search_docs
+     s11 mcp.tools/call search_docs             244.9 ms  $0.000000  server span mcp.server.search_docs 239.2 ms  trace_id=tr-f8ac3e752124
+     s12 agent.lap                             6369.7 ms  $0.001047  tokens={'in': 4655, 'out': 1048} action=final
+     s13 code_check                               0.8 ms  $0.000000
+     s14 render                                   0.5 ms  $0.000000
+    total 24649 ms  $0.002832  6 LLM calls  23181 tokens  |  trace id survived the MCP hop: True (5/5 server spans carry tr-f8ac3e752124)
+
+====================================================================================================
+PART 2 - the failures we found (stored traces; week12/taxonomy.md)
+====================================================================================================
+
+$ capstone.py trace tr-df2fb1813299 --brief
+question: how do I paginate through all invoices   (IDE flag: 2.4)
+In SDK v3, paginate invoices with `client.list_after(url="/v3/invoices", cursor=cursor)` in a loop: pass `cursor=None` for the first page, then follow `page.next_cursor` until it is `None`. This replaces `paginate_auto()`, which was removed in v3. The snippet assumes `client` is already constructed.
+
+```python
+cursor = None
+while True:
+    page = client.list_after(url="/v3/invoices", cursor=cursor)
+    for invoice in page.items:
+        print(invoice.id)
+    cursor = page.next_cursor
+    if cursor is None:
+        break
+```
+
+Sources:
+- [SDK v3 3.0-3.2] [v3-changelog::removed-apis::3](corpus/sdk_v3/changelog.md#removed-apis)
+- [SDK v3 3.0-3.2] [/v3/invoices (GET listInvoices, x-sdk-call)](week7/openapi_v3.json) (not returned by any tool in this request)
+
+--- trace tr-df2fb1813299  release r0  status done
+    version: SDK 2.4 -> docs v2, code must run on v2 (resolved from flag: --sdk-version 2.4)
+      s1 intake                                   0.0 ms  $0.000000
+      s2 agent.lap                             2793.1 ms  $0.000086  tokens={'in': 2080, 'out': 129} action=search_docs
+      s3 mcp.tools/call search_docs            7741.9 ms  $0.000000
+      s4 agent.lap                             3453.7 ms  $0.000344  tokens={'in': 2550, 'out': 240} action=get_openapi_spec
+      s5 mcp.tools/call get_openapi_spec         12.3 ms  $0.000000
+      s6 agent.lap                             5986.5 ms  $0.000857  tokens={'in': 3122, 'out': 1039} action=final
+      s7 render                                   0.5 ms  $0.000000
+    total 19988 ms  $0.001286  3 LLM calls  9160 tokens  |  trace id survived the MCP hop: False (0/2 server spans carry tr-df2fb1813299)
+
+server-side spans under tr-df2fb1813299: 0
+The modes
+
+| # | Failure mode (what the integrator sees) | r0_a | r2_a | **r2_b (ships)** | Severity | Trace id | Origin |
+|---|---|---|---|---|---|---|---|
+| 1 | **Verification spiral, then "I don't know".** The agent keeps confirming names it already has (`Client`, `file_path`, `TooManyRequestsError.response`) with `symbol_exists` / `check_deprecation` until the 8-lap budget ends, then answers "I don't know" to a question the docs answer | 0/32 (0%) | 3/32 (9.4%) | **4/33 (12.1%)** | Dead end: the integrator gets nothing, and pays 1.7x ($0.0049 vs $0.0028 per passing answer) after 37 s | `tr-008ab778c2af` (r2_b C23) | **NEW: created by integration** |
+| 2 | **Redaction-on-write corrupts the emitted code.** `WEBHOOK_SIGNING_SECRET = os.environ["..."]` becomes `[REDACTED:secret_assignment]"..."]` and stops parsing | 2/32 (6.3%) | 1/32 (3.1%) | **0/33 (0%)** after the fix (C33 guards it) | Ships broken code. No judge catches it: judge_v2 PASSed the r0 C18 answer | `tr-5871db30a290` (r0_a C18) | **NEW: created by integration** (closed loop) |
+| 3 | **Wrong-version code sample.** A v2.4 caller gets v3 `list_after()` / `client.send()` / `timeout_ms`, which imports cleanly and fails at runtime | 12/32 (37.5%) | 1/19 with code* | **0/19 with code (0%)** | Ships code that passes review and fails in production: the brief's most expensive ticket | `tr-df2fb1813299` (r0_a C01) | Created by integration (seam S1: the Week 9 "answer with v3 code" prompt meets Week 11's v2 support) |
+| 4 | **Trace id lost at the MCP hop.** Server-side work cannot be joined to the request | 32/32 (100%) | 0/32 | **0/33 (0%)** | Ops: an incident can't be traced past the agent | `tr-cd70c4189700` (r0 first run) | Created by integration (Week 9 server meets Week 11 tracing) |
+| 5 | **Citation that names no version or was never retrieved** (spec paths, "check_deprecation: … returned not_in_changelog", `docs://openapi/...`) | 12/32 (37.5%) | 0/32 | **0/33 (0%)** | Misleads: the reader can't check the version the answer is for | `tr-79c0510dc95f` (r0_a C11) | Inherited (Week 7 contract allowed any string in `sources`) |
+| 6 | **Code from the other version where the caller's docs are silent.** v2.4 asks to stream or verify a webhook and gets v3 `client.stream()` / `verify_signature` | 4/32 (12.5%) | 0/32 | **0/33 (0%)** | Ships code that does not exist on 2.4 | `tr-95dafe935473` (r0_a C07) | Inherited (Week 5 M2, "describes an API from the other version as current") |
+| 7 | **Over-cautious decline on a partly documented question.** The documented call is given, but hedged as "can't give a verified way" (C02); a correct "doesn't exist" plus an alternative was judged not to answer (C27) | 0/32 | 1/32 (3.1%) | **1/33 (3.0%)** by assertion; the judge also FAILs C27 | Annoys: the developer has to read on | `tr-8c6660d5b357` (r2_b C02) | Created by integration: the side effect of the "never invent" rule that fixes mode 3 |
+
+\* r2_a's single wrong-version answer is C18. That is mode 2 (the redaction corrupted the code), not the model
+choosing v3. Counted once, under mode 2.
+
+**Read-across (r2_b):** 5/33 traces show a mode (15%): 4 spirals plus C02. Both modes that ship broken code (2 and 3)
+are at 0 in r2_b. On 19 answers with code, the 95% upper bound for mode 3 is still 16.8% (Wilson), so "0" means
+"not seen in 19", not "solved".
+
+
+# Top 3 known weaknesses, written before anyone asked
+
+**Written 2026-10-27 (Tuesday), after the first full eval runs and before the fresh-eyes review or the demo.** The
+brief asks for Wednesday. These were written a day early, on the day they were found, and have not been softened
+since.
+
+## 1. The verification spiral: it says "I don't know" to 12% of answerable questions
+
+4 of 33 r2_b questions (C16, C21, C23, C24; 3 of 32 in r2_a, different cases) end in "I don't know" although a tool
+result in the same trace contains the answer. The agent keeps checking names it already has (`Client`, `file_path`,
+`TooManyRequestsError.response`) with `symbol_exists` / `check_deprecation` until the 8-lap budget runs out.
+`tr-008ab778c2af` has `page_size` in lap 1 and gives up at lap 8. This is the price of the fix that took wrong-version
+code to 0: the "never invent a signature" rule plus a symbol checker made the agent unable to decide it is done. Each
+spiral costs 1.7x a good answer ($0.0049 vs $0.0028) and takes 37 s.
+**Not fixed.** Planned fix (ranked first in `cost_and_10x.md`): the host caps verification calls at 3 per question,
+and on lap 7 the host tells the model "final answer now, with what you have". The code check is the backstop if that
+produces an invented name.
+
+## 2. Wrong-version code is at 0/19, but most of that 0 comes from the prompt, which nothing enforces in code
+
+The move from 37.5% to 0% came almost entirely from r0 → r1: the version-aware prompt and the Week 12 tool
+descriptions. In r2 the deterministic guards hardly fired. The version pin rewrote 2 calls, the code-check repair
+fired 0 times, and 0 citations were dropped. So if the model drifts or someone edits the prompt, the guards are
+untested against live failures; they are proven only by unit tests with a fake model. On top of that, the symbol
+table checks names, not behaviour: `Client(timeout_ms=120)` (meant: 2 minutes) passes, `page.items` is never checked,
+and nothing executes the code against a real SDK. n=19 answers with code gives a 95% upper bound of 16.8% on the
+true rate.
+
+## 3. In-IDE it is too slow and too token-hungry: p95 39 s, and ~21k input tokens per question
+
+p50 23.8 s and p95 38.6 s per question (r2_b), 99.6% of it in LLM laps. Each lap is a `claude -p` subprocess
+(215 MB RSS, ~1.5 s start-up) that re-sends a ~3.8k-token prompt, 5.6 laps per question. That is already
+unacceptable for an IDE assistant at today's traffic, and at 9,000 integrators the input-token rate limit is the
+first thing that breaks (`cost_and_10x.md`). The judge agreement (93.9%) is also against labels Claude wrote, not a
+human. It is honest as far as it goes, but it is not the human-agreement number the rubric means until a person
+relabels the 33 answers.
+
+
+====================================================================================================
+PART 3 - the number that moved (stored runs, n=32 each; week12/eval_report.md)
+====================================================================================================
+run          n   outcome (all assertions)   wrong-version code  parses-but-red  trace survives MCP  traj gap  $/question  p50 s
+r0_a        32               9/32 (28.1%)        12/32 (37.5%)      10/30              0/32 (0.0%)    -38.5     0.00188   16.1
+r1_a        32              25/32 (78.1%)          1/19 (5.3%)       0/18           32/32 (100.0%)    +30.8     0.00290   24.4
+r2_a        32              27/32 (84.4%)          1/19 (5.3%)       0/18           32/32 (100.0%)    +46.2     0.00274   21.8
+
+$ week12_eval.py summary --run r2_a
+
+== r2_a: 32 cases, outcome (all assertions) 27/32 (84.4%)
+   W1 Code for the wrong SDK version (a v2 caller gets v3 code, or v3 gets v   9/14 (64.3%)
+   W2 Removed/renamed API not called out plainly for a v3 caller               7/7 (100.0%)
+   W3 Changed default answered without the version difference                  2/2 (100.0%)
+   W4 Invented method or signature for something that does not exist           2/2 (100.0%)
+   W5 Coverage: answers from the other version's docs, or refuses what the d   5/5 (100.0%)
+   W7 Pasted secret reaches the model, the MCP server or a log line            2/2 (100.0%)
+
+   assertion                  applies  fails
+   version_resolved                32      0
+   code_presence                   14      1
+   code_parses                     19      1
+   code_runs_on_version            19      1
+   code_must_not                   13      0
+   cites_version                   26      3
+   citations_grounded              26      0
+   deprecation_surfaced            15      2
+   removed_said_plainly             5      0
+   answered_when_answerable        32      3
+   required_facts_present          29      3
+   pii_never_logged                 2      0
+
+   WRONG-VERSION CODE RATE: 1/19 (5.3%) of answers with code fail the caller's symbol table
+   'looks like code' -> red: 0 of 18 samples that PARSE fail the symbol-table check
+   trajectory (n=13): tool-choice 50/50 (100.0%), outcome 11/13 (84.6%), trajectory 5/13 (38.5%), gap +46.2 pts; right answer / wrong path: ['C03', 'C11', 'C14', 'C15', 'C16', 'C26', 'C27']
+     evidence-only path 13/13 (100.0%), gap -15.4 pts; laps 4.85 taken vs 2.15 optimal
+   trace id survived every MCP hop: 32/32 (100.0%) of traces with an MCP call
+   cost/question mean $0.00274 p50 $0.00247 max $0.00554; latency p50 21.8s p95 34.2s; 4.97 LLM calls/question
+
+====================================================================================================
+PART 4 - what's next: the guard, cost per question, what breaks first at 10x (week12/cost_and_10x.md)
+====================================================================================================
+# Cost per question, and what breaks first in-IDE
+
+**Cost per question: $0.0031 mean (p50 $0.0028, max $0.0061), 100% of it LLM laps. p50 23.8 s, p95 38.6 s.**
+**What breaks first when all 9,000 integrators get it in their IDE: the model's input-tokens-per-minute limit, at
+121% of the limit (2.41M of 2.0M ITPM) in the peak minute on day one.** Each question re-sends a ~3.8k-token prompt
+5.6 times (21,445 input tokens). Next to break: the $500/month spend cap on working day 6 (cost is 3.7x the cap), and
+on a single host 9.6 GB of `claude` processes. At today's traffic (and at 10x today) nothing breaks except latency,
+which is already too slow for an IDE.
+
+
+Run `capstone.py loop` for the closed failure -> test loop, live.

@@ -1,0 +1,63 @@
+running 33 cases on release r2 (mcp.json) -> runs/r2_b.jsonl
+  C01 PASS tr-6629e68bfeea $0.0016 15.5s 
+  C03 PASS tr-496e8e93e6af $0.0033 27.6s 
+  C04 PASS tr-e551fe736483 $0.0041 33.5s 
+  C02 FAIL tr-8c6660d5b357 $0.0045 33.9s code_presence: no code sample
+  C06 PASS tr-ed8dbae7f180 $0.0021 17.9s 
+  C07 PASS tr-34834753e70d $0.0019 15.9s 
+  C08 PASS tr-192b64259edc $0.0026 19.2s 
+  C05 PASS tr-9a5b76ce3d85 $0.0059 38.8s 
+  C09 PASS tr-58ff086fe2ad $0.0028 23.8s 
+  C12 PASS tr-b3cbecfdbd64 $0.0015 16.7s 
+  C11 PASS tr-db8afbc651f1 $0.0047 30.0s 
+  C10 PASS tr-477620c66c48 $0.0047 35.2s 
+  C14 PASS tr-31255ef7ac3e $0.0015 15.8s 
+  C17 PASS tr-6ee013b6a6ed $0.0012 12.2s 
+  C15 PASS tr-e27ed8337eba $0.0022 20.6s 
+  C13 PASS tr-c6f7235b2854 $0.0047 38.3s 
+  C18 PASS tr-448c46a1716b $0.0013 15.0s 
+  C20 PASS tr-f0b8f616f56e $0.0005 7.1s 
+  C19 PASS tr-3d55fe112b33 $0.0015 13.9s 
+  C16 FAIL tr-c6f5ad30e6f6 $0.0046 33.1s cites_version: no citation; deprecation_surfaced: not surfaced with its 3.0 change: ['upload_file']; removed_said_plainly: never says it no longer exi
+  C22 PASS tr-25f6da908b85 $0.0027 22.5s 
+  C21 FAIL tr-b8ae4689932f $0.0047 34.1s cites_version: no citation; deprecation_surfaced: not surfaced with its 3.0 change: ['paginate_auto']; answered_when_answerable: refused / no output; 
+  C23 FAIL tr-008ab778c2af $0.0047 37.6s cites_version: no citation; deprecation_surfaced: not surfaced with its 3.0 change: ['paginate_auto']; answered_when_answerable: refused / no output; 
+  C24 FAIL tr-ae43d98f44f8 $0.0058 44.4s cites_version: no citation; answered_when_answerable: refused / no output; required_facts_present: missing /files\.upload/
+  C25 PASS tr-773a8cfcb8a0 $0.0033 29.4s 
+  C29 PASS tr-2015a4bc4315 $0.0012 11.6s 
+  C27 PASS tr-f1d4bcc7a077 $0.0024 23.8s 
+  C26 PASS tr-f7916ea5418d $0.0040 32.9s 
+  C28 PASS tr-ca680ef449aa $0.0041 33.9s 
+  C30 PASS tr-95cabddb36ab $0.0023 19.2s 
+  C31 PASS tr-a8fcaabefce5 $0.0021 19.6s 
+  C32 PASS tr-b7a9bdf7f767 $0.0061 38.6s 
+  C33 PASS tr-ae8025dc4b78 $0.0032 23.8s 
+
+== r2_b: 33 cases, outcome (all assertions) 28/33 (84.8%)
+   W1 Code for the wrong SDK version (a v2 caller gets v3 code, or v3 gets v  10/14 (71.4%)
+   W2 Removed/renamed API not called out plainly for a v3 caller                6/7 (85.7%)
+   W3 Changed default answered without the version difference                  2/2 (100.0%)
+   W4 Invented method or signature for something that does not exist           2/2 (100.0%)
+   W5 Coverage: answers from the other version's docs, or refuses what the d   5/5 (100.0%)
+   W7 Pasted secret reaches the model, the MCP server or a log line            2/2 (100.0%)
+   W8 Integration: redaction-on-write corrupts an emitted code sample (regre   1/1 (100.0%)
+
+   assertion                  applies  fails
+   version_resolved                33      0
+   code_presence                   15      1
+   code_parses                     19      0
+   code_runs_on_version            19      0
+   code_must_not                   14      0
+   cites_version                   27      4
+   citations_grounded              26      0
+   deprecation_surfaced            15      3
+   removed_said_plainly             5      1
+   answered_when_answerable        33      4
+   required_facts_present          30      4
+   pii_never_logged                 2      0
+
+   WRONG-VERSION CODE RATE: 0/19 (0.0%) of answers with code fail the caller's symbol table
+   'looks like code' -> red: 0 of 19 samples that PARSE fail the symbol-table check
+   trajectory (n=13): tool-choice 55/55 (100.0%), outcome 11/13 (84.6%), trajectory 6/13 (46.2%), gap +38.5 pts; right answer / wrong path: ['C03', 'C11', 'C15', 'C26', 'C27']
+   trace id survived every MCP hop: 33/33 (100.0%) of traces with an MCP call
+   cost/question mean $0.00314 p50 $0.00281 max $0.00614; latency p50 23.8s p95 38.6s; 5.58 LLM calls/question

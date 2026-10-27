@@ -1,0 +1,172 @@
+
+====================================================================================================
+CLOSED LOOP: failure found in the integrated system -> test -> RED -> fix -> GREEN, no regressions
+====================================================================================================
+The failure (r0_a C18, trace tr-5871db30a290): Week 11's redaction-on-write rewrote the emitted sample
+  WEBHOOK_SIGNING_SECRET = os.environ["ACME_WEBHOOK_SECRET"]
+into
+  WEBHOOK_SIGNING_SECRET = [REDACTED:secret_assignment]"ACME_WEBHOOK_SECRET"]
+which no longer parses. Neither part has this bug alone; it exists only where the logger meets the agent's output.
+The tests that now guard it: eval case C33 (week12/eval_cases.jsonl) and
+tests.test_week12_capstone.Guards.test_redaction_never_corrupts_code_that_references_a_secret
+
+====================================================================================================
+1/3  RED: redaction policy v1 (the shipped Week 11 behaviour)
+====================================================================================================
+
+$ -W ignore -m unittest tests.test_week12_capstone.Guards.test_redaction_never_corrupts_code_that_references_a_secret
+F
+======================================================================
+FAIL: test_redaction_never_corrupts_code_that_references_a_secret (tests.test_week12_capstone.Guards.test_redaction_never_corrupts_code_that_references_a_secret)
+The Week 12 closed loop (C18, tr-5871db30a290): policy v1 made this sample unparseable.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/softsuave/weak2_task/week2Task/tests/test_week12_capstone.py", line 93, in test_redaction_never_corrupts_code_that_references_a_secret
+    self.assertEqual(redacted, code)
+AssertionError: 'impo[73 chars]ET = [REDACTED:secret_assignment]"ACME_WEBHOOK[152 chars]")\n' != 'impo[73 chars]ET = os.environ["ACME_WEBHOOK_SECRET"]\nverify[111 chars]")\n'
+  import os
+  from acme.webhooks import verify_signature
+  
+- WEBHOOK_SIGNING_SECRET = [REDACTED:secret_assignment]"ACME_WEBHOOK_SECRET"]
+?                          ^^^^^^^^^^ ^^^^^^^^^^^^^  ^^
++ WEBHOOK_SIGNING_SECRET = os.environ["ACME_WEBHOOK_SECRET"]
+?                          ^ ^  ^^^^^^
+- verify_signature(payload=b"", signature_header="h", secret=[REDACTED:secret_assignment])
+- token = [REDACTED:secret_assignment]"ACME_API_TOKEN")
++ verify_signature(payload=b"", signature_header="h", secret=WEBHOOK_SIGNING_SECRET)
++ token = os.getenv("ACME_API_TOKEN")
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)
+
+$ week12_eval.py case C33 --release r2
+  C33 FAIL tr-042deb29344f $0.0070 41.3s code_parses: SyntaxError: unmatched ']'; code_runs_on_version: does not parse: unmatched ']' (line 4); code_must_not: code matches /\[REDACTED/
+
+C33 on r2: RED  (trace tr-042deb29344f)
+   ok  version_resolved           3.0->v3/code v3 via flag
+   ok  code_presence              code present
+   RED code_parses                SyntaxError: unmatched ']'
+   RED code_runs_on_version       does not parse: unmatched ']' (line 4)
+   RED code_must_not              code matches /\[REDACTED/
+   ok  cites_version              first cites v3
+   ok  citations_grounded         4 grounded
+   ok  answered_when_answerable   answered
+   ok  required_facts_present     present
+
+In SDK v3, read the signing secret from an environment variable and pass it to `verify_signature` along with the raw body and the `X-Acme-Signature` header. `scheme` defaults to "v3" and `tolerance_seconds` defaults to 300, so you don't need to pass them. The v3 docs don't cover what `verify_signature` does when a signature is invalid or a delivery is stale (raise or return False), so the example doesn't handle that case yet.
+
+```python
+import os
+from acme.webhooks import verify_signature
+
+WEBHOOK_SIGNING_SECRET = [REDACTED:secret_assignment]'ACME_WEBHOOK_SIGNING_SECRET']
+
+def check_delivery(raw_body: bytes, headers) -> None:
+    verify_signature(
+        payload=raw_body,
+        signature_header=headers['X-Acme-Signature'],
+        secret=[REDACTED:secret_assignment],
+    )
+    # The v3 docs don't say how a failed check is reported. Confirm that before trusting the payload.
+```
+
+Sources:
+- [SDK v3 3.0-3.2] [v3-webhooks::signature-verification::2-code](corpus/sdk_v3/webhooks.md#signature-verification)
+- [SDK v3 3.0-3.2] [v3-webhooks::signature-verification::1](corpus/sdk_v3/webhooks.md#signature-verification)
+- [SDK v3 3.0-3.2] [v3-webhooks::verification-parameters::3-table](corpus/sdk_v3/webhooks.md#verification-parameters)
+- [SDK v3 3.0-3.2] [v3-webhooks::verification-parameters::4](corpus/sdk_v3/webhooks.md#verification-parameters)
+
+Code checked against the SDK v3 symbol table: pass (2 symbols).
+
+====================================================================================================
+2/3  GREEN: redaction policy v2 (literal secrets only; code references survive)
+====================================================================================================
+
+$ -W ignore -m unittest tests.test_week12_capstone.Guards.test_redaction_never_corrupts_code_that_references_a_secret
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+
+$ week12_eval.py case C33 --release r2
+  C33 PASS tr-d54faa6a1de3 $0.0021 22.0s 
+
+C33 on r2: GREEN  (trace tr-d54faa6a1de3)
+   ok  version_resolved           3.0->v3/code v3 via flag
+   ok  code_presence              code present
+   ok  code_parses                parses
+   ok  code_runs_on_version       2 symbols exist in v3
+   ok  code_must_not              clear
+   ok  cites_version              first cites v3
+   ok  citations_grounded         3 grounded
+   ok  answered_when_answerable   answered
+   ok  required_facts_present     present
+
+Read the signing secret with `os.environ` (the env var name `ACME_WEBHOOK_SIGNING_SECRET` is my choice, not from the docs), then pass the raw request body and the `X-Acme-Signature` header to `verify_signature` in `acme.webhooks`. The v3 docs show this call but don't document what `verify_signature` does on a bad signature, so check that before relying on it.
+
+```python
+import os
+from acme.webhooks import verify_signature
+
+WEBHOOK_SIGNING_SECRET = os.environ["ACME_WEBHOOK_SIGNING_SECRET"]
+
+def handle_webhook(raw_body: bytes, headers) -> None:
+    verify_signature(
+        payload=raw_body,
+        signature_header=headers["X-Acme-Signature"],
+        secret=WEBHOOK_SIGNING_SECRET,
+    )
+```
+
+Sources:
+- [SDK v3 3.0-3.2] [v3-webhooks::signature-verification::2-code](corpus/sdk_v3/webhooks.md#signature-verification)
+- [SDK v3 3.0-3.2] [v3-webhooks::signature-verification::1](corpus/sdk_v3/webhooks.md#signature-verification)
+- [SDK v3 3.0-3.2] [v3-client::authentication::1](corpus/sdk_v3/client.md#authentication)
+
+Code checked against the SDK v3 symbol table: pass (2 symbols).
+
+====================================================================================================
+3/3  no regressions: the whole unit suite, and the PII cases still redact
+====================================================================================================
+
+$ -W ignore -m unittest tests.test_week12_capstone
+.................
+----------------------------------------------------------------------
+Ran 17 tests in 48.774s
+
+OK
+
+$ week12_eval.py run --release r2 --ids C31 C32 --label loop_pii
+running 2 cases on release r2 (mcp.json) -> runs/loop_pii.jsonl
+  C31 PASS tr-e4b9775c706e $0.0051 37.8s 
+  C32 PASS tr-1beb8120aa72 $0.0055 38.1s 
+
+== loop_pii: 2 cases, outcome (all assertions) 2/2 (100.0%)
+   W7 Pasted secret reaches the model, the MCP server or a log line            2/2 (100.0%)
+
+   assertion                  applies  fails
+   version_resolved                 2      0
+   code_presence                    0      0
+   code_parses                      2      0
+   code_runs_on_version             2      0
+   code_must_not                    0      0
+   cites_version                    2      0
+   citations_grounded               2      0
+   deprecation_surfaced             0      0
+   removed_said_plainly             0      0
+   answered_when_answerable         2      0
+   required_facts_present           2      0
+   pii_never_logged                 2      0
+
+   WRONG-VERSION CODE RATE: 0/2 (0.0%) of answers with code fail the caller's symbol table
+   'looks like code' -> red: 0 of 2 samples that PARSE fail the symbol-table check
+   trajectory (n=0): tool-choice -, outcome -, trajectory -, gap +0.0 pts; right answer / wrong path: []
+     evidence-only path -, gap +0.0 pts; laps 0 taken vs 0 optimal
+   trace id survived every MCP hop: 2/2 (100.0%) of traces with an MCP call
+   cost/question mean $0.00533 p50 $0.00512 max $0.00553; latency p50 37.8s p95 38.1s; 8.00 LLM calls/question
+
+RESULT  v1: unit RED / C33 RED   v2: unit GREEN / C33 GREEN   suite GREEN   PII cases GREEN

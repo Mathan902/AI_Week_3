@@ -90,3 +90,50 @@ The squad (`week10_squad.py`) is an orchestrator with two narrow workers: versio
 ```
 
 `week11_app.py` is the production docs assistant: retrieval → tools → generation. Every request writes one trace with per-span latency, tokens and cost, plus `prompt_version`, `retrieved_context_ids`, the output and an `output_index`. Deliverables are in `week11/`: `drill.md` (00:37, then 00:11 after the bonus index), `trace.json`, `eval_cases.jsonl`, suite output RED (20 · 20 · 19 of 28) and GREEN (28 · 28 · 27 of 28), `release.md` (v1 → v4, canary and rollback), `cost_by_stage.md` and `tenx.md`.
+
+## Week 12: SDK Docs Answer Engine (capstone, Variant E)
+
+One entry point, `capstone.py`, wires the Week 3-4 retriever, Week 7 agent loop, Week 9 MCP host + server, Week 6
+eval and judge, Week 8 trajectory eval and Week 11 tracing into one system. It answers an SDK question against the
+caller's ACTUAL version (2.4 or 3.0), surfaces deprecations unasked, cites the doc page with its SDK version, and
+checks every code sample against that version's symbol table.
+
+**Setup (a stranger, from zero):**
+
+```bash
+cd week2Task
+python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt   # first run downloads all-MiniLM-L6-v2
+claude --version        # the model is called through the Claude Code CLI (`claude -p`); log in once with `claude`
+.venv/bin/python capstone.py test                      # 17 tests, fake model + real MCP server, $0, ~1 min
+```
+
+**The one command:**
+
+```bash
+.venv/bin/python capstone.py ask "how do I paginate through all invoices" --sdk-version 2.4
+```
+
+`--sdk-version` is what the IDE plugin sends. Leave it out and the version is read from the question ("I'm on 2.4")
+or from v2-only names in pasted code, else 3.0 is assumed and the answer says so. Output: the answer, version notes,
+versioned citations, the code-check result, and the span table (latency, tokens and $ per span, one trace id across
+the agent and MCP hops). Every request is logged, redacted, to `week12/logs/requests-<date>.jsonl`, and the server's
+spans go to `week12/logs/mcp_server-<date>.jsonl`.
+
+| Command | What it does | Model cost |
+|---|---|---|
+| `capstone.py eval` | 33 cases on the integrated engine: 12 assertions, trajectory (13 cases), judge_v2 | ~$0.12, ~5 min |
+| `capstone.py compare` | before → after table from the stored runs (r0 Tuesday wiring, r1, r2) | $0 |
+| `capstone.py loop` | the closed failure → test loop: RED (redaction policy v1) → GREEN (v2), suite + PII still green | ~$0.02 |
+| `capstone.py demo` | the four-part demo in order | ~$0.01 |
+| `capstone.py serve` | the MCP server alone, for a client that isn't ours (Inspector / Claude Code) | $0 |
+| `capstone.py trace <id> --brief` | one logged trace, with the server-side spans under the same id | $0 |
+
+Deliverables in `week12/`: `seams.md` (Tuesday's seam list, each marked fixed / accepted / ran-out-of-time),
+`architecture.md` (one page: boxes, model calls, money), `eval_report.md` (the number that moved, n, judge agreement,
+non-coverage), `eval_suite_output.md` (full output, every run), `taxonomy.md` (7 modes, the ones integration
+created), `trajectory.md`, `trace_e2e.json`, `weaknesses.md` (top 3, written before review), `cost_and_10x.md`,
+`demo_script.md`, `fresh_eyes.md` (for Thursday's reviewer), `external_client_check.md`.
+
+Headline: wrong-version code samples **37.5% → 0%** (12/32 → 0/19 with code), judge agreement **93.9%** (31/33) on
+the integrated outputs, trace id intact across the MCP hop **0/32 → 33/33**, **$0.0031/question**. Still open: the
+verification spiral ("I don't know" on 4/33). First thing to break in-IDE: input tokens per minute (121% of the limit).
