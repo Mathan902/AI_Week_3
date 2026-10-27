@@ -1,0 +1,61 @@
+running 32 cases on release r2 (mcp.json) -> runs/r2_a.jsonl
+  C04 PASS tr-24c2ba95b279 $0.0019 17.2s 
+  C01 PASS tr-75fad9319063 $0.0017 18.4s 
+  C03 PASS tr-9e9384874ae1 $0.0031 24.9s 
+  C02 FAIL tr-2bf4e9665c5d $0.0034 26.9s code_presence: no code sample
+  C06 PASS tr-7ddeb119bb8e $0.0015 14.8s 
+  C07 PASS tr-0b5b521293aa $0.0013 13.3s 
+  C08 PASS tr-68db82a2edd5 $0.0020 14.9s 
+  C05 FAIL tr-fe662ce98d14 $0.0055 35.9s cites_version: no citation; deprecation_surfaced: not surfaced with its 3.0 change: ['TooManyRequestsError']; answered_when_answerable: refused / no o
+  C09 PASS tr-486520d0fbb7 $0.0031 24.2s 
+  C11 PASS tr-1286a806fad5 $0.0043 28.2s 
+  C10 FAIL tr-2ff1aa0adc73 $0.0048 34.2s cites_version: no citation; answered_when_answerable: refused / no output; required_facts_present: missing /\b10\s*MB/
+  C12 PASS tr-6a81cb86c3c0 $0.0022 21.6s 
+  C13 PASS tr-0eb3dc6b2d84 $0.0038 29.6s 
+  C14 PASS tr-ee86d65de91b $0.0023 21.0s 
+  C15 PASS tr-3d939fc0ffea $0.0022 19.8s 
+  C16 PASS tr-1c8967a6613d $0.0021 21.1s 
+  C17 PASS tr-35a216c94f46 $0.0013 12.6s 
+  C20 PASS tr-8e5246a2799b $0.0007 8.1s 
+  C18 FAIL tr-c833c39bdbd6 $0.0015 13.8s code_parses: SyntaxError: unmatched ']'; code_runs_on_version: does not parse: unmatched ']' (line 4)
+  C19 PASS tr-db3de6349a58 $0.0017 15.3s 
+  C24 PASS tr-96b07c034de6 $0.0013 9.5s 
+  C21 PASS tr-c84b59342fd9 $0.0024 18.6s 
+  C22 PASS tr-5fc5e0d397fb $0.0030 24.8s 
+  C25 PASS tr-672464ff5865 $0.0031 22.6s 
+  C23 FAIL tr-940a68239c72 $0.0051 34.9s cites_version: no citation; deprecation_surfaced: not surfaced with its 3.0 change: ['paginate_auto']; answered_when_answerable: refused / no output; 
+  C26 PASS tr-0c64d7f54a6e $0.0047 31.2s 
+  C27 PASS tr-30de70a14c25 $0.0025 21.8s 
+  C29 PASS tr-6598ad786c25 $0.0019 15.4s 
+  C28 PASS tr-cb5fd358dd00 $0.0031 26.2s 
+  C30 PASS tr-4c36bf9ddb46 $0.0036 24.8s 
+  C31 PASS tr-c6a08ca0b51f $0.0032 24.9s 
+  C32 PASS tr-a2be970b03fc $0.0036 29.1s 
+
+== r2_a: 32 cases, outcome (all assertions) 27/32 (84.4%)
+   W1 Code for the wrong SDK version (a v2 caller gets v3 code, or v3 gets v   9/14 (64.3%)
+   W2 Removed/renamed API not called out plainly for a v3 caller               7/7 (100.0%)
+   W3 Changed default answered without the version difference                  2/2 (100.0%)
+   W4 Invented method or signature for something that does not exist           2/2 (100.0%)
+   W5 Coverage: answers from the other version's docs, or refuses what the d   5/5 (100.0%)
+   W7 Pasted secret reaches the model, the MCP server or a log line            2/2 (100.0%)
+
+   assertion                  applies  fails
+   version_resolved                32      0
+   code_presence                   14      1
+   code_parses                     19      1
+   code_runs_on_version            19      1
+   code_must_not                   13      0
+   cites_version                   26      3
+   citations_grounded              26      0
+   deprecation_surfaced            15      2
+   removed_said_plainly             5      0
+   answered_when_answerable        32      3
+   required_facts_present          29      3
+   pii_never_logged                 2      0
+
+   WRONG-VERSION CODE RATE: 1/19 (5.3%) of answers with code fail the caller's symbol table
+   'looks like code' -> red: 0 of 18 samples that PARSE fail the symbol-table check
+   trajectory (n=13): tool-choice 50/50 (100.0%), outcome 11/13 (84.6%), trajectory 5/13 (38.5%), gap +46.2 pts; right answer / wrong path: ['C03', 'C11', 'C14', 'C15', 'C16', 'C26', 'C27']
+   trace id survived every MCP hop: 32/32 (100.0%) of traces with an MCP call
+   cost/question mean $0.00274 p50 $0.00247 max $0.00554; latency p50 21.8s p95 34.2s; 4.97 LLM calls/question

@@ -1,0 +1,25 @@
+{
+  "rule": "stratified by Week 5 mode: round(n_mode * 10/25) per mode, random.Random(10).sample within mode",
+  "quota": {
+    "M1": 2,
+    "M2": 2,
+    "M3": 2,
+    "M4": 2,
+    "M5": 1,
+    "M6": 1
+  },
+  "case_ids": [
+    "E01",
+    "E05",
+    "E09",
+    "E10",
+    "E11",
+    "E14",
+    "E18",
+    "E19",
+    "E21",
+    "E25"
+  ],
+  "eval_set_sha256": "e9d40fab50ff70697480ecccfdac512205eb9487c55d35bf9202939e71c9594b",
+  "selected_at_utc": "2026-10-13T07:55:43+00:00"
+}

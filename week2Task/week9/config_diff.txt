@@ -1,0 +1,19 @@
+diff --git a/week9/snapshots/server1/mcp_config.json b/week9/mcp_config.json
+index 05d4d90c..b8be3798 100644
+--- a/week9/snapshots/server1/mcp_config.json
++++ b/week9/mcp_config.json
+@@ -4,6 +4,14 @@
+       "command": ".venv/bin/python",
+       "args": ["week9_docs_server.py"],
+       "env": {}
++    },
++    "package-registry": {
++      "command": ".venv/bin/python",
++      "args": ["week9/vendor/package_registry/server.py"],
++      "env": {
++        "REGISTRY_SNAPSHOT": "week9/vendor/package_registry/registry_snapshot.json",
++        "REGISTRY_ACCESS_LOG": "week9/logs/registry_access.log"
++      }
+     }
+   }
+ }

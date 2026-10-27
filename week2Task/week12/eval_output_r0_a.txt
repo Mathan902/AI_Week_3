@@ -1,0 +1,61 @@
+running 32 cases on release r0 (mcp_r0.json) -> runs/r0_a.jsonl
+  C02 FAIL tr-e60f7ce21a86 $0.0009 17.2s code_runs_on_version: `client.send()` does not exist in v2 (it exists in v3); endpoint path '/v3/invoices' is a v3 path, caller is on v2; code_must_no
+  C01 FAIL tr-df2fb1813299 $0.0013 20.0s code_runs_on_version: `client.list_after()` does not exist in v2 (it exists in v3); endpoint path '/v3/invoices' is a v3 path, caller is on v2; code_m
+  C03 FAIL tr-393508cc358b $0.0016 21.4s code_runs_on_version: `Client()` has no parameter ['timeout_ms'] in v2; code_must_not: code matches /timeout_ms/; cites_version: first citation is v3 
+  C07 FAIL tr-95dafe935473 $0.0007 8.0s code_presence: code given where the docs have none for this version; code_runs_on_version: `client.stream()` does not exist in v2 (it exists in v3); e
+  C05 FAIL tr-4557855580ea $0.0014 14.1s code_runs_on_version: `from acme.errors import RateLimitError` does not resolve in v2; `client.send()` does not exist in v2 (it exists in v3); endpoin
+  C04 FAIL tr-8101f754f191 $0.0035 36.5s code_runs_on_version: `client.files.upload()` does not exist in v2 (it exists in v3); code_must_not: code matches /files\.upload/; cites_version: firs
+  C08 FAIL tr-1a980ac2df98 $0.0016 15.5s code_presence: code given where the docs have none for this version; code_parses: SyntaxError: unmatched ']'; code_runs_on_version: does not parse: un
+  C06 FAIL tr-c89c7150b24d $0.0037 29.7s deprecation_surfaced: not surfaced with its 3.0 change: ['retry_backoff_ms']
+  C11 FAIL tr-79c0510dc95f $0.0012 12.3s cites_version: a citation names no SDK version; citations_grounded: not returned by any tool: docs://openapi/v3/invoices GET listInvoices (x-sdk-call)
+  C10 FAIL tr-0fd290c80423 $0.0029 25.1s code_runs_on_version: `client.files.upload()` does not exist in v2 (it exists in v3); cites_version: a citation names no SDK version; citations_ground
+  C12 FAIL tr-4f8c6bb134e3 $0.0016 14.3s citations_grounded: not returned by any tool: /v3/invoices (post, operationId createInvoice); removed_said_plainly: never says it no longer exists
+  C09 FAIL tr-6109a0bbb0f1 $0.0050 36.3s cites_version: first citation is v3 (v3-errors::disabling-automatic-error-retries::4), caller needs v2
+  C14 PASS tr-7a2579636b9f $0.0012 11.8s 
+  C13 FAIL tr-1003f0891a71 $0.0024 18.7s citations_grounded: not returned by any tool: /v3/invoices (GET listInvoices x-sdk-call)
+  C17 PASS tr-733326a3202f $0.0005 7.0s 
+  C15 FAIL tr-148d319d9c13 $0.0018 17.9s deprecation_surfaced: not surfaced with its 3.0 change: ['TooManyRequestsError']; removed_said_plainly: never says it no longer exists
+  C16 FAIL tr-84b3604508b0 $0.0014 15.0s cites_version: a citation names no SDK version; citations_grounded: not returned by any tool: check_deprecation: client.upload_file (v3) -> not_in_cha
+  C18 FAIL tr-5871db30a290 $0.0009 8.8s code_parses: SyntaxError: unmatched ']'; code_runs_on_version: does not parse: unmatched ']' (line 4)
+  C19 PASS tr-670b3237e4a6 $0.0006 7.5s 
+  C20 PASS tr-75376ef49263 $0.0007 7.7s 
+  C22 PASS tr-151b6c07f992 $0.0007 7.7s 
+  C21 FAIL tr-c31b33cc07fc $0.0019 16.1s code_runs_on_version: `client.list_after()` does not exist in v2 (it exists in v3); endpoint path '/v3/invoices' is a v3 path, caller is on v2; code_m
+  C24 PASS tr-00d1b7cb85b8 $0.0008 9.6s 
+  C25 PASS tr-631fe38a36e2 $0.0014 13.7s 
+  C23 FAIL tr-9d333579019b $0.0035 25.6s code_runs_on_version: `client.list_after()` does not exist in v2 (it exists in v3); endpoint path '/v3/invoices' is a v3 path, caller is on v2; code_m
+  C27 FAIL tr-8792e187163d $0.0021 20.3s code_runs_on_version: `client.send()` does not exist in v2 (it exists in v3); endpoint path '/v3/invoices' is a v3 path, caller is on v2; endpoint pat
+  C28 FAIL tr-db553d0fe8c6 $0.0022 23.0s answered_when_answerable: answered something the docs do not cover
+  C29 FAIL tr-998059493fed $0.0022 18.7s code_presence: code given where the docs have none for this version
+  C26 FAIL tr-143ce3c5cb1e $0.0046 34.0s citations_grounded: not returned by any tool: /v3/invoices (OpenAPI get, x-sdk-call)
+  C30 FAIL tr-40c3b9bd6183 $0.0014 14.8s code_presence: code given where the docs have none for this version; answered_when_answerable: answered something the docs do not cover
+  C31 FAIL tr-9c92c0a1bcb8 $0.0016 16.1s cites_version: a citation names no SDK version; citations_grounded: not returned by any tool: check_deprecation: AuthenticationError (v2) -> not_in_ch
+  C32 PASS tr-6d468629ab5a $0.0029 21.7s 
+
+== r0_a: 32 cases, outcome (all assertions) 8/32 (25.0%)
+   W1 Code for the wrong SDK version (a v2 caller gets v3 code, or v3 gets v   3/14 (21.4%)
+   W2 Removed/renamed API not called out plainly for a v3 caller                2/7 (28.6%)
+   W3 Changed default answered without the version difference                   1/2 (50.0%)
+   W4 Invented method or signature for something that does not exist             0/2 (0.0%)
+   W5 Coverage: answers from the other version's docs, or refuses what the d    1/5 (20.0%)
+   W7 Pasted secret reaches the model, the MCP server or a log line             1/2 (50.0%)
+
+   assertion                  applies  fails
+   version_resolved                32      0
+   code_presence                   14      4
+   code_parses                     32      2
+   code_runs_on_version            32     12
+   code_must_not                   20      9
+   cites_version                   26     12
+   citations_grounded              32     12
+   deprecation_surfaced            15      5
+   removed_said_plainly             5      3
+   answered_when_answerable        32      5
+   required_facts_present          29      3
+   pii_never_logged                 2      0
+
+   WRONG-VERSION CODE RATE: 12/32 (37.5%) of answers with code fail the caller's symbol table
+   'looks like code' -> red: 10 of 30 samples that PARSE fail the symbol-table check
+   trajectory (n=13): tool-choice 27/29 (93.1%), outcome 2/13 (15.4%), trajectory 3/13 (23.1%), gap -7.7 pts; right answer / wrong path: ['C14', 'C17']
+   trace id survived every MCP hop: 0/32 (0.0%) of traces with an MCP call
+   cost/question mean $0.00188 p50 $0.00158 max $0.00503; latency p50 16.1s p95 34.0s; 3.72 LLM calls/question

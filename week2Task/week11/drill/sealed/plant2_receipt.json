@@ -1,0 +1,14 @@
+{
+  "trace_id": "tr-c4c1d08790dc",
+  "file": "week11/logs/requests-2026-10-14.jsonl",
+  "line": 27,
+  "ts": "2026-10-14T11:30:28+00:00",
+  "user_id": "u-b052",
+  "sdk_target": "v3",
+  "method": "a",
+  "deprecated_symbol": "upload_file (v2 Client.upload_file; v3 uses client.files.upload)",
+  "question": "upload a file example",
+  "what_changed": "Edited existing trace in place. output.code changed from client.files.upload(file_path=\"dataset.csv\", max_file_size_mb=25) to client.upload_file(file_path=\"dataset.csv\", max_file_size_mb=25). output.answer rewritten to recommend `client.upload_file()` for v3 (removed the v2 vs v3 contrast sentence, added a sentence about oversize rejection). answer_text rebuilt to match (same answer + fenced python block with the deprecated call, same citation chunk v3-files::upload-parameters::3-code). All other fields (ids, ts, spans, tokens, cost, sources, retrieved) untouched.",
+  "original_copy": "week11/drill/sealed/plant2_original_requests-2026-10-14.jsonl",
+  "planted_at_utc": "2026-10-21T10:41:31Z"
+}

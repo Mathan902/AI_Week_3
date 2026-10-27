@@ -1,0 +1,1 @@
+Context re-send multiplier: squad 197,488 / single 117,861 tokens = 1.7x. Largest share: "orchestrator -> version worker" (119 calls), 47% of all squad tokens.

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "acme-docs": {
+      "command": ".venv/bin/python",
+      "args": ["week12_server.py"],
+      "env": {}
+    }
+  }
+}

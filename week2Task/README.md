@@ -42,3 +42,98 @@ Use each prepared question in the app and show its cited source. Then select **N
 ```
 
 Each run scores hit-rate@3 on `golden_set.jsonl`, labels every failure R / G / Not-In-Corpus, measures p50 latency, and writes the inspection view to `week4_output/`. Results and the shipping decision are in `results.md`, and the code change is in `week4_change.diff`.
+
+## Week 8: trajectory eval, the outcome-vs-trajectory gap, one mitigation
+
+```bash
+.venv/bin/python week8_trajectory_eval.py run --variant before   # Week 7 agent as shipped, 10 questions x 3
+.venv/bin/python week8_trajectory_eval.py run --variant after    # with the one mitigation (argument validation) on
+.venv/bin/python week8_trajectory_eval.py report                 # every table -> week8/report.md
+.venv/bin/python -m unittest tests.test_week8_trajectory         # the path-set assertions, on fake runs
+```
+
+Each run is scored on the answer (Week 7 grader) and on the path: expected tool sequences asserted as sets of accepted paths, tool-choice accuracy, argument validity, step efficiency, and cost per question with p50 and max. The write-up, the named right-answer-wrong-path trace, the before/after count for the top mode with its price, the per-mode regression table and the injection bonus are in `week8/notes.md`; the mitigation is `week8/mitigation.diff`.
+
+## Week 9: MCP, adding the package-registry server without touching the agent
+
+```bash
+.venv/bin/python week9_agent.py --list-tools        # initialize + tools/list against every server in week9/mcp_config.json
+.venv/bin/python week9_agent.py --qid Q01           # the Week 7 loop with tools/call over MCP
+./week9/run_sequence.sh                             # server one -> config edit -> server one + two, writes agent_diff.txt
+.venv/bin/python -m unittest tests.test_week9_mcp   # discovery, config-only swap, recoverable error, gateway scopes
+```
+
+The agent (`week9_agent.py`) discovers every tool over MCP from a config file. Server one is our docs-search server (`week9_docs_server.py`); server two is DevRel's package-registry server, vendored in `week9/vendor/`. Adding it changed 0 lines of the agent and took tools from 3 to 6. The deliverables are `week9/agent_diff.txt`, `config_diff.txt`, `wire.json`, `tool_counts.txt`, `error_before_after.md` and `risk_note.md`. The write-up and numbers are in `week9/notes.md`; the bonus gateway is `week9_gateway.py`.
+
+## Week 10: race the docs squad against the single agent
+
+```bash
+.venv/bin/python week10_race.py select                 # pick 10 of the 25 Week-6 cases once -> week10/cases.json
+.venv/bin/python week10_race.py run                    # 10 cases x 3 repeats x {single, squad}, Week-6 judge_v2 + 8 assertions
+.venv/bin/python week10_race.py failure --case E09     # version/deprecation worker returns HTTP 500
+.venv/bin/python -m unittest tests.test_week10_squad   # hand-off logging, target version in the brief, injected 500 (fake LLM)
+```
+
+The squad (`week10_squad.py`) is an orchestrator with two narrow workers: version/deprecation, then code-sample. The single agent is the Week 7 loop. Both arms use the same model, tools, contract and judge. The deliverables are in `week10/`: `race_table.md`, `handoffs.log`, `multiplier.txt`, `failure_case.md`, `verdict.md` and `agent_card.json`. The write-up is `week10/notes.md`. Result: the squad costs 1.7x the tokens, runs 2.5x slower at p50 and has no pass-rate gain, so the verdict is KILL.
+
+## Week 11: observability, cost by stage, and the failure → test loop (Task Set E)
+
+```bash
+.venv/bin/python week11_traffic.py --n 700                    # two weeks of production traffic -> week11/logs (real LLM calls)
+.venv/bin/python week11_logq.py find --since 2026-10-12 --until 2026-10-19 --code-re 'paginate_auto|timeout_s'
+.venv/bin/python week11_logq.py reindex && .venv/bin/python week11_logq.py find --flag deprecated_call_in_code
+.venv/bin/python week11_logq.py stages --trace tr-a3d4b7eb86a5 # cost / latency / tokens per stage + volume
+.venv/bin/python week11_suite.py run --prompt v1 --label red_r1   # Week-6 suite + week11/eval_cases.jsonl
+.venv/bin/python week11_suite.py run --prompt v4 --label green_r1
+.venv/bin/python week11_suite.py summary --before red_r1 red_r2 red_r3 --after green_r1 green_r2 green_r3
+.venv/bin/python -m unittest tests.test_week11_observability  # spans, output index, scoping (fake LLM)
+```
+
+`week11_app.py` is the production docs assistant: retrieval → tools → generation. Every request writes one trace with per-span latency, tokens and cost, plus `prompt_version`, `retrieved_context_ids`, the output and an `output_index`. Deliverables are in `week11/`: `drill.md` (00:37, then 00:11 after the bonus index), `trace.json`, `eval_cases.jsonl`, suite output RED (20 · 20 · 19 of 28) and GREEN (28 · 28 · 27 of 28), `release.md` (v1 → v4, canary and rollback), `cost_by_stage.md` and `tenx.md`.
+
+## Week 12: SDK Docs Answer Engine (capstone, Variant E)
+
+One entry point, `capstone.py`, wires the Week 3-4 retriever, Week 7 agent loop, Week 9 MCP host + server, Week 6
+eval and judge, Week 8 trajectory eval and Week 11 tracing into one system. It answers an SDK question against the
+caller's ACTUAL version (2.4 or 3.0), surfaces deprecations unasked, cites the doc page with its SDK version, and
+checks every code sample against that version's symbol table.
+
+**Setup (a stranger, from zero):**
+
+```bash
+cd week2Task
+python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt   # first run downloads all-MiniLM-L6-v2
+claude --version        # the model is called through the Claude Code CLI (`claude -p`); log in once with `claude`
+.venv/bin/python capstone.py test                      # 17 tests, fake model + real MCP server, $0, ~1 min
+```
+
+**The one command:**
+
+```bash
+.venv/bin/python capstone.py ask "how do I paginate through all invoices" --sdk-version 2.4
+```
+
+`--sdk-version` is what the IDE plugin sends. Leave it out and the version is read from the question ("I'm on 2.4")
+or from v2-only names in pasted code, else 3.0 is assumed and the answer says so. Output: the answer, version notes,
+versioned citations, the code-check result, and the span table (latency, tokens and $ per span, one trace id across
+the agent and MCP hops). Every request is logged, redacted, to `week12/logs/requests-<date>.jsonl`, and the server's
+spans go to `week12/logs/mcp_server-<date>.jsonl`.
+
+| Command | What it does | Model cost |
+|---|---|---|
+| `capstone.py eval` | 33 cases on the integrated engine: 12 assertions, trajectory (13 cases), judge_v2 | ~$0.12, ~5 min |
+| `capstone.py compare` | before → after table from the stored runs (r0 Tuesday wiring, r1, r2) | $0 |
+| `capstone.py loop` | the closed failure → test loop: RED (redaction policy v1) → GREEN (v2), suite + PII still green | ~$0.02 |
+| `capstone.py demo` | the four-part demo in order | ~$0.01 |
+| `capstone.py serve` | the MCP server alone, for a client that isn't ours (Inspector / Claude Code) | $0 |
+| `capstone.py trace <id> --brief` | one logged trace, with the server-side spans under the same id | $0 |
+
+Deliverables in `week12/`: `seams.md` (Tuesday's seam list, each marked fixed / accepted / ran-out-of-time),
+`architecture.md` (one page: boxes, model calls, money), `eval_report.md` (the number that moved, n, judge agreement,
+non-coverage), `eval_suite_output.md` (full output, every run), `taxonomy.md` (7 modes, the ones integration
+created), `trajectory.md`, `trace_e2e.json`, `weaknesses.md` (top 3, written before review), `cost_and_10x.md`,
+`demo_script.md`, `fresh_eyes.md` (for Thursday's reviewer), `external_client_check.md`.
+
+Headline: wrong-version code samples **37.5% → 0%** (12/32 → 0/19 with code), judge agreement **93.9%** (31/33) on
+the integrated outputs, trace id intact across the MCP hop **0/32 → 33/33**, **$0.0031/question**. Still open: the
+verification spiral ("I don't know" on 4/33). First thing to break in-IDE: input tokens per minute (121% of the limit).

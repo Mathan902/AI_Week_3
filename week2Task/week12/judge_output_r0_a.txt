@@ -1,0 +1,8 @@
+
+   judge_v2 PASS 18/32; gate (all assertions AND judge PASS) 8/32 (25.0%). r0_a has no hand labels: judge agreement is measured on r2_b:
+
+   JUDGE AGREEMENT (week6 judge_v2 vs hand labels, run r2_b): 31/33 (93.9%)  clears the 85% bar
+     human PASS/judge PASS 27  human PASS/judge FAIL 2  human FAIL/judge PASS 0  human FAIL/judge FAIL 4
+     DISAGREE C02: human=PASS judge=FAIL: The question asks how to send a POST to create an invoice, and the docs do show `client.request(url="/v2/invoices", method="POST")` as the POST usage, yet the a
+     DISAGREE C27: human=PASS judge=FAIL: The question asks how to use client.batch() to send several requests at once; the answer correctly says it doesn't exist and gives a single-request call, but it
+     gate (all assertions AND judge PASS): 27/33 (81.8%)
